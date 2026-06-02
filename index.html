@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afternoon Arpeggios — Music Tuition Hobart</title>
+<script src="https://js.stripe.com/v3/"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cr:#4a0f0f;--crm:#6b1a1a;--crd:#2d0808;--crb:rgba(107,26,26,0.4);--go:#C9A96E;--gl:#e8cfa0;--ow:#F5F0EB;--tm:#7A6A5A;--td:#4a3a2a;--bg:#0A0505;--bgc:#110808;--bgi:#180c0c;--bgs:#0e0606}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ow);font-family:"Raleway",sans-serif;font-weight:300;line-height:1.7;min-height:100vh}
+header{background:var(--crd);border-bottom:1px solid var(--crb);padding:1.5rem 2rem 0;text-align:center}
+.logo{font-family:"Cormorant Garamond",serif;font-size:2.6rem;font-weight:300;color:var(--go);letter-spacing:.15em;text-transform:uppercase;line-height:1}
+.logo-sub{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--tm);margin-top:.4rem}
+.logo-img-wrap{padding:.6rem 0 0;display:flex;justify-content:center}
+.header-logo{width:110px;height:110px;object-fit:contain;opacity:.92;border-radius:3px}
+nav{display:flex;justify-content:center;margin-top:1.25rem;border-top:.5px solid var(--crb)}
+nav a{font-size:.62rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--tm);text-decoration:none;padding:.85rem 2rem;cursor:pointer;transition:all .2s;border-bottom:2px solid transparent}
+nav a:hover,nav a.active{color:var(--go);border-bottom-color:var(--go)}
+.page{display:none}.page.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* ABOUT */
+.aw{max-width:960px;margin:0 auto;padding:3.5rem 2rem 5rem}
+.at{display:grid;grid-template-columns:2fr 3fr;gap:3rem;align-items:start;margin-bottom:3.5rem}
+.aphoto{width:100%;aspect-ratio:3/4;border-radius:3px;overflow:hidden;border:.5px solid var(--crb)}
+.aphoto img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.ey{font-size:.58rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--go);margin-bottom:1rem}
+.an{font-family:"Cormorant Garamond",serif;font-size:2.5rem;font-weight:300;color:var(--ow);line-height:1.1;margin-bottom:.75rem}
+.adiv{width:40px;height:.5px;background:var(--crm);margin-bottom:1.5rem}
+.abio{font-size:.82rem;color:var(--tm);line-height:1.9}
+.phone-link{display:block;margin-top:1.1rem;font-size:.82rem;color:var(--tm);text-decoration:none;transition:color .2s}
+.phone-link:hover{color:var(--go)}
+.slbl{font-size:.58rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--go);text-align:center;margin-bottom:.75rem}
+.fg2{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:1px;border:.5px solid var(--crb);border-radius:4px;overflow:hidden;margin-bottom:3rem}
+.ft{background:var(--bgc);padding:1.25rem .75rem;text-align:center;transition:background .2s}.ft:hover{background:#1a0c0c}
+.fi{font-size:1.2rem;margin-bottom:.5rem}.ftx{font-size:.65rem;color:var(--tm);line-height:1.5}
+.grow{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.gi{overflow:hidden;border-radius:2px;aspect-ratio:3/4}.gi img{width:100%;height:100%;object-fit:cover;transition:transform .4s;display:block}
+.gi:hover img{transform:scale(1.03)}
+/* ENROL / BOOK */
+.bw{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem}
+/* Step indicator */
+.sind{display:flex;align-items:center;margin-bottom:2.5rem;padding:1.25rem 0;border-top:.5px solid var(--crb);border-bottom:.5px solid var(--crb)}
+.si{display:flex;align-items:center;gap:8px;flex:1}
+.sic{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:600;flex-shrink:0}
+.si.done .sic{background:var(--crm);color:var(--ow)}.si.active .sic{background:var(--go);color:#1a0505}.si.pend .sic{background:transparent;border:.5px solid var(--td);color:var(--td)}
+.sil{font-size:.58rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase}
+.si.active .sil{color:var(--go)}.si.done .sil{color:var(--tm)}.si.pend .sil{color:var(--td)}
+.sdv{flex:1;height:.5px;background:var(--crb);margin:0 .4rem}
+/* Services */
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;border:1.5px solid var(--crb);border-radius:4px;overflow:hidden;margin-bottom:2rem}
+.sv{background:var(--bgc);padding:1.75rem 1.5rem;cursor:pointer;transition:background .2s;text-align:left}
+.sv:hover{background:#1a0c0c}.sv.sel{background:var(--crd);outline:1.5px solid var(--go);outline-offset:-1.5px}
+.stag{font-size:.52rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--crm);margin-bottom:.6rem}.sv.sel .stag{color:var(--go)}
+.sn{font-family:"Cormorant Garamond",serif;font-size:1.3rem;font-weight:400;color:var(--ow);margin-bottom:.4rem;line-height:1.2}
+.sd{font-size:.68rem;color:var(--tm);line-height:1.7;margin-bottom:1rem}
+.sp{font-family:"Cormorant Garamond",serif;font-size:1.5rem;font-weight:300;color:var(--go)}
+.sp span{font-family:"Raleway",sans-serif;font-size:.65rem;color:var(--tm);font-weight:400;margin-left:3px}
+.sbadge{display:inline-block;font-size:.5rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;background:rgba(139,34,34,.3);color:var(--gl);padding:3px 8px;border-radius:2px;margin-top:.6rem}
+/* Family */
+.famp{background:rgba(201,169,110,.04);border:.5px solid rgba(201,169,110,.25);border-radius:4px;padding:1.5rem;margin-bottom:2rem;display:none}
+.famtt{font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--go);margin-bottom:1rem}
+.srow{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end;margin-bottom:8px}
+.sf label{font-size:.55rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:3px}
+.sf input,.sf select{background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px 10px;font-size:.75rem;font-family:"Raleway",sans-serif;color:var(--ow);width:100%;outline:none}
+.sf input:focus,.sf select:focus{border-color:var(--go)}
+.rmb{background:none;border:.5px solid var(--crb);color:var(--tm);width:30px;height:30px;cursor:pointer;border-radius:2px;font-size:.8rem}.rmb:hover{border-color:#b84;color:#b84}
+.famtot{background:var(--bgc);border:.5px solid var(--crb);border-radius:3px;padding:9px 14px;font-size:.72rem;color:var(--tm);display:flex;justify-content:space-between;align-items:center;margin-top:.75rem}
+.famtv{color:var(--go);font-family:"Cormorant Garamond",serif;font-size:1.2rem}
+.famnote{font-size:.63rem;color:var(--td);margin-top:.5rem;font-style:italic}
+/* Student intake cards */
+.sc-card{background:var(--bgc);border:.5px solid var(--crb);border-radius:4px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.sc-title{font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--go);margin-bottom:1rem}
+/* Booking flow panels */
+.bf{max-width:780px;margin:0 auto}
+.panel{display:none}.panel.active{display:block;animation:fadeIn .3s ease}
+/* Calendar */
+.cw{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.cml{font-family:"Cormorant Garamond",serif;font-size:1.2rem;font-weight:400;color:var(--ow)}
+.cbn{background:none;border:.5px solid var(--crb);color:var(--tm);cursor:pointer;width:28px;height:28px;border-radius:2px;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .2s}.cbn:hover{border-color:var(--go);color:var(--go)}
+.cdl{text-align:center;font-size:.52rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--td);padding:4px 0}
+.cd{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--tm);border-radius:2px;cursor:default}
+.cd.av{color:var(--ow);cursor:pointer;transition:all .15s}.cd.av:hover{background:var(--crd);color:var(--go)}
+.cd.sel{background:var(--go);color:#1a0505!important;font-weight:600}.cd.today{border:.5px solid var(--crm)}.cd.om,.cd.past{opacity:.15}.cd.closed{background:rgba(45,8,8,.6);color:var(--td)!important}
+.nb{background:rgba(45,8,8,.6);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;margin-bottom:1rem;font-size:.7rem;color:var(--tm);text-align:center}.nb span{color:var(--gl)}
+.slbx{font-size:.58rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--tm);margin-bottom:1rem}
+.sg2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:1rem}
+.slot{padding:10px 12px;border:.5px solid var(--crb);border-radius:2px;font-size:.8rem;color:var(--tm);cursor:pointer;text-align:center;transition:all .15s;background:var(--bgc)}.slot:hover{border-color:var(--go);color:var(--go)}.slot.sel{background:var(--crd);border-color:var(--go);color:var(--go)}.slot.bkd{opacity:.2;cursor:default;text-decoration:line-through}
+.rb{padding:1.25rem;background:var(--bgc);border:.5px solid var(--crb);border-radius:4px}.rb label{display:flex;align-items:flex-start;gap:10px;cursor:pointer}.rb input{margin-top:3px;accent-color:var(--go);width:14px;height:14px;flex-shrink:0}.rb strong{display:block;font-size:.75rem;font-weight:500;color:var(--ow);margin-bottom:2px}.rb small{font-size:.7rem;color:var(--tm)}
+/* Form */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}.ff{grid-column:1/-1}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld label{font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--tm)}
+.fld input,.fld textarea,.fld select{background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;font-size:.8rem;font-family:"Raleway",sans-serif;font-weight:300;color:var(--ow);transition:border-color .2s;outline:none;width:100%}
+.fld input:focus,.fld textarea:focus,.fld select:focus{border-color:var(--go)}.fld input::placeholder,.fld textarea::placeholder{color:var(--td)}.fld textarea{resize:vertical;min-height:80px}.fld select{appearance:none;cursor:pointer}
+.cn{font-size:.68rem;color:var(--tm);font-style:italic;padding:6px 10px;border-left:2px solid var(--go);margin-top:4px;background:rgba(201,169,110,.04)}
+.gb{background:var(--bgc);border:.5px solid var(--crb);border-radius:4px;padding:1.25rem 1.5rem}
+.gbt{font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--tm);margin-bottom:1rem}
+.gg{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:8px}
+.gc{display:flex;align-items:center;gap:8px;padding:8px 10px;border:.5px solid var(--crb);border-radius:3px;cursor:pointer;transition:all .15s;background:var(--bgi)}.gc:hover{border-color:var(--go)}.gc input{accent-color:var(--go);width:13px;height:13px;flex-shrink:0;cursor:pointer}.gc span{font-size:.7rem;color:var(--tm)}.gc:has(input:checked){border-color:var(--go);background:var(--crd)}.gc:has(input:checked) span{color:var(--gl)}
+.rmb2{background:var(--bgc);border:.5px solid var(--crb);border-radius:4px;padding:1.25rem 1.5rem}
+.rmt{font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--tm);margin-bottom:.75rem}
+.rw{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:.5rem}
+.ro{display:flex;align-items:center;gap:7px;padding:8px 12px;border:.5px solid var(--crb);border-radius:3px;cursor:pointer;background:var(--bgi);transition:all .15s}.ro:hover{border-color:var(--go)}.ro input{accent-color:var(--go);width:13px;height:13px;flex-shrink:0;cursor:pointer}.ro span{font-size:.7rem;color:var(--tm)}.ro:has(input:checked){border-color:var(--go);background:var(--crd)}.ro:has(input:checked) span{color:var(--gl)}
+/* T&C */
+.tcw{margin:1.5rem 0 1.25rem}
+.tcb2{background:rgba(107,26,26,.3);border:1px solid var(--crm);border-radius:4px 4px 0 0;padding:10px 16px}.tcbt{font-size:.63rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gl)}.tcbs{font-size:.6rem;color:var(--tm);margin-top:2px}
+.tcbox{background:var(--bgs);border:.5px solid var(--crb);border-top:none;border-radius:0 0 4px 4px;padding:1.5rem;max-height:220px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--crm) transparent}
+.tcbox::-webkit-scrollbar{width:4px}.tcbox::-webkit-scrollbar-thumb{background:var(--crm);border-radius:2px}
+.tch{font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-weight:400;color:var(--go);margin-bottom:1rem}
+.tcs{margin-bottom:1rem}.tcs h4{font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--crm);margin-bottom:4px}.tcs p{font-size:.72rem;color:var(--tm);line-height:1.7}
+.agr{display:flex;align-items:flex-start;gap:10px;padding:1rem;background:var(--bgc);border:.5px solid var(--crb);border-radius:4px;cursor:pointer}.agr input{margin-top:3px;accent-color:var(--go);width:14px;height:14px;flex-shrink:0}.agr span{font-size:.72rem;color:var(--tm);line-height:1.6}
+/* Buttons */
+.br{display:flex;gap:1rem;margin-top:2rem}
+.bp{flex:1;background:var(--crm);border:none;color:var(--ow);padding:13px 2rem;font-family:"Raleway",sans-serif;font-size:.63rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:background .2s}.bp:hover{background:var(--cr)}.bp:disabled{opacity:.4;cursor:not-allowed}
+.bs{background:none;border:.5px solid var(--crb);color:var(--tm);padding:13px 1.5rem;font-family:"Raleway",sans-serif;font-size:.63rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s}.bs:hover{border-color:var(--tm);color:var(--ow)}
+.gh{background:none;border:.5px solid var(--crb);color:var(--tm);padding:9px 16px;font-family:"Raleway",sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .15s}.gh:hover{border-color:var(--go);color:var(--go)}.gh.dn{border-color:rgba(139,34,34,.5);color:#c47}.gh.dn:hover{border-color:#c47}
+/* Payment */
+.pyb{background:var(--bgc);border:.5px solid var(--crb);border-radius:4px;padding:2rem;margin-bottom:1.5rem}
+.pm2{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
+.pm{padding:12px;border:.5px solid var(--crb);border-radius:3px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:.68rem;color:var(--tm);cursor:pointer;transition:all .15s;background:var(--bgi)}.pm:hover,.pm.sel{border-color:var(--go);color:var(--go)}.pm svg{width:18px;height:18px}
+.dor{display:flex;align-items:center;gap:1rem;margin:1.25rem 0}.dor::before,.dor::after{content:"";flex:1;height:.5px;background:var(--crb)}.dor span{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--td)}
+.pynote{font-size:.68rem;color:var(--tm);padding:10px 12px;background:rgba(201,169,110,.05);border-radius:3px;border:.5px solid rgba(201,169,110,.15);margin-top:.75rem}
+.cn2{background:rgba(107,26,26,.2);border:.5px solid var(--crm);border-radius:3px;padding:10px 14px;margin-top:1rem;font-size:.7rem;color:var(--gl);line-height:1.6}
+.sr{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:.5px solid var(--crb);font-size:.72rem}.sr:last-child{border-bottom:none}.sr .k{color:var(--tm)}.sr .v{color:var(--ow);font-weight:500}
+/* Confirmation */
+.conf{text-align:center;padding:4rem 2rem}.ci{width:64px;height:64px;border-radius:50%;background:rgba(107,26,26,.2);border:1px solid var(--crm);display:flex;align-items:center;justify-content:center;margin:0 auto 2rem;font-size:1.5rem;color:var(--go)}
+.conf h2{font-family:"Cormorant Garamond",serif;font-size:2rem;font-weight:300;color:var(--ow);margin-bottom:.75rem}.conf p{font-size:.78rem;color:var(--tm);max-width:440px;margin:0 auto;line-height:1.8}
+.cs2{background:var(--bgc);border:.5px solid var(--crb);border-radius:4px;padding:1.5rem;margin:2rem auto;max-width:440px;text-align:left}
+.cabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:1.25rem 0}
+.cab{background:none;border:.5px solid var(--crb);color:var(--tm);padding:10px 18px;font-family:"Raleway",sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .15s}.cab:hover{border-color:var(--go);color:var(--go)}
+/* Login Modal */
+.mov{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:100;padding:1rem}.mov.hidden{display:none}
+.mo{background:var(--bgc);border:.5px solid var(--crb);border-radius:6px;padding:2.5rem;width:100%;max-width:460px;position:relative;max-height:90vh;overflow-y:auto}
+.mx{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--tm);cursor:pointer;font-size:1.2rem}.mx:hover{color:var(--go)}
+.mt{font-family:"Cormorant Garamond",serif;font-size:1.6rem;font-weight:300;color:var(--ow);margin-bottom:.4rem}
+.ms{font-size:.68rem;color:var(--tm);margin-bottom:1.75rem}
+.mf{margin-bottom:1rem}.mf label{font-size:.56rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:5px}
+.mf input{background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;font-size:.8rem;font-family:"Raleway",sans-serif;color:var(--ow);width:100%;outline:none}.mf input:focus{border-color:var(--go)}
+.mf .fn{font-size:.6rem;color:var(--td);margin-top:3px}
+.mbtn{width:100%;background:var(--crm);border:none;color:var(--ow);padding:12px;font-family:"Raleway",sans-serif;font-size:.63rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-top:.5rem}.mbtn:hover{background:var(--cr)}
+.fl{font-size:.62rem;color:var(--tm);text-align:center;margin-top:.75rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px}.fl:hover{color:var(--go)}
+/* Account Dashboard */
+.da{max-width:780px;margin:0 auto;padding:3rem 2rem 5rem}
+.dh{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.dti{font-family:"Cormorant Garamond",serif;font-size:1.75rem;font-weight:300;color:var(--ow)}
+.dhr{display:flex;gap:.75rem;align-items:flex-start}
+.ppa{display:flex;align-items:center;gap:1.25rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:.5px solid var(--crb)}
+.ppc{width:58px;height:58px;border-radius:50%;overflow:hidden;border:.5px solid var(--crb);background:var(--bgi);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;cursor:pointer}
+.ppc img{width:100%;height:100%;object-fit:cover}.pph{font-size:1.3rem;color:var(--td)}
+.ppo{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;border-radius:50%}.ppc:hover .ppo{opacity:1}.ppo span{font-size:.5rem;color:var(--ow);letter-spacing:.1em;text-transform:uppercase}
+.ppn{font-family:"Cormorant Garamond",serif;font-size:1.2rem;color:var(--ow)}.ppe{font-size:.65rem;color:var(--tm);margin-top:2px}
+.dss{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:.5px solid var(--crb);border-radius:4px;overflow:hidden;margin-bottom:2.5rem}
+.dsc{background:var(--bgc);padding:1.25rem;text-align:center}.dsv{font-family:"Cormorant Garamond",serif;font-size:1.6rem;font-weight:300;color:var(--go);line-height:1}.dsl{font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);margin-top:4px}
+.dse{font-size:.56rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--go);margin-bottom:.75rem;margin-top:2rem}
+.dc{background:var(--bgc);border:.5px solid var(--crb);border-radius:4px;padding:1.5rem;margin-bottom:.75rem}
+.dct{font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--tm);margin-bottom:.5rem}
+/* Student calendar */
+.cdl-s{text-align:center;font-size:.52rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--td);padding:4px 0}
+.atg{background:rgba(107,26,26,.3);border:.5px solid rgba(201,169,110,.3);border-radius:2px;padding:3px 10px;font-size:.63rem;color:var(--gl);display:flex;align-items:center;gap:6px}.atg button{background:none;border:none;color:var(--tm);cursor:pointer;font-size:.7rem;padding:0}.atg button:hover{color:var(--go)}
+/* Pause/Stop */
+.pc{background:rgba(201,169,110,.04);border:.5px solid rgba(201,169,110,.2);border-radius:4px;padding:1.5rem;margin-bottom:.75rem}
+.pct{font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--go);margin-bottom:.4rem}
+.pcw{background:rgba(107,26,26,.15);border:.5px solid rgba(107,26,26,.4);border-radius:3px;padding:10px 14px;font-size:.7rem;color:var(--gl);margin-bottom:1rem;line-height:1.6}
+.ps{display:inline-flex;align-items:center;gap:6px;font-size:.63rem;padding:4px 12px;border-radius:2px;background:rgba(201,169,110,.15);color:var(--go);border:.5px solid rgba(201,169,110,.3)}
+.stc{background:rgba(107,26,26,.08);border:.5px solid rgba(107,26,26,.4);border-radius:4px;padding:1.5rem;margin-bottom:.75rem}
+.stt{font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#c47;margin-bottom:.5rem}
+/* Teacher Dashboard */
+.td-wrap{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem}
+.td-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.td-title{font-family:"Cormorant Garamond",serif;font-size:1.75rem;font-weight:300;color:var(--ow)}.td-sub{font-size:.68rem;color:var(--tm);margin-top:3px}
+.income-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:.5px solid var(--crb);border-radius:4px;overflow:hidden;margin-bottom:2.5rem}
+.ic{background:var(--bgc);padding:1.25rem;text-align:center}.ic-v{font-family:"Cormorant Garamond",serif;font-size:1.5rem;font-weight:300;color:var(--go);line-height:1}.ic-l{font-size:.55rem;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);margin-top:4px}
+.student-block{background:var(--bgc);border:.5px solid var(--crb);border-radius:4px;margin-bottom:.75rem;overflow:hidden}
+.student-hdr{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;cursor:pointer;transition:background .2s}.student-hdr:hover{background:#1a0c0c}
+.student-name{font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-weight:400;color:var(--ow)}.student-meta{font-size:.68rem;color:var(--tm)}
+.student-badge{font-size:.52rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:2px}
+.badge-trial{background:rgba(201,169,110,.15);color:var(--go);border:.5px solid rgba(201,169,110,.3)}.badge-30{background:rgba(50,100,200,.15);color:#88aaff;border:.5px solid rgba(50,100,200,.3)}.badge-60{background:rgba(100,50,200,.15);color:#bb88ff;border:.5px solid rgba(100,50,200,.3)}.badge-family{background:rgba(200,100,50,.15);color:#ffaa66;border:.5px solid rgba(200,100,50,.3)}.badge-paused{background:rgba(201,169,110,.1);color:var(--td);border:.5px solid var(--crb)}.badge-ended{background:rgba(139,34,34,.15);color:#c47;border:.5px solid rgba(139,34,34,.3)}
+.student-body{display:none;border-top:.5px solid var(--crb);padding:1.5rem}.student-body.open{display:block}
+.s-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+.s-detail{background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:.75rem 1rem}.s-detail-label{font-size:.52rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--tm);margin-bottom:3px}.s-detail-val{font-size:.78rem;color:var(--ow)}
+.lesson-mini{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:.5px solid var(--crb);font-size:.7rem}.lesson-mini:last-child{border-bottom:none}.lesson-mini .lm-d{color:var(--tm)}.lesson-mini .lm-v{color:var(--ow)}
+.td-sec{font-size:.56rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--go);margin-bottom:.75rem;margin-top:2rem}
+.delete-btn{background:rgba(139,34,34,.4);border:1px solid var(--crm);color:var(--go);padding:7px 16px;font-family:"Raleway",sans-serif;font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .15s}.delete-btn:hover{background:var(--crm);color:var(--gl);border-color:var(--gl)}
+.chevron{font-size:.7rem;color:var(--tm);transition:transform .2s}.chevron.open{transform:rotate(180deg)}
+/* Teacher calendar */
+.tcal-wrap{background:var(--bgc);border:.5px solid var(--crb);border-radius:4px;padding:1.5rem;margin-bottom:.75rem}
+.tcal-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem}
+.tcal-nav-group{display:flex;align-items:center;gap:.5rem}.tcal-title{font-family:"Cormorant Garamond",serif;font-size:1.2rem;font-weight:400;color:var(--ow)}
+.tcal-view-tabs{display:flex;border:.5px solid var(--crb);border-radius:3px;overflow:hidden}.tcal-view-tabs button{background:none;border:none;color:var(--tm);padding:6px 14px;font-size:.6rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;font-family:"Raleway",sans-serif;transition:all .2s}.tcal-view-tabs button.active{background:var(--crd);color:var(--go)}
+.tcal-grid-month{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.tcal-cell{min-height:72px;background:var(--bgs);border:.5px solid var(--crb);border-radius:2px;padding:.4rem;position:relative}.tcal-cell.today{border-color:var(--crm)}.tcal-cell.other-mo{opacity:.35}
+.tcal-date{font-size:.68rem;color:var(--tm);margin-bottom:.3rem}.tcal-cell.today .tcal-date{color:var(--go);font-weight:600}
+.tcal-event{background:rgba(139,34,34,.3);border:.5px solid var(--crm);border-radius:2px;padding:2px 5px;font-size:.58rem;color:var(--gl);margin-bottom:2px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tcal-event:hover{background:rgba(139,34,34,.5)}
+.tcal-week-time{font-size:.6rem;color:var(--td);text-align:right;padding-right:.4rem;padding-top:.25rem}
+.tcal-week-col{background:var(--bgs);border:.5px solid var(--crb);border-radius:2px;min-height:36px;padding:.25rem}.tcal-week-col.today{border-color:var(--crm)}
+.tcal-week-hdr{text-align:center;font-size:.6rem;color:var(--tm);padding:4px 0}.tcal-week-hdr.today{color:var(--go);font-weight:600}
+.tcal-day-list{display:flex;flex-direction:column;gap:.5rem}
+.tcal-day-slot{background:rgba(139,34,34,.2);border:.5px solid var(--crm);border-radius:3px;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between}
+.tcal-day-slot-time{font-size:.72rem;color:var(--go);font-weight:500;min-width:80px}.tcal-day-slot-info{font-size:.72rem;color:var(--ow)}.tcal-day-slot-sub{font-size:.62rem;color:var(--tm);margin-top:2px}
+/* Tax log */
+.tax-fy{background:var(--bgc);border:.5px solid var(--crb);border-radius:4px;margin-bottom:.75rem;overflow:hidden}
+.tax-fy-hdr{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;cursor:pointer;transition:background .2s}.tax-fy-hdr:hover{background:#1a0c0c}
+.tax-fy-title{font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-weight:400;color:var(--ow)}.tax-fy-summary{font-size:.68rem;color:var(--tm)}
+.tax-fy-body{display:none;border-top:.5px solid var(--crb);padding:1.5rem}.tax-fy-body.open{display:block}
+.tax-inp label{font-size:.52rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:3px}
+.tax-inp input{background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:7px 10px;font-size:.75rem;font-family:"Raleway",sans-serif;color:var(--ow);width:100%;outline:none}.tax-inp input:focus{border-color:var(--go)}
+.tax-bracket{background:rgba(201,169,110,.06);border:.5px solid rgba(201,169,110,.2);border-radius:3px;padding:1rem 1.25rem;margin-top:1rem}
+.tax-bracket-title{font-size:.56rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--go);margin-bottom:.75rem}
+.tax-est-row{display:flex;justify-content:space-between;padding:.35rem 0;border-bottom:.5px solid rgba(201,169,110,.1);font-size:.72rem}.tax-est-row:last-child{border-bottom:none;font-weight:600}.tax-est-row .tk{color:var(--tm)}.tax-est-row .tv{color:var(--ow)}.tax-est-row.highlight .tv{color:var(--go)}
+/* Todo */
+.todo-item{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:var(--bgc);border:.5px solid var(--crb);border-radius:3px;margin-bottom:.4rem;cursor:grab;transition:background .15s}.todo-item:hover{background:#1a0c0c}.todo-item.dragging{opacity:.4;cursor:grabbing}.todo-item.drag-over{border-color:var(--go)}
+.todo-cb{width:16px;height:16px;accent-color:var(--go);cursor:pointer;flex-shrink:0}.todo-text{font-size:.78rem;color:var(--ow);flex:1}.todo-handle{color:var(--td);font-size:.9rem;cursor:grab;padding:0 4px}.todo-del{background:none;border:none;color:var(--td);cursor:pointer;font-size:.9rem;padding:0 4px;transition:color .15s}.todo-del:hover{color:#c47}
+.todo-priority{font-size:.5rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:2px 7px;border-radius:2px;flex-shrink:0}
+.p-high{background:rgba(139,34,34,.25);color:#c47;border:.5px solid rgba(139,34,34,.3)}.p-med{background:rgba(201,169,110,.15);color:var(--go);border:.5px solid rgba(201,169,110,.25)}.p-low{background:rgba(100,100,100,.15);color:var(--td);border:.5px solid rgba(100,100,100,.2)}
+/* Block dates */
+.block-item{display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem;background:var(--bgc);border:.5px solid var(--crb);border-radius:3px;margin-bottom:.4rem;font-size:.72rem}
+.block-item-info{color:var(--tm)}.block-item-info strong{color:var(--ow);display:block;font-size:.75rem}
+.block-rm{background:none;border:none;color:var(--td);cursor:pointer;font-size:.9rem}.block-rm:hover{color:#c47}
+/* Search */
+.search-bar{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+.search-bar input{background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px 12px;font-size:.75rem;font-family:"Raleway",sans-serif;color:var(--ow);flex:1;outline:none}.search-bar input:focus{border-color:var(--go)}
+.section-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:.5rem 0;margin-bottom:.5rem}
+/* Footer */
+footer{background:var(--crd);border-top:1px solid var(--crb);text-align:center;padding:2.5rem 2rem;color:var(--td);font-size:.63rem;letter-spacing:.15em}
+footer span{color:var(--crm)}
+@media(max-width:700px){
+  .logo{font-size:1.9rem}
+  nav a{padding:.8rem 1.2rem;font-size:.58rem}
+  .at{grid-template-columns:1fr;gap:2rem}
+  .grow{grid-template-columns:1fr 1fr}
+  .cw,.fg{grid-template-columns:1fr}.ff{grid-column:1}
+  .sg{grid-template-columns:1fr 1fr}
+  .srow{grid-template-columns:1fr}
+  .dss{grid-template-columns:1fr}
+  .income-grid{grid-template-columns:1fr 1fr}
+  .s-detail-grid{grid-template-columns:1fr 1fr}
+  .pm2{grid-template-columns:1fr 1fr 1fr}
+  .sil{display:none}.sdv{margin:0 .2rem}
+}
+@media(max-width:480px){
+  .logo{font-size:1.5rem;letter-spacing:.08em}
+  .sg{grid-template-columns:1fr}.pm2{grid-template-columns:1fr}
+  .gg{grid-template-columns:1fr 1fr}
+  .dss{grid-template-columns:1fr 1fr}
+  .grow{grid-template-columns:1fr}
+  .income-grid{grid-template-columns:1fr 1fr}
+}
+</style></head><body>
+<!-- LOGIN MODAL -->
+<div class="mov hidden" id="lm">
+  <div class="mo">
+    <button class="mx" onclick="cm()">✕</button>
+    <div class="mt">Log in</div>
+    <div class="ms">Enter your email or phone number to access your account.</div>
+    <div id="ml">
+      <div class="mf"><label>Email or phone number</label><input type="text" id="login-email" placeholder="your@email.com or 0481 000 000"/></div>
+      <div class="mf"><label>Password</label><input type="password" id="login-pw" placeholder="••••••••"/></div>
+      <button class="mbtn" onclick="doLogin()">Log in</button>
+      <div class="fl" onclick="showForgot()">Forgot your password?</div>
+    </div>
+    <div id="mfg" style="display:none">
+      <div class="mf"><label>Email or phone number</label><input type="text" placeholder="your@email.com or 0481 000 000"/><div class="fn">We will send a reset link to your email.</div></div>
+      <button class="mbtn" onclick="subForgot()">Send reset link</button>
+      <div class="fl" onclick="showForgot(false)">Back to log in</div>
+    </div>
+  </div>
+</div>
+<!-- ACTION MODAL -->
+<div class="mov hidden" id="action-modal-ov">
+  <div class="mo" style="max-width:480px">
+    <button class="mx" onclick="closeActionModal()">✕</button>
+    <div class="mt" id="action-modal-title"></div>
+    <div style="margin:1rem 0" id="action-modal-body"></div>
+    <button class="mbtn" id="action-modal-confirm">Confirm</button>
+    <button class="bs" style="width:100%;margin-top:.5rem" onclick="closeActionModal()">Cancel</button>
+  </div>
+</div>
+<header>
+  <div class="logo">Afternoon Arpeggios</div>
+  <div class="logo-sub">Music Tuition · Hobart, Tasmania</div>
+  <div class="logo-img-wrap"><img src="afternoon-arpeggios-logo.jpg" alt="Afternoon Arpeggios" class="header-logo"/></div>
+  <nav>
+    <a onclick="sp('about')" id="nav-about" class="active">About</a>
+    <a onclick="sp('book')" id="nav-book">Enrol</a>
+    <a onclick="sp('account')" id="nav-account">Log in</a>
+  </nav>
+</header>
+<!-- ABOUT -->
+<div class="page active" id="page-about">
+  <div class="aw">
+    <div class="at">
+      <div class="aphoto"><img src="juliet.jpg" alt="Juliet Gjone"/></div>
+      <div>
+        <p class="ey">Private Music Teacher</p>
+        <h1 class="an">Juliet Gjone</h1>
+        <div class="adiv"></div>
+        <p class="abio">Lessons at Afternoon Arpeggios are shaped around each individual student, their goals at their own pace and what genuinely excites them about music. All ages are welcome. Whether you are a complete beginner or working towards AMEB examinations, every session is designed to feel encouraging and enjoyable. Teaching happens from a cozy home studio in Hobart, with a couch where parents and family are always welcome to sit in on the lesson, in the company of a very friendly studio cat.</p>
+        <a href="tel:+61481599037" class="phone-link">📞 0481 599 037</a>
+      </div>
+    </div>
+    <p class="slbl">Services offered</p>
+    <div class="fg2">
+      <div class="ft"><div class="fi">🎤</div><div class="ftx">Singing &amp; vocals</div></div>
+      <div class="ft"><div class="fi">🎼</div><div class="ftx">Composing &amp; songwriting</div></div>
+      <div class="ft"><div class="fi">🎷</div><div class="ftx">Jazz, classical &amp; pop</div></div>
+      <div class="ft"><div class="fi">🎓</div><div class="ftx">AMEB preparation</div></div>
+      <div class="ft"><div class="fi">📖</div><div class="ftx">Theory &amp; harmony</div></div>
+      <div class="ft"><div class="fi">🎛️</div><div class="ftx">Nord synth design</div></div>
+      <div class="ft"><div class="fi">👂</div><div class="ftx">Ear training &amp; games</div></div>
+      <div class="ft"><div class="fi">🎹</div><div class="ftx">Piano for all levels</div></div>
+    </div>
+    <div class="grow">
+      <div class="gi"><img src="studio-cat.jpg" alt="Studio cat"/></div>
+      <div class="gi"><img src="studio-nord.jpg" alt="Nord setup"/></div>
+      <div class="gi"><img src="studio-lesson.jpg" alt="Lesson"/></div>
+    </div>
+  </div>
+</div>
+<!-- ENROL -->
+<div class="page" id="page-book">
+  <div class="bw">
+    <div class="bf" id="bf">
+      <div class="sind">
+        <div class="si active" id="si1"><div class="sic" id="sc1">1</div><div class="sil">Service</div></div>
+        <div class="sdv"></div>
+        <div class="si pend" id="si2"><div class="sic" id="sc2">2</div><div class="sil">Date &amp; Time</div></div>
+        <div class="sdv"></div>
+        <div class="si pend" id="si3"><div class="sic" id="sc3">3</div><div class="sil">Your Details</div></div>
+        <div class="sdv"></div>
+        <div class="si pend" id="si4"><div class="sic" id="sc4">4</div><div class="sil">Payment</div></div>
+      </div>
+      <!-- STEP 1: SERVICE + FAMILY -->
+      <div class="panel active" id="p1">
+        <p class="slbl" style="margin-bottom:1.5rem">Choose your lesson type</p>
+        <div class="sg">
+          <div class="sv" onclick="pSvc(this,'Trial Lesson',40,'trial',30)">
+            <div class="stag">One-time</div><div class="sn">Trial Lesson</div>
+            <div class="sd">A relaxed intro session to meet each other and explore your musical background.</div>
+            <div class="sp">$40 <span>/ 30 min</span></div>
+          </div>
+          <div class="sv" onclick="pSvc(this,'30 Min Lesson',40,'weekly',30)">
+            <div class="stag">Weekly</div><div class="sn">30 Min Lesson</div>
+            <div class="sd">Ideal for younger students. Your slot is reserved each week.</div>
+            <div class="sp">$40 <span>/ week</span></div>
+            <div class="sbadge">Reserve weekly slot</div>
+          </div>
+          <div class="sv" onclick="pSvc(this,'60 Min Lesson',80,'weekly',60)">
+            <div class="stag">Weekly</div><div class="sn">60 Min Lesson</div>
+            <div class="sd">For AMEB, deeper theory and richer repertoire.</div>
+            <div class="sp">$80 <span>/ week</span></div>
+            <div class="sbadge">Reserve weekly slot</div>
+          </div>
+          <div class="sv" onclick="pSvc(this,'Family Booking',0,'family',60)">
+            <div class="stag">Family · Weekly</div><div class="sn">Family Booking</div>
+            <div class="sd">Two or more students within the same family having their sessions one after the other. From $80/week.</div>
+            <div class="sp" id="fpd">— <span>/ week</span></div>
+            <div class="sbadge">One payment · all students</div>
+          </div>
+        </div>
+        <div class="famp" id="famp">
+          <div class="famtt">Add your students</div>
+          <div id="srows"></div>
+          <button onclick="asr()" class="gh" style="margin-bottom:.75rem">+ Add another student</button>
+          <div class="famtot"><span>Total per week</span><span class="famtv" id="ftv">$0</span></div>
+          <div class="famnote">$40 per student for 30 min · $80 per student for 60 min</div>
+        </div>
+        <div class="br"><button class="bp" id="b2" onclick="gs(2)" disabled>Continue to Date &amp; Time</button></div>
+      </div>
+      <!-- STEP 2: DATE/TIME -->
+      <div class="panel" id="p2">
+        <div class="nb" id="nb" style="display:none"><span id="nm"></span></div>
+        <div class="cw">
+          <div>
+            <div class="ch"><button class="cbn" onclick="cmo(-1)">‹</button><div class="cml" id="cmol"></div><button class="cbn" onclick="cmo(1)">›</button></div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4px" id="cdls"></div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px" id="cg"></div>
+          </div>
+          <div>
+            <div class="slbx" id="slbx">Select a date to see availability</div>
+            <div class="sg2" id="sg2"></div>
+
+          </div>
+        </div>
+        <div class="br"><button class="bs" onclick="gs(1)">Back</button><button class="bp" id="b3" onclick="gs(3)" disabled>Continue to Your Details</button></div>
+      </div>
+      <!-- STEP 3: DETAILS + CREATE ACCOUNT -->
+      <div class="panel" id="p3">
+        <p class="slbl" style="margin-bottom:1.5rem;text-align:left">Your details &amp; account</p>
+        <div class="fg" style="margin-bottom:1.5rem">
+          <div class="fld"><label>Full name</label><input type="text" id="reg-name" placeholder="e.g. Sarah Thompson" required/></div>
+          <div class="fld"><label>Phone number</label><input type="tel" id="reg-phone" placeholder="+61 4XX XXX XXX" required/></div>
+          <div class="fld ff"><label>Email address</label><input type="email" id="reg-email" placeholder="your@email.com" required/></div>
+          <div class="fld"><label>Create a password</label><input type="password" id="reg-pw" placeholder="Min. 8 characters" required/></div>
+          <div class="fld"><label>Confirm password</label><input type="password" id="reg-pw2" placeholder="Re-enter password" required/></div>
+        </div>
+        <div id="sia"></div>
+        <div id="single-goals-wrap" style="margin-top:1.5rem">
+          <div class="gb"><div class="gbt">What would the student like to learn?</div>
+          <div class="gg">
+            <label class="gc"><input type="checkbox"/><span>🎹 Piano</span></label>
+            <label class="gc"><input type="checkbox"/><span>🎤 Singing</span></label>
+            <label class="gc"><input type="checkbox"/><span>🎼 Composing</span></label>
+            <label class="gc"><input type="checkbox"/><span>🎷 Jazz</span></label>
+            <label class="gc"><input type="checkbox"/><span>🎻 Classical</span></label>
+            <label class="gc"><input type="checkbox"/><span>🎵 Pop</span></label>
+            <label class="gc"><input type="checkbox"/><span>🎛️ Synth</span></label>
+            <label class="gc"><input type="checkbox"/><span>🎓 AMEB</span></label>
+            <label class="gc"><input type="checkbox"/><span>📖 Theory</span></label>
+            <label class="gc"><input type="checkbox"/><span>👂 Ear training</span></label>
+          </div></div>
+        </div>
+        <div class="fld ff" style="margin-top:1.25rem"><label>Anything else we should know?</label><textarea placeholder="e.g. learning needs, scheduling preferences..."></textarea></div>
+        <div class="rmb2" style="margin-top:1.25rem">
+          <div class="rmt">Lesson reminders</div>
+          <div class="rw">
+            <label class="ro"><input type="checkbox" id="rem-email" checked/><span>📧 Email reminder 24hrs before each lesson</span></label>
+          </div>
+        </div>
+        <div class="tcw">
+          <div class="tcb2"><div class="tcbt">Please read before agreeing</div><div class="tcbs">Scroll through all terms before ticking</div></div>
+          <div class="tcbox">
+            <div class="tch">Terms &amp; Conditions</div>
+            <div class="tcs"><h4>Cancellations by students</h4><p>A minimum of 24 hours notice is required. Cancellations with less than 24 hours notice will be charged at the full lesson rate.</p></div>
+            <div class="tcs"><h4>Cancellations by Juliet</h4><p>In the rare event Juliet needs to cancel, you will receive at least 24 hours notice by email. No charge will apply. This is most likely due to a conflicting performance.</p></div>
+            <div class="tcs"><h4>Specific weeks away</h4><p>You can cancel specific weeks from My Schedule in your account. No payment will be taken and your slot will be temporarily released for that week only. Your recurring slot resumes the following week.</p></div>
+            <div class="tcs"><h4>Subscription pause</h4><p>You may pause your subscription at any time. Warning: pausing releases your reserved slot and it may be taken by another student before you return.</p></div>
+            <div class="tcs"><h4>Family bookings</h4><p>One account, one weekly payment. Students within a family booking can cancel independently without affecting the others.</p></div>
+            <div class="tcs"><h4>Studio closures</h4><p>The studio is closed for approximately three weeks over Christmas and New Year from December 21 to January 3. No fees are charged during this period. The studio remains open on all Tasmanian public holidays and school holidays.</p></div>
+            <div class="tcs"><h4>Stopping lessons</h4><p>End your enrolment from My Account. Your account will be deactivated. You can reactivate at any time by logging back in.</p></div>
+            <div class="tcs"><h4>Payment</h4><p>All payments are processed via Stripe. Card, Apple Pay, and Google Pay are all secured through Stripe (256-bit SSL, PCI DSS compliant). Your card is saved but only charged after each lesson passes. No charge is made upfront at enrolment.</p></div>
+            <div class="tcs"><h4>Privacy</h4><p>Personal information is used solely for scheduling, billing, and communication. Encrypted and stored securely. Not shared with third parties except Stripe for payment processing.</p></div>
+          </div>
+        </div>
+        <label class="agr" for="tca"><input type="checkbox" id="tca" onchange="ca()"/><span>I have read and agree to all terms and conditions above.</span></label>
+        <div class="br"><button class="bs" onclick="gs(2)">Back</button><button class="bp" id="b4" onclick="gs(4)" disabled>Continue to Payment</button></div>
+      </div>
+      <!-- STEP 4: PAYMENT -->
+      <div class="panel" id="p4">
+        <div class="pyb">
+          <p class="slbx" style="margin-bottom:.5rem">Add your payment method</p>
+          <p style="font-size:.68rem;color:var(--tm);margin-bottom:1.25rem">Your card is saved securely and only charged after each lesson. No payment is taken today.</p>
+          <div class="pm2">
+            <div class="pm sel" onclick="pp(this,'card')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Card</div>
+            <div class="pm" onclick="pp(this,'apple')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M15 9H9v6h6V9z"/></svg>Apple Pay</div>
+            <div class="pm" onclick="pp(this,'google')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>Google Pay</div>
+          </div>
+          <!-- Stripe card element mounts here -->
+          <div id="stripe-card-wrap" style="margin:1rem 0">
+            <div id="stripe-card-element" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:12px 14px;font-size:.8rem"></div>
+            <div id="stripe-card-errors" style="color:#c47;font-size:.68rem;margin-top:.4rem"></div>
+          </div>
+          <div class="dor"><span>Order summary</span></div>
+          <div id="pysum"></div>
+          <div class="cn2">Your card is only charged after each lesson. The Stripe processing fee (1.7%) is included in the amount shown above.</div>
+          <div class="pynote">🔒 256-bit SSL · PCI DSS compliant · Card never stored on our servers</div>
+        </div>
+        <div class="br"><button class="bs" onclick="gs(3)">Back</button><button class="bp" onclick="fb()">Confirm enrolment</button></div>
+      </div>
+      <!-- STEP 5: CONFIRMATION -->
+      <div class="panel" id="p5">
+        <div class="conf">
+          <div class="ci">♩</div>
+          <h2>You are enrolled.</h2>
+          <p>Confirmation sent to your email. Your slot is reserved and you will receive a reminder 24 hours before each lesson. Your card will only be charged after each lesson passes.</p>
+          <div class="cs2" id="csum"></div>
+          <div style="background:rgba(201,169,110,.06);border:.5px solid rgba(201,169,110,.2);border-radius:4px;padding:1.25rem 1.5rem;margin:1.5rem auto;max-width:440px;text-align:left">
+            <div style="font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--go);margin-bottom:.6rem">Stay up to date</div>
+            <p style="font-size:.75rem;color:var(--tm);line-height:1.7;margin-bottom:1rem">Connect your schedule to your calendar so you always see upcoming lessons, changes, and cancellations — as well as your 24-hour reminders.</p>
+            <div class="cabs" style="justify-content:flex-start">
+              <button class="cab" onclick="agc()">+ Google Calendar</button>
+              <button class="cab" onclick="aac()">+ Apple Calendar (.ics)</button>
+            </div>
+            <p style="font-size:.62rem;color:var(--td);margin-top:.75rem">You will also receive email reminders 24 hours before each lesson.</p>
+          </div>
+          <button onclick="sp('account')" class="gh" style="font-size:.6rem;margin-top:.5rem">Go to My Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ACCOUNT -->
+<div class="page" id="page-account">
+  <div id="ao" style="text-align:center;padding:5rem 2rem">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:300;color:var(--ow);margin-bottom:.75rem">My Account</div>
+    <p style="font-size:.78rem;color:var(--tm);max-width:360px;margin:0 auto 2rem;line-height:1.8">Log in to manage your lessons, view your schedule, and update your details.</p>
+    <button class="bp" style="flex:none;padding:13px 2rem" onclick="om()">Log in</button>
+  </div>
+  <div class="da" id="ai" style="display:none">
+    <div class="dh">
+      <div><div class="dti">My Account</div></div>
+      <div class="dhr">
+        <button onclick="showNotifications()" class="gh" id="notif-btn" style="position:relative">
+          🔔 <span id="notif-count" style="display:none;position:absolute;top:-4px;right:-4px;background:var(--crm);color:var(--ow);font-size:.5rem;font-weight:600;border-radius:50%;width:16px;height:16px;display:none;align-items:center;justify-content:center;font-family:Raleway,sans-serif">0</span>
+        </button>
+        <button onclick="showEditProfileModal()" class="gh">Edit profile</button>
+        <button onclick="dl()" class="gh">Log out</button>
+      </div>
+    </div>
+    <div class="ppa">
+      <div class="ppc" onclick="tp()">
+        <div class="pph" id="pph">🎵</div>
+        <img id="ppi" style="display:none" src="" alt="Profile"/>
+        <div class="ppo"><span>Change</span></div>
+      </div>
+      <div><div class="ppn" id="ppn">Student</div><div class="ppe" id="ppe"></div></div>
+      <input type="file" id="ppu" accept="image/*" style="display:none" onchange="hp(event)"/>
+    </div>
+    <div class="dss">
+      <div class="dsc"><div class="dsv" id="stat-lessons">0</div><div class="dsl">Lessons completed</div></div>
+      <div class="dsc"><div class="dsv" id="stat-spent">$0</div><div class="dsl">Total spent</div></div>
+      <div class="dsc"><div class="dsv" id="stat-slot">—</div><div class="dsl">Weekly slot</div></div>
+    </div>
+    <div class="dse" id="homework-sec" style="display:none">This week's homework</div>
+    <div class="dc" id="homework-card" style="display:none">
+      <div id="homework-content" style="font-size:.78rem;color:var(--tm);line-height:1.8"></div>
+    </div>
+    <div class="dse">My schedule</div>
+    <div class="dc" style="padding:0;overflow:hidden">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.25rem;border-bottom:.5px solid var(--crb);flex-wrap:wrap;gap:.5rem">
+        <div style="display:flex;align-items:center;gap:.5rem">
+          <button class="cbn" onclick="scNav(-1)">‹</button>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ow)" id="sc-title"></div>
+          <button class="cbn" onclick="scNav(1)">›</button>
+          <button class="gh" style="padding:3px 8px;font-size:.54rem;margin-left:.25rem" onclick="scToday()">Today</button>
+        </div>
+        <div style="display:flex;gap:.75rem;font-size:.58rem;color:var(--td);align-items:center">
+          <span><span style="display:inline-block;width:9px;height:9px;background:rgba(107,26,26,.55);border-radius:1px;margin-right:3px;vertical-align:middle"></span>Lesson</span>
+          <span><span style="display:inline-block;width:9px;height:9px;background:rgba(107,26,26,.25);border:1px solid rgba(201,169,110,.3);border-radius:1px;margin-right:3px;vertical-align:middle"></span>Cancelled</span>
+          <span><span style="display:inline-block;width:9px;height:9px;background:rgba(80,80,80,.2);border-radius:1px;margin-right:3px;vertical-align:middle"></span>Past</span>
+        </div>
+      </div>
+      <div style="padding:.75rem;background:var(--bgs)">
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:2px" id="sc-dlbls"></div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px" id="sc-grid"></div>
+      </div>
+      <div id="sc-detail" style="padding:1rem 1.25rem;min-height:64px;border-top:.5px solid var(--crb);font-size:.7rem;color:var(--td)">
+        Tap a lesson to cancel it. Tap any other date to cancel that week (no charge).
+      </div>
+      <div style="padding:.625rem 1.25rem;border-top:.5px solid var(--crb);display:flex;gap:.5rem;flex-wrap:wrap" id="sc-slot-actions"></div>
+    </div>
+    <div class="dse" style="margin-top:2rem">This week's homework</div>
+    <div class="dc" id="hw-card-stud" style="margin-bottom:1.5rem">
+      <div id="hw-content-stud" style="font-size:.78rem;color:var(--tm);line-height:1.9;white-space:pre-wrap">No homework set this week.</div>
+    </div>
+
+    <div class="dse" style="margin-top:2rem">My repertoire &amp; files</div>
+    <div id="rep-list-stud" style="margin-bottom:1.5rem"><p style="font-size:.72rem;color:var(--td)">No files uploaded yet.</p></div>
+
+    <div class="dse" style="margin-top:2rem">Pause subscription</div>
+    <div class="pc">
+      <div class="pct">Taking a break?</div>
+      <p style="font-size:.72rem;color:var(--tm);margin-bottom:1rem;line-height:1.7">Pause your subscription at any time and unpause whenever you are ready to return.</p>
+      <div class="pcw">Pausing will release your reserved time slot. It may be taken by another student before you return.</div>
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+        <button onclick="tp2()" class="gh" id="pb">Pause my subscription</button>
+        <div id="pst" style="display:none"></div>
+      </div>
+    </div>
+    <div class="dse">End enrolment</div>
+    <div class="stc">
+      <div class="stt">Stop lessons completely</div>
+      <p style="font-size:.72rem;color:var(--tm);margin-bottom:1.25rem;line-height:1.7">This will cancel all upcoming lessons, stop all future payments, and deactivate your account. You can reactivate at any time by logging back in.</p>
+      <div id="sf">
+        <div class="mf" style="margin-bottom:.75rem">
+          <label style="font-size:.56rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:5px">Reason for leaving (optional)</label>
+          <textarea id="sr2" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;font-size:.75rem;font-family:'Raleway',sans-serif;color:var(--ow);width:100%;min-height:80px;outline:none;resize:vertical" placeholder="e.g. Moving away, taking a break..."></textarea>
+        </div>
+        <button onclick="cs()" class="gh dn">End my enrolment &amp; deactivate account</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- TEACHER DASHBOARD -->
+<div class="page" id="page-teacher">
+  <div class="td-wrap">
+    <div class="td-hdr">
+      <div><div class="td-title">Studio Dashboard</div><div class="td-sub">Afternoon Arpeggios</div></div>
+      <button onclick="dl()" class="gh">Log out</button>
+    </div>
+    <div class="income-grid">
+      <div class="ic"><div class="ic-v" id="t-weekly">$0</div><div class="ic-l">Est. weekly</div></div>
+      <div class="ic"><div class="ic-v" id="t-monthly">$0</div><div class="ic-l">Est. monthly</div></div>
+      <div class="ic"><div class="ic-v" id="t-yearly">$0</div><div class="ic-l">Est. yearly</div></div>
+      <div class="ic"><div class="ic-v" id="t-total">$0</div><div class="ic-l">All time earned</div></div>
+    </div>
+    <div class="td-sec">Schedule</div>
+    <div class="tcal-wrap">
+      <div class="tcal-toolbar">
+        <div class="tcal-nav-group">
+          <button class="cbn" onclick="tcNav(-1)">‹</button>
+          <div class="tcal-title" id="tcal-title"></div>
+          <button class="cbn" onclick="tcNav(1)">›</button>
+          <button class="gh" style="margin-left:.5rem;padding:5px 12px;font-size:.58rem" onclick="tcToday()">Today</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+          <div class="tcal-view-tabs">
+            <button id="tv-month" onclick="tcView('month',this)">Month</button>
+            <button class="active" id="tv-week" onclick="tcView('week',this)">Week</button>
+            <button id="tv-day" onclick="tcView('day',this)">Day</button>
+          </div>
+          <button class="gh" onclick="showAvailModal()" style="font-size:.58rem;padding:5px 12px">Change availability</button>
+          <button class="gh" onclick="showHolidayModal()" style="font-size:.58rem;padding:5px 12px">Block holiday dates</button>
+        </div>
+      </div>
+      <div id="tcal-body"></div>
+    </div>
+    <div class="section-toggle" onclick="toggleSection('students-body','chev-stud')">
+      <div class="td-sec" style="margin-bottom:0">Students</div>
+      <span class="chevron" id="chev-stud">▼</span>
+    </div>
+    <div id="students-body" style="display:none">
+      <div class="search-bar"><input type="text" id="student-search" placeholder="Search by name, email or phone..." oninput="filterStudents(this.value)"/></div>
+      <div id="teacher-students"></div>
+    </div>
+
+        <div class="section-toggle" style="margin-top:2rem" onclick="toggleSection('tax-log-body','chev-tax')">
+      <div class="td-sec" style="margin-bottom:0">Financial year tax log</div>
+      <span class="chevron" id="chev-tax">▼</span>
+    </div>
+    <div id="tax-log-body" style="display:none">
+      <div class="search-bar"><input type="text" id="tax-search" placeholder="Search year e.g. 2026-2027..." oninput="filterTax(this.value)"/></div>
+      <div id="tax-log-wrap"></div>
+    </div>
+
+  </div>
+</div>
+<footer><p>© 2026 Afternoon Arpeggios <span>·</span> Music Tuition Hobart <span>·</span> All rights reserved</p></footer><script>
+// All times are in Hobart, Tasmania, Australia (AEST UTC+10 / AEDT UTC+11)
+// The booking calendar reflects local Hobart time
+// Available days: Sun(0) Mon(1) Thu(4) Fri(5)
+const STRIPE_PUBLISHABLE_KEY='pk_test_51TF5rODfBtsIUkaOYzKGtbRQngJDY3bGVfliIgZJ7zCHw1V3LLDhEPmfYJLRpI3TFKsIu52q6Ah6kwK7y2c88JKn007QuA5Fii';
+const API_URL='https://api.afternoonarpeggios.com';
+const T=new Date(),OPEN=new Date(2026,5,21);
+const SH=13,SM=0,EH=19,EM=0,BUF=15,booked={};
+// Sunday 4:00pm-5:00pm is permanently blocked (private)
+const SUN_BLOCK_START=16*60, SUN_BLOCK_END=17*60;
+let loggedIn=false,sc=0,paused=false,studentAwayWeeks=[];
+const S={svc:null,price:0,type:null,dur:null,date:null,time:null,rec:false,cMo:new Date(T.getFullYear(),T.getMonth(),1)};
+let scCurDate=new Date(),tcCurDate=new Date(),tcViewMode='week';
+const MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MNS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAYS_TC=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+let teacherBlockedDates=[],unavailableDates=[],blockedDates=[];
+
+// ─── NAV ───
+function sp(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id)?.classList.add('active');
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('nav-'+id)?.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ─── MODAL ───
+function om(){document.getElementById('lm').classList.remove('hidden');showForgot(false);}
+function cm(){document.getElementById('lm').classList.add('hidden');}
+function showForgot(show=true){
+  const ml=document.getElementById('ml'),mfg=document.getElementById('mfg');
+  if(ml)ml.style.display=show?'none':'block';
+  if(mfg)mfg.style.display=show?'block':'none';
+}
+function subForgot(){showSuccessModal('Reset link sent','Check your email inbox for the reset link.');cm();}
+
+// ─── LOGIN ───
+function doLogin(){
+  const identifier=(document.getElementById('login-email')?.value||'').trim();
+  const password=document.getElementById('login-pw')?.value||'';
+  if(!identifier||!password){showLoginError('Please enter your email or phone number and password.');return;}
+
+  // Show loading state
+  const btn=document.querySelector('#ml .mbtn');
+  if(btn){btn.textContent='Logging in...';btn.disabled=true;}
+
+  fetch(API_URL+'/api/auth/login',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({identifier,password})
+  })
+  .then(r=>r.json())
+  .then(data=>{
+    if(btn){btn.textContent='Log in';btn.disabled=false;}
+    if(data.error){showLoginError(data.error);return;}
+    sessionStorage.setItem('aa_token',data.token);
+    cm();loggedIn=true;
+    if(data.profile&&data.profile.is_teacher){
+      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+      document.getElementById('page-teacher')?.classList.add('active');
+      document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+      document.getElementById('nav-account')?.classList.add('active');
+      window.scrollTo(0,0);
+      try{renderTeacherDashboard();}catch(e){console.error('renderTeacherDashboard:',e);}
+      try{renderTCal();}catch(e){console.error('renderTCal:',e);}
+      try{renderTaxLog();}catch(e){console.error('renderTaxLog:',e);}
+    } else {
+      document.getElementById('ao').style.display='none';
+      document.getElementById('ai').style.display='block';
+      if(data.profile){
+        document.getElementById('ppn').textContent=data.profile.name||'Student';
+        document.getElementById('ppe').textContent=data.profile.email||identifier;
+        document.getElementById('stat-lessons').textContent=data.profile.lessonsCompleted||0;
+        document.getElementById('stat-spent').textContent='$'+(data.profile.totalSpent||0);
+        document.getElementById('stat-slot').textContent=data.profile.slot||'—';
+      }
+      sp('account');
+      renderStudentCal();
+      showStudentHomework();
+      // Load notifications
+      fetch(API_URL+'/api/notifications',{
+        headers:{'Authorization':'Bearer '+sessionStorage.getItem('aa_token')}
+      }).then(r=>r.json()).then(d=>{
+        if(d.notifications){studentNotifications=d.notifications;updateNotifBadge();}
+      }).catch(()=>{});
+    }
+  })
+  .catch(()=>{
+    if(btn){btn.textContent='Log in';btn.disabled=false;}
+    showLoginError('Unable to connect. Please check your internet and try again.');
+  });
+}
+
+function showLoginError(msg){
+  let err=document.getElementById('login-error');
+  if(!err){err=document.createElement('div');err.id='login-error';err.style.cssText='font-size:.72rem;color:#c47;margin-top:.5rem;text-align:center';document.getElementById('ml')?.appendChild(err);}
+  err.textContent=msg;
+}
+function dl(){loggedIn=false;studentAwayWeeks=[];document.getElementById('ao').style.display='block';document.getElementById('ai').style.display='none';sp('account');}
+
+// ─── PROFILE PIC ───
+function tp(){document.getElementById('ppu').click();}
+function hp(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{document.getElementById('pph').style.display='none';const i=document.getElementById('ppi');i.src=ev.target.result;i.style.display='block';};r.readAsDataURL(f);}
+
+// ─── ACTION MODAL ───
+function showActionModal(title,body,onConfirm,confirmLabel,confirmClass,dismissLabel){
+  const ov=document.getElementById('action-modal-ov');
+  const t=document.getElementById('action-modal-title');
+  const b=document.getElementById('action-modal-body');
+  const btn=document.getElementById('action-modal-confirm');
+  const dis=document.querySelector('#action-modal-ov .bs');
+  if(!ov)return;
+  t.textContent=title;b.innerHTML=body;
+  btn.textContent=confirmLabel||'Confirm';
+  btn.className='mbtn';
+  if(confirmClass==='dn'){btn.style.cssText='width:100%;background:rgba(139,34,34,.5);border:none;color:var(--ow);padding:12px;font-family:Raleway,sans-serif;font-size:.63rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-top:1rem';}
+  else{btn.style.cssText='';}
+  // Dismiss button label and visibility
+  if(dis){
+    if(onConfirm===null){
+      dis.style.display='none'; // no dismiss needed (e.g. success/info only)
+    } else {
+      dis.style.display='block';
+      dis.textContent=dismissLabel||'Discard';
+      dis.onclick=closeActionModal;
+    }
+  }
+  btn.onclick=()=>{closeActionModal();if(onConfirm)onConfirm();};
+  ov.classList.remove('hidden');
+}
+function closeActionModal(){document.getElementById('action-modal-ov')?.classList.add('hidden');}
+function showSuccessModal(title,msg){
+  showActionModal(title,'<p style="font-size:.78rem;color:var(--tm);line-height:1.8">'+msg+'</p>',null,'Done',null,null);
+}
+function showEditProfileModal(){
+  showActionModal('Edit profile',
+    `<div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem">
+      <div><label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">Full name</label>
+      <input type="text" id="ep-name" value="${document.getElementById('ppn')?.textContent||''}" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px 10px;font-size:.75rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"/></div>
+      <div><label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">Email</label>
+      <input type="email" id="ep-email" value="${document.getElementById('ppe')?.textContent||''}" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px 10px;font-size:.75rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"/></div>
+      <div><label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">Phone</label>
+      <input type="tel" id="ep-phone" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px 10px;font-size:.75rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"/></div>
+      <div><label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">New password</label>
+      <input type="password" id="ep-pw" placeholder="Leave blank to keep current" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px 10px;font-size:.75rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"/></div>
+    </div>
+    <div style="font-size:.6rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);margin-bottom:.5rem">Reminders</div>
+    <div style="display:flex;gap:.75rem;margin-bottom:.75rem">
+      <label class="ro"><input type="checkbox" checked/><span>📧 Email</span></label>
+      <label class="ro"><input type="checkbox" checked/><span>📅 Calendar</span></label>
+    </div>
+    <button class="gh" onclick="showUpdateCardModal()" style="font-size:.58rem">Update saved card</button>`,
+    ()=>{
+      const name=document.getElementById('ep-name')?.value;
+      const email=document.getElementById('ep-email')?.value;
+      if(name)document.getElementById('ppn').textContent=name;
+      if(email)document.getElementById('ppe').textContent=email;
+      showSuccessModal('Profile saved','Your details have been updated.');
+    },'Save changes');
+}
+function showUpdateCardModal(){
+  showActionModal('Update saved card',
+    '<p style="font-size:.75rem;color:var(--tm);line-height:1.8;margin-bottom:1rem">Enter your new card details. Your previous card will be removed.</p><div style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:1rem;font-size:.72rem;color:var(--td);text-align:center">Stripe card input loads here<br><span style="font-size:.62rem">(Requires Stripe backend)</span></div>',
+    ()=>showSuccessModal('Card updated','Your new payment method has been saved.'),
+    'Save new card');
+}
+
+// ─── ENROL STEP INDICATOR ───
+function updateStepInd(active){
+  [1,2,3,4].forEach(i=>{
+    const ind=document.getElementById('si'+i),cir=document.getElementById('sc'+i);
+    if(!ind)return;
+    ind.className='si '+(i<active?'done':i===active?'active':'pend');
+    cir.textContent=i<active?'✓':String(i);
+  });
+}
+
+// ─── SERVICE SELECTION ───
+function pSvc(el,n,p,t,d){
+  document.querySelectorAll('.sv').forEach(s=>s.classList.remove('sel'));
+  el.classList.add('sel');
+  Object.assign(S,{svc:n,price:p,type:t,dur:d,date:null,time:null,rec:(t==='weekly'||t==='family')});
+  const fp=document.getElementById('famp');
+  if(t==='family'){fp.style.display='block';iF();}
+  else fp.style.display='none';
+  document.getElementById('b2').disabled=false;
+}
+function iF(){sc=0;document.getElementById('srows').innerHTML='';asr();asr();}
+function asr(){
+  sc++;
+  const c=document.getElementById('srows');
+  const r=document.createElement('div');r.className='srow';r.id='sr'+sc;
+  r.innerHTML=`<div class="sf"><label>Student name</label><input type="text" placeholder="Student ${sc} name" data-si="${sc}"/></div><div class="sf"><label>Lesson length</label><select onchange="uFT()"><option value="30">30 min — $40</option><option value="60">60 min — $80</option></select></div>${sc>1?`<button class="rmb" onclick="rr(${sc})">✕</button>`:'<div></div>'}`;
+  c.appendChild(r);uFT();
+}
+function rr(id){const r=document.getElementById('sr'+id);if(r)r.remove();uFT();}
+function uFT(){let t=0;document.querySelectorAll('#srows select').forEach(s=>t+=parseInt(s.value)===30?40:80);document.getElementById('ftv').textContent='$'+t;document.getElementById('fpd').innerHTML='$'+t+' <span>/ week</span>';S.price=t;}
+
+// ─── CHRISTMAS CLOSURE ───
+function fmtDSS(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function isX(d){
+  const y=d.getFullYear(),mo=d.getMonth(),day=d.getDate();
+  if(y===2026&&mo===11&&day>=21)return true;
+  if(y===2027&&mo===0&&day<=3)return true;
+  return teacherBlockedDates.includes(fmtDSS(d));
+}
+function isCl(d){
+  if(d<OPEN||isX(d))return true;
+  const dow=d.getDay();
+  if(!teacherHours[dow]||!teacherHours[dow].work)return true;
+  return false;
+}
+
+// ─── BOOKING CALENDAR ───
+function rCal(){
+  const y=S.cMo.getFullYear(),mo=S.cMo.getMonth();
+  document.getElementById('cmol').textContent=MN[mo]+' '+y;
+  const nb=document.getElementById('nb'),nm=document.getElementById('nm');
+  const last=new Date(y,mo+1,0);
+  if(last<OPEN){nb.style.display='block';nm.innerHTML='Lessons begin <span>21 June 2026</span>';}
+  else{nb.style.display='none';}
+  const dl=document.getElementById('cdls');dl.innerHTML='';
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(l=>{const e=document.createElement('div');e.className='cdl';e.textContent=l;dl.appendChild(e);});
+  const g=document.getElementById('cg');g.innerHTML='';
+  const off=new Date(y,mo,1).getDay(); // Sunday-first
+  for(let i=0;i<off;i++){const b=document.createElement('div');b.className='cd om';b.textContent=new Date(y,mo,-off+i+1).getDate();g.appendChild(b);}
+  for(let d=1;d<=dim;d++){
+    const dt=new Date(y,mo,d),dow=dt.getDay();
+    const e=document.createElement('div');
+    const ds=`${y}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const past=dt<new Date(T.getFullYear(),T.getMonth(),T.getDate());
+    const cl=isCl(dt);
+    e.textContent=d;
+    if(past)e.className='cd past';
+    else if(cl){e.className='cd closed';e.title='Unavailable';}
+    else if(!AV.includes(dow))e.className='cd';
+    else{e.className='cd av';e.onclick=()=>sD(e,ds);}
+    if(dt.toDateString()===T.toDateString())e.classList.add('today');
+    if(S.date===ds)e.classList.add('sel');
+    g.appendChild(e);
+  }
+}
+function cmo(d){S.cMo=new Date(S.cMo.getFullYear(),S.cMo.getMonth()+d,1);rCal();}
+function gSl(dur,dow){
+  let startH=SH,startM=SM,endH=EH,endM=EM;
+  if(dow!==undefined&&teacherHours[dow]&&teacherHours[dow].work){
+    const sp=teacherHours[dow].start.split(':');
+    const ep=teacherHours[dow].end.split(':');
+    startH=parseInt(sp[0]);startM=parseInt(sp[1]||0);
+    endH=parseInt(ep[0]);endM=parseInt(ep[1]||0);
+  }
+  const s=[];let h=startH,m=startM;
+  while(true){
+    const slotStart=h*60+m;
+    const slotEnd=slotStart+dur;
+    if(slotEnd>endH*60+endM)break;
+    // Block Sun 4:00pm-5:00pm (with 15min buffer either side = 3:45pm-5:15pm blocked)
+    const isSun=dow===0;
+    const blockStart=SUN_BLOCK_START-BUF;
+    const blockEnd=SUN_BLOCK_END+BUF;
+    const clashes=isSun&&(slotStart<blockEnd&&slotEnd>blockStart);
+    if(!clashes){
+      const ap=h>=12?'pm':'am';const hh=h>12?h-12:(h===0?12:h);
+      s.push(`${hh}:${m===0?'00':String(m).padStart(2,'0')} ${ap}`);
+    }
+    const nx=slotStart+dur+BUF;h=Math.floor(nx/60);m=nx%60;
+  }
+  return s;
+}
+function sD(el,ds){
+  document.querySelectorAll('.cd').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');S.date=ds;S.time=null;
+  const d=new Date(ds+'T00:00:00');
+  document.getElementById('slbx').textContent=d.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long'});
+  const g=document.getElementById('sg2');g.innerHTML='';
+  const bk=booked[ds]||[];
+  const selDow=new Date(ds+'T00:00:00').getDay();
+  gSl(S.dur||60,selDow).forEach(sl=>{
+    const e=document.createElement('div');
+    e.className=bk.includes(sl)?'slot bkd':'slot';e.textContent=sl;
+    if(!bk.includes(sl))e.onclick=()=>sSl(e,sl);
+    g.appendChild(e);
+  });
+  document.getElementById('b3').disabled=true;
+}
+function sSl(el,t){document.querySelectorAll('.slot').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');S.time=t;document.getElementById('b3').disabled=false;}
+
+// ─── STEP NAVIGATION ───
+function gs(n){
+  if(n===3)bSI();
+  if(n===1){S.date=null;S.time=null;document.getElementById('b3').disabled=true;document.getElementById('tca').checked=false;document.getElementById('b4').disabled=true;}
+  if(n===2){document.getElementById('tca').checked=false;document.getElementById('b4').disabled=true;}
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n)?.classList.add('active');
+  updateStepInd(n===5?5:n);
+  if(n===4){rPS();initStripeCard();}
+  if(n===5)rC2();
+  document.getElementById('bf')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function ca(){document.getElementById('b4').disabled=!document.getElementById('tca').checked;}
+function pp(el){document.querySelectorAll('.pm').forEach(m=>m.classList.remove('sel'));el.classList.add('sel');}
+function fd(s){if(!s)return'—';return new Date(s+'T00:00:00').toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}
+
+// ─── STEP 1 CONTINUE BUTTON ───
+// Enable Continue when a service is picked (handled in pSvc)
+
+// ─── STUDENT INTAKE ───
+function bSI(){
+  const a=document.getElementById('sia');a.innerHTML='';
+  const goals=`<div class="gb" style="margin-top:1rem"><div class="gbt">What would this student like to learn?</div><div class="gg"><label class="gc"><input type="checkbox"/><span>🎹 Piano</span></label><label class="gc"><input type="checkbox"/><span>🎤 Singing</span></label><label class="gc"><input type="checkbox"/><span>🎼 Composing</span></label><label class="gc"><input type="checkbox"/><span>🎷 Jazz</span></label><label class="gc"><input type="checkbox"/><span>🎻 Classical</span></label><label class="gc"><input type="checkbox"/><span>🎵 Pop</span></label><label class="gc"><input type="checkbox"/><span>🎛️ Synth</span></label><label class="gc"><input type="checkbox"/><span>🎓 AMEB</span></label><label class="gc"><input type="checkbox"/><span>📖 Theory</span></label><label class="gc"><input type="checkbox"/><span>👂 Ear</span></label></div></div>`;
+  if(S.type==='family'){
+    document.getElementById('single-goals-wrap').style.display='none';
+    document.querySelectorAll('#srows .srow').forEach((row,i)=>{
+      const nameInp=row.querySelector('input[data-si]');
+      const n=(nameInp&&nameInp.value.trim())||'Student '+(i+1);
+      a.innerHTML+=`<div class="sc-card"><div class="sc-title">Student ${i+1} — ${n}</div><div class="fg">
+        <div class="fld"><label>Student full name</label><input type="text" value="${nameInp?nameInp.value:''}" placeholder="${n}"/></div>
+        <div class="fld"><label>Age</label><input type="number" placeholder="e.g. 10" min="3" max="99"/></div>
+        <div class="fld ff"><label>Prior music experience?</label><input type="text" placeholder="e.g. 2 years recorder, or none"/></div>
+        <div class="fld ff"><label>Any allergy to cats or dogs?</label><select><option value="">Please select...</option><option value="no">No allergies</option><option value="cats">Cat allergy</option><option value="dogs">Dog allergy</option><option value="both">Both</option><option value="unsure">Unsure</option></select>
+        <div class="cn">There is a friendly studio cat. Please flag any allergies.</div></div>
+      </div>${goals}</div>`;
+    });
+  } else {
+    document.getElementById('single-goals-wrap').style.display='block';
+    a.innerHTML=`<div class="fg">
+      <div class="fld"><label>Student full name</label><input type="text" placeholder="e.g. Ella Thompson"/></div>
+      <div class="fld"><label>Age</label><input type="number" placeholder="e.g. 10" min="3" max="99"/></div>
+      <div class="fld ff"><label>Prior music experience?</label><input type="text" placeholder="e.g. 2 years recorder, or none"/></div>
+      <div class="fld ff"><label>Any allergy to cats or dogs?</label><select><option value="">Please select...</option><option value="no">No allergies</option><option value="cats">Cat allergy</option><option value="dogs">Dog allergy</option><option value="both">Both</option><option value="unsure">Unsure</option></select>
+      <div class="cn">There is a friendly studio cat. Please flag any allergies.</div></div>
+    </div>`;
+  }
+}
+
+// ─── PAYMENT SUMMARY ───
+function rPS(){
+  // rec is set automatically in pSvc
+  const fee=Math.round(S.price*0.017*100)/100;
+  const total=Math.round((S.price+fee)*100)/100;
+  document.getElementById('pysum').innerHTML=`
+    <div class="sr"><span class="k">Service</span><span class="v">${S.svc||'—'}</span></div>
+    <div class="sr"><span class="k">Date</span><span class="v">${fd(S.date)}</span></div>
+    <div class="sr"><span class="k">Time</span><span class="v">${S.time||'—'}</span></div>
+    ${S.rec?`<div class="sr"><span class="k">Recurring</span><span class="v" style="color:var(--go)">Weekly slot reserved</span></div>`:''}
+    <div class="sr"><span class="k">Lesson price</span><span class="v">$${S.price.toFixed(2)}</span></div>
+    <div class="sr"><span class="k">Stripe fee (1.7%)</span><span class="v">$${fee.toFixed(2)}</span></div>
+    <div class="sr"><span class="k">${S.type==='trial'?'Total charged after lesson':'Per week (charged after each lesson)'}</span><span class="v" style="color:var(--go);font-size:1rem;font-family:'Cormorant Garamond',serif">$${total.toFixed(2)}</span></div>`;
+}
+function fb(){gs(5);}
+function rC2(){
+  const fee=Math.round(S.price*0.017*100)/100;
+  const total=Math.round((S.price+fee)*100)/100;
+  document.getElementById('csum').innerHTML=`
+    <div class="sr"><span class="k">Service</span><span class="v">${S.svc}</span></div>
+    <div class="sr"><span class="k">First lesson</span><span class="v">${fd(S.date)}</span></div>
+    <div class="sr"><span class="k">Time</span><span class="v">${S.time}</span></div>
+    ${S.rec?`<div class="sr"><span class="k">Recurring</span><span class="v" style="color:var(--go)">Weekly slot reserved</span></div>`:''}
+    <div class="sr"><span class="k">${S.type==='trial'?'Total (charged after lesson)':'Per week (charged after each lesson)'}</span><span class="v" style="color:var(--go)">$${total.toFixed(2)}</span></div>`;
+}
+
+// ─── CALENDAR SYNC ───
+function agc(){
+  if(!S.date||!S.time)return;
+  const d=S.date.replace(/-/g,'');
+  const tp=S.time.match(/(\d+):(\d+)\s*(am|pm)/i);if(!tp)return;
+  let h=parseInt(tp[1]),m=parseInt(tp[2]);
+  if(tp[3].toLowerCase()==='pm'&&h!==12)h+=12;
+  if(tp[3].toLowerCase()==='am'&&h===12)h=0;
+  const utcH=h-11;
+  const start=`${d}T${String((utcH+24)%24).padStart(2,'0')}${String(m).padStart(2,'0')}00Z`;
+  const endH=utcH+(S.dur||60)/60;
+  const end=`${d}T${String((Math.floor(endH)+24)%24).padStart(2,'0')}${String(m).padStart(2,'0')}00Z`;
+  let url=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Lesson — Afternoon Arpeggios')}&dates=${start}/${end}&details=${encodeURIComponent('Music lesson. 24hr cancellation policy.')}&location=Hobart+TAS`;
+  if(S.rec)url+='&recur=RRULE:FREQ=WEEKLY';
+  window.open(url,'_blank');
+}
+function aac(){
+  if(!S.date||!S.time)return;
+  const d=S.date.replace(/-/g,'');
+  const tp=S.time.match(/(\d+):(\d+)\s*(am|pm)/i);if(!tp)return;
+  let h=parseInt(tp[1]),m=parseInt(tp[2]);
+  if(tp[3].toLowerCase()==='pm'&&h!==12)h+=12;
+  if(tp[3].toLowerCase()==='am'&&h===12)h=0;
+  const endH=h+(S.dur||60)/60,endHH=Math.floor(endH),endMM=Math.round((endH-endHH)*60);
+  const rrule=S.rec?'\\nRRULE:FREQ=WEEKLY':'';
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT',
+    `DTSTART;TZID=Australia/Hobart:${d}T${String(h).padStart(2,'0')}${String(m).padStart(2,'0')}00`,
+    `DTEND;TZID=Australia/Hobart:${d}T${String(endHH).padStart(2,'0')}${String(endMM).padStart(2,'0')}00`,
+    `SUMMARY:Lesson — Afternoon Arpeggios`,rrule,'END:VEVENT','END:VCALENDAR'].filter(Boolean).join('\\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar;charset=utf-8'}));a.download='lesson.ics';a.click();
+}
+
+// ─── STUDENT LESSON CALENDAR ───
+const studentLessons=[
+  {date:'2026-06-08',type:'past',label:'60 Min · 3:30pm',amount:81.36},
+  {date:'2026-06-15',type:'past',label:'60 Min · 3:30pm',amount:81.36},
+  {date:'2026-06-22',type:'upcoming',label:'60 Min · 3:30pm'},
+  {date:'2026-06-29',type:'upcoming',label:'60 Min · 3:30pm'},
+  {date:'2026-07-06',type:'upcoming',label:'60 Min · 3:30pm'},
+  {date:'2026-07-13',type:'upcoming',label:'60 Min · 3:30pm'},
+];
+function scNav(d){scCurDate=new Date(scCurDate.getFullYear(),scCurDate.getMonth()+d,1);renderStudentCal();}
+function scToday(){scCurDate=new Date();renderStudentCal();}
+function scWkKey(ds){const d=new Date(ds+'T00:00:00');const dif=(d.getDay()+6)%7;const mon=new Date(d);mon.setDate(d.getDate()-dif);return mon.toISOString().slice(0,10);}
+function renderStudentCal(){
+  const y=scCurDate.getFullYear(),mo=scCurDate.getMonth();
+  const titleEl=document.getElementById('sc-title');
+  if(titleEl)titleEl.textContent=MN[mo]+' '+y;
+  const dlbls=document.getElementById('sc-dlbls'),grid=document.getElementById('sc-grid');
+  if(!dlbls||!grid)return;
+  dlbls.innerHTML='';grid.innerHTML='';
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(l=>{const e=document.createElement('div');e.className='cdl';e.textContent=l;dlbls.appendChild(e);});
+  const off=new Date(y,mo,1).getDay(); // Sunday=0, natural Sunday-first
+  const dim=new Date(y,mo+1,0).getDate();
+  const todayDS=fmtDSS(new Date());
+  for(let i=0;i<off;i++){const b=document.createElement('div');b.style.cssText='aspect-ratio:1';grid.appendChild(b);}
+  for(let d=1;d<=dim;d++){
+    const dt=new Date(y,mo,d);
+    const ds=`${y}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const lesson=studentLessons.find(l=>l.date===ds);
+    const wk=scWkKey(ds);
+    const isCancelled=studentAwayWeeks.includes(wk);
+    const isToday=ds===todayDS,isPast=dt<new Date();
+    const e=document.createElement('div');
+    e.style.cssText='aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:2px;font-size:.7rem;transition:all .15s;position:relative';
+    if(isCancelled&&!lesson){
+      e.style.background='rgba(107,26,26,.25)';e.style.border='.5px solid rgba(201,169,110,.3)';e.style.color='var(--gl)';e.style.cursor='pointer';
+      e.title='Week cancelled — tap to restore';e.onclick=()=>toggleStudentAway(ds);
+    } else if(lesson){
+      if(lesson.type==='upcoming'){
+        e.style.background='rgba(107,26,26,.6)';
+        e.style.border='1.5px solid var(--crm)';
+        e.style.color='var(--gl)';
+        e.style.cursor='pointer';
+        e.style.fontWeight='600';
+        e.title='Tap to cancel this lesson';
+        // Add small cancel hint
+        const hint=document.createElement('div');
+        hint.style.cssText='font-size:.45rem;color:rgba(255,150,150,.7);margin-top:1px;letter-spacing:.05em';
+        hint.textContent='tap to cancel';
+        e.appendChild(hint);
+        e.onclick=()=>selectStudentLesson(ds,lesson);
+      }
+      else{e.style.background='rgba(80,80,80,.2)';e.style.color='var(--td)';e.style.cursor='pointer';e.onclick=()=>selectStudentLesson(ds,lesson);}
+    } else if(!isPast){
+      e.style.color='var(--tm)';e.style.cursor='pointer';
+      e.onclick=()=>toggleStudentAway(ds);
+    } else{e.style.color='var(--td)';e.style.opacity='.35';}
+    if(isToday){e.style.outline='.5px solid var(--go)';e.style.outlineOffset='-1px';}
+    e.textContent=d;grid.appendChild(e);
+  }
+  const slotActions=document.getElementById('sc-slot-actions');
+  if(slotActions){slotActions.innerHTML='<button class="gh" onclick="changeSlot()" style="font-size:.58rem">Change weekly slot</button>';}
+  const detail=document.getElementById('sc-detail');
+  if(detail){
+    const tags=studentAwayWeeks.map(w=>{const d=new Date(w+'T00:00:00');return `<span class="atg">✕ Week of ${d.toLocaleDateString('en-AU',{day:'numeric',month:'short'})} <button onclick="toggleStudentAway('${w}')">✕</button></span>`;}).join('');
+    detail.innerHTML=tags?`<div style="font-size:.62rem;color:var(--td);margin-bottom:.4rem">Cancelled weeks (no charge):</div><div style="display:flex;flex-wrap:wrap;gap:.4rem">${tags}</div>`:'<div style="font-size:.72rem;color:var(--tm);line-height:1.8;padding:.25rem 0">'+
+      '<strong style="color:var(--ow)">Tap any lesson</strong> <span style="color:var(--td)">to cancel it.</span>'+
+      '</div>';
+  }
+}
+function toggleStudentAway(ds){
+  const wk=scWkKey(ds);
+  const d=new Date(ds+'T00:00:00');
+  const label=d.toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'});
+  if(studentAwayWeeks.includes(wk)){studentAwayWeeks=studentAwayWeeks.filter(w=>w!==wk);renderStudentCal();return;}
+  showActionModal('Cancel this week',
+    `<p style="font-size:.75rem;color:var(--tm);line-height:1.8">Cancel the week of <strong style="color:var(--ow)">${label}</strong>?</p><div style="background:rgba(45,8,8,.5);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;margin-top:.75rem;font-size:.7rem;color:var(--tm)">No payment will be taken that week. Your recurring slot resumes the following week.</div>`,
+    ()=>{studentAwayWeeks.push(wk);renderStudentCal();},'Cancel this week');
+}
+function selectStudentLesson(ds,lesson){
+  const d=new Date(ds+'T00:00:00');
+  const label=d.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long'});
+  if(lesson.type==='past'){
+    const ov=document.getElementById('action-modal-ov');
+    const t=document.getElementById('action-modal-title');
+    const b=document.getElementById('action-modal-body');
+    const btn=document.getElementById('action-modal-confirm');
+    const cancelBtn=document.querySelector('#action-modal-ov .bs');
+    if(t)t.textContent='Past lesson';
+    if(b)b.innerHTML=`<p style="font-size:.75rem;color:var(--tm);line-height:1.8">${label}<br>${lesson.label}<br><span style="color:var(--go)">$${lesson.amount} charged</span></p>`;
+    if(btn){btn.textContent='Close';btn.onclick=closeActionModal;}
+    if(cancelBtn)cancelBtn.style.display='none';
+    ov?.classList.remove('hidden');
+    return;
+  }
+  const now=new Date();const hoursUntil=(d-now)/3600000+6;
+  const canCancel=hoursUntil>=24;
+  if(canCancel){
+    showActionModal('Cancel lesson',
+      `<p style="font-size:.75rem;color:var(--tm);line-height:1.8">Cancel your lesson on <strong style="color:var(--ow)">${label}</strong>?</p><div style="background:rgba(45,8,8,.5);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;margin-top:.75rem;font-size:.7rem;color:var(--tm)">No charge — more than 24 hours notice.</div>`,
+      ()=>showSuccessModal('Lesson cancelled','Your lesson on '+label+' has been cancelled. No charge applied.'),'Yes, cancel');
+  } else {
+    showActionModal('Unable to cancel',
+      `<p style="font-size:.75rem;color:var(--tm);line-height:1.8">Your lesson on <strong style="color:var(--ow)">${label}</strong> is within 24 hours.</p><div style="background:rgba(107,26,26,.25);border:.5px solid var(--crm);border-radius:3px;padding:10px 14px;margin-top:.75rem;font-size:.7rem;color:var(--gl)">Cancellations within 24 hours are charged in full. Contact Juliet directly on 0481 599 037 if there is an emergency.</div>`,
+      null,'OK');
+  }
+}
+function cancelThisWeek(){
+  const today=new Date();
+  const wk=scWkKey(fmtDSS(today));
+  const d=new Date(wk+'T00:00:00');
+  const label=d.toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'});
+  showActionModal('Cancel this week',
+    `<p style="font-size:.75rem;color:var(--tm);line-height:1.8">Cancel the week starting <strong style="color:var(--ow)">${label}</strong>?</p>
+    <div style="background:rgba(45,8,8,.5);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;margin-top:.75rem;font-size:.7rem;color:var(--tm)">No payment will be taken that week. Your recurring slot resumes the following week.</div>`,
+    ()=>{
+      studentAwayWeeks.push(wk);
+      renderStudentCal();
+      addNotification('info','Week cancelled','Your lesson for the week of '+label+' has been cancelled. No charge applies.','','');
+      showSuccessModal('Week cancelled','No charge for this week. Your slot resumes next week.');
+    },'Cancel this week');
+}
+function changeSlot(){
+  showActionModal('Change weekly slot',
+    `<p style="font-size:.75rem;color:var(--tm);line-height:1.8;margin-bottom:1rem">Select a new day and time for your recurring weekly lesson.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+      <div><label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">New day</label>
+      <select id="new-day" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px;font-size:.75rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"><option>Monday</option><option>Tuesday</option><option>Thursday</option><option>Friday</option></select></div>
+      <div><label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">New time</label>
+      <select id="new-time" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px;font-size:.75rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"><option>3:30 pm</option><option>4:10 pm</option><option>4:50 pm</option><option>5:30 pm</option><option>6:10 pm</option><option>6:50 pm</option></select></div></div>`,
+    ()=>{const day=document.getElementById('new-day')?.value,time=document.getElementById('new-time')?.value;showSuccessModal('Slot change requested','Your slot has been moved to '+day+' at '+time+'. A confirmation email is on its way.');},'Confirm slot change');
+}
+
+// ─── PAUSE / STOP ───
+function tp2(){
+  paused=!paused;
+  const btn=document.getElementById('pb'),st=document.getElementById('pst');
+  if(paused){btn.textContent='Unpause subscription';btn.classList.add('dn');st.style.display='inline-flex';st.innerHTML='<span class="ps">⏸ Paused</span>';}
+  else{btn.textContent='Pause my subscription';btn.classList.remove('dn');st.style.display='none';}
+}
+function cs(){
+  showActionModal('End enrolment',
+    '<p style="font-size:.75rem;color:var(--tm);line-height:1.8;margin-bottom:.75rem">This will:</p><ul style="font-size:.72rem;color:var(--tm);line-height:1.9;padding-left:1.2rem"><li>Cancel all upcoming lessons</li><li>Stop all future payments</li><li>Deactivate your account</li></ul><p style="font-size:.7rem;color:var(--go);margin-top:.75rem">You can reactivate at any time by logging back in.</p>',
+    ()=>{document.getElementById('sf').innerHTML='<p style="font-size:.72rem;color:var(--tm);line-height:1.7">Your enrolment has been ended. Thank you for being a student at Afternoon Arpeggios. We hope to see you again. 🎹</p>';},
+    'Yes, end my enrolment','dn');
+}
+
+// ─── TEACHER DASHBOARD DATA ───
+const mockStudents=[
+  {id:1,name:'Sarah Thompson',email:'sarah@example.com',phone:'+61412345678',
+   students:[{name:'Ella Thompson',age:10,experience:'2 years recorder',allergy:'No allergies',goals:['Piano','Theory'],notes:'Very enthusiastic'}],
+   type:'60min',status:'active',slot:'Mon 3:30pm',
+   lessons:{upcoming:[{date:'Mon 22 Jun',time:'3:30pm'},{date:'Mon 29 Jun',time:'3:30pm'}],past:[{date:'Mon 15 Jun',amount:81.36},{date:'Mon 8 Jun',amount:81.36}]},
+   totalSpent:651,lessonsCompleted:8},
+  {id:2,name:'David Chen',email:'david@example.com',phone:'+61423456789',
+   students:[{name:'Liam Chen',age:8,experience:'None',allergy:'No allergies',goals:['Piano','Ear training'],notes:'Shy but keen'}],
+   type:'30min',status:'active',slot:'Tue 4:10pm',
+   lessons:{upcoming:[{date:'Tue 23 Jun',time:'4:10pm'}],past:[{date:'Tue 16 Jun',amount:40.68}]},
+   totalSpent:325,lessonsCompleted:8},
+  {id:3,name:'Emma Wilson',email:'emma@example.com',phone:'+61434567890',
+   students:[{name:'Noah Wilson',age:7,experience:'None',allergy:'Unsure',goals:['Singing','Piano'],notes:'Loves pop'},{name:'Mia Wilson',age:9,experience:'1 year piano',allergy:'No allergies',goals:['Piano','AMEB'],notes:'Grade 2'}],
+   type:'family',status:'active',slot:'Thu 3:30 + 4:10pm',
+   lessons:{upcoming:[{date:'Thu 25 Jun',time:'3:30pm'}],past:[{date:'Thu 18 Jun',amount:122}]},
+   totalSpent:488,lessonsCompleted:4},
+  {id:4,name:'James Nguyen',email:'james@example.com',phone:'+61445678901',
+   students:[{name:'James Nguyen',age:16,experience:'3 years piano',allergy:'No allergies',goals:['Piano','Jazz','AMEB'],notes:'Grade 5'}],
+   type:'60min',status:'paused',slot:'Fri 5:50pm',
+   lessons:{upcoming:[],past:[{date:'Fri 12 Jun',amount:81.36}]},
+   totalSpent:407,lessonsCompleted:5},
+  {id:5,name:'Kate Brown',email:'kate@example.com',phone:'+61456789012',
+   students:[{name:'Kate Brown',age:25,experience:'Beginner',allergy:'Cat allergy',goals:['Singing','Composing'],notes:'Adult beginner'}],
+   type:'trial',status:'ended',slot:'N/A',
+   lessons:{upcoming:[],past:[{date:'Mon 1 Jun',amount:40.68}]},
+   totalSpent:40.68,lessonsCompleted:1}
+];
+function getBadge(type,status,special){
+  if(status==='paused')return'<span class="student-badge badge-paused">⏸ Paused</span>';
+  if(status==='ended')return'<span class="student-badge badge-ended">Ended</span>';
+
+  if(type==='trial')return'<span class="student-badge badge-trial">Trial</span>';
+  if(type==='30min')return'<span class="student-badge badge-30">30 min</span>';
+  if(type==='60min')return'<span class="student-badge badge-60">60 min</span>';
+  if(type==='family')return'<span class="student-badge badge-family">Family</span>';
+  return'';
+}
+function renderTeacherDashboard(){
+  let weekly=0;
+  mockStudents.forEach(s=>{
+    if(s.status!=='active')return;
+    if(s.type==='30min')weekly+=40;
+    else if(s.type==='60min')weekly+=80;
+    else if(s.type==='family')weekly+=s.students.length*40;
+    else if(s.special)weekly+=100;
+  });
+  const allTime=mockStudents.reduce((a,s)=>a+s.totalSpent,0);
+  document.getElementById('t-weekly').textContent='$'+weekly;
+  document.getElementById('t-monthly').textContent='$'+Math.round(weekly*4.33);
+  document.getElementById('t-yearly').textContent='$'+Math.round(weekly*52).toLocaleString();
+  document.getElementById('t-total').textContent='$'+Math.round(allTime).toLocaleString();
+  const container=document.getElementById('teacher-students');
+  container.innerHTML='';
+  mockStudents.filter(s=>s.status!=='ended').forEach(s=>{
+    const upScroll=s.lessons.upcoming.length?`<div style="display:flex;gap:.5rem;overflow-x:auto;padding-bottom:.25rem;scrollbar-width:none">${s.lessons.upcoming.map(l=>`<div style="flex-shrink:0;background:rgba(107,26,26,.25);border:.5px solid var(--crm);border-radius:3px;padding:.5rem .75rem;min-width:120px"><div style="font-size:.68rem;color:var(--gl)">${l.date}</div><div style="font-size:.62rem;color:var(--tm);margin-top:1px">${l.time}</div><button onclick="event.stopPropagation();teacherCancelLesson(${s.id},'${s.name}','${l.date}')" style="background:rgba(107,26,26,.3);border:.5px solid var(--crm);color:var(--gl);padding:2px 7px;font-size:.5rem;cursor:pointer;border-radius:2px;margin-top:.3rem;font-family:Raleway,sans-serif;letter-spacing:.1em;text-transform:uppercase;transition:all .15s" onmouseover="this.style.background='rgba(107,26,26,.6)'" onmouseout="this.style.background='rgba(107,26,26,.3)'">Cancel</button></div>`).join('')}</div>`:'<p style="font-size:.68rem;color:var(--td)">None</p>';
+    const pastScroll=s.lessons.past.length?`<div style="display:flex;gap:.5rem;overflow-x:auto;padding-bottom:.25rem;scrollbar-width:none">${s.lessons.past.map(l=>`<div style="flex-shrink:0;background:var(--bgs);border:.5px solid var(--crb);border-radius:3px;padding:.5rem .75rem;min-width:120px"><div style="font-size:.68rem;color:var(--tm)">${l.date}</div><div style="font-size:.62rem;color:var(--go);margin-top:1px">$${l.amount}</div></div>`).join('')}</div>`:'<p style="font-size:.68rem;color:var(--td)">None</p>';
+    const stuHtml=s.students.map(st=>`<div style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:1rem;margin-bottom:.75rem"><div style="font-size:.78rem;font-weight:500;color:var(--ow);margin-bottom:.75rem">🎵 ${st.name}${st.age?', age '+st.age:''}</div><div class="s-detail-grid"><div class="s-detail"><div class="s-detail-label">Experience</div><div class="s-detail-val">${st.experience||'—'}</div></div><div class="s-detail"><div class="s-detail-label">Allergy</div><div class="s-detail-val">${st.allergy||'—'}</div></div><div class="s-detail"><div class="s-detail-label">Notes</div><div class="s-detail-val">${st.notes||'—'}</div></div></div><div style="font-size:.68rem;color:var(--tm)"><strong style="color:var(--go)">Goals:</strong> ${st.goals.join(', ')}</div></div>`).join('');
+    const block=document.createElement('div');block.className='student-block';
+    // Current week key for homework reset (week starts Sunday)
+    const wkKey=scWkKey(fmtDSS(new Date()));
+    const hwKey='hw_'+s.id+'_'+wkKey;
+    const savedHw=homeworkData[s.id]||{text:'',weekKey:''};
+    const hwText=savedHw.weekKey===wkKey?savedHw.text:'';
+    // Rep files for this student
+    const repFiles=repertoireData[s.id]||[];
+    const repHtml=repFiles.length
+      ?repFiles.map((f,fi)=>`<div class="block-item" style="margin-bottom:.3rem">
+          <div class="block-item-info"><strong>${f.title}</strong>${f.date}</div>
+          <div style="display:flex;gap:.4rem">
+            <a href="${f.url}" target="_blank" class="gh" style="padding:3px 10px;font-size:.54rem;text-decoration:none">View</a>
+            <button onclick="event.stopPropagation();deleteRep(${s.id},${fi})" class="block-rm" title="Delete file">🗑</button>
+          </div>
+        </div>`).join('')
+      :'<p style="font-size:.68rem;color:var(--td)">No files uploaded yet.</p>';
+
+    block.innerHTML=`<div class="student-hdr" onclick="toggleStudent(${s.id})">
+      <div>
+        <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+          <div class="student-name">${s.name}</div>${getBadge(s.type,s.status,s.special)}
+        </div>
+        <div class="student-meta">${s.email} · ${s.slot} · ${s.lessonsCompleted} lessons · $${Math.round(s.totalSpent)} total</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.75rem"><span class="chevron" id="chev-${s.id}">▼</span></div>
+    </div>
+    <div class="student-body" id="sbody-${s.id}">
+
+      <!-- STUDENT DETAILS (collapsed) -->
+      <div class="section-toggle" onclick="toggleSection('sdet-${s.id}','sdet-chev-${s.id}')">
+        <div style="font-size:.56rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--go)">Student details</div>
+        <span class="chevron" id="sdet-chev-${s.id}">▼</span>
+      </div>
+      <div id="sdet-${s.id}" style="display:none">${stuHtml}</div>
+
+      <!-- UPCOMING (cancel button per lesson) -->
+      <div class="td-sec" style="margin-top:1.25rem">Upcoming lessons</div>
+      ${upScroll}
+
+      <!-- PAST -->
+      <div class="td-sec" style="margin-top:.75rem">Past lessons</div>
+      ${pastScroll}
+
+      <!-- HOMEWORK (collapses, week-keyed) -->
+      <div class="section-toggle" style="margin-top:1.25rem" onclick="toggleSection('shw-${s.id}','shw-chev-${s.id}')">
+        <div style="font-size:.56rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--go)">This week's homework</div>
+        <span class="chevron" id="shw-chev-${s.id}">▼</span>
+      </div>
+      <div id="shw-${s.id}" style="display:none">
+        <textarea id="hw-txt-${s.id}" placeholder="e.g. Practice Für Elise bars 1–8 hands separately, 15 mins/day..." style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;font-size:.75rem;font-family:'Raleway',sans-serif;color:var(--ow);width:100%;min-height:90px;outline:none;resize:vertical;margin-bottom:.5rem">${hwText}</textarea>
+        <button onclick="event.stopPropagation();postHomeworkForStudent(${s.id},'${s.name}')" class="gh" style="font-size:.58rem">Post homework</button>
+        ${hwText?`<div style="font-size:.62rem;color:var(--go);margin-top:.4rem">✓ Homework posted this week</div>`:''}
+      </div>
+
+      <!-- REPERTOIRE / FILES -->
+      <div class="section-toggle" style="margin-top:1rem" onclick="toggleSection('srep-${s.id}','srep-chev-${s.id}')">
+        <div style="font-size:.56rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--go)">Repertoire &amp; files</div>
+        <span class="chevron" id="srep-chev-${s.id}">▼</span>
+      </div>
+      <div id="srep-${s.id}" style="display:none">
+        <div style="display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:end;margin-bottom:.75rem">
+          <div><label style="font-size:.52rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:3px">File title</label>
+          <input type="text" id="rep-ttl-${s.id}" placeholder="e.g. Für Elise sheet music" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px 10px;font-size:.75rem;color:var(--ow);font-family:'Raleway',sans-serif;outline:none;width:100%"/></div>
+          <div></div>
+        </div>
+        <label style="display:flex;align-items:center;gap:.75rem;background:var(--bgs);border:.5px dashed var(--crb);border-radius:3px;padding:.875rem 1rem;cursor:pointer;margin-bottom:.5rem" onmouseover="this.style.borderColor='var(--go)'" onmouseout="this.style.borderColor='var(--crb)'">
+          <span>📄</span>
+          <div><div style="font-size:.7rem;color:var(--ow)">Choose PDF</div><div style="font-size:.6rem;color:var(--td)">PDF only · max 10MB</div></div>
+          <input type="file" accept=".pdf" onchange="previewRepFile${s.id}(this)" style="display:none" id="rep-fil-${s.id}"/>
+        </label>
+        <div id="rep-prev-${s.id}" style="font-size:.68rem;color:var(--go);margin-bottom:.5rem"></div>
+        <button onclick="event.stopPropagation();uploadRepForStudent(${s.id},'${s.name}')" class="gh" style="font-size:.58rem">Upload file</button>
+        <div style="margin-top:.75rem">${repHtml}</div>
+      </div>
+
+      <!-- FOOTER ACTIONS -->
+      <div style="margin-top:1.25rem;padding-top:1rem;border-top:.5px solid var(--crb);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
+        <span style="font-size:.72rem;color:var(--tm)">Total earned: <span style="color:var(--go)">$${Math.round(s.totalSpent)}</span></span>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button onclick="event.stopPropagation();teacherChangeSlot(${s.id})" class="gh" style="font-size:.56rem;padding:5px 12px">Change slot</button>
+          <button onclick="event.stopPropagation();teacherEndEnrolment(${s.id},'${s.name}')" class="delete-btn" style="font-size:.56rem;padding:5px 12px">End enrolment</button>
+        </div>
+      </div>
+
+    </div>`;
+    container.appendChild(block);
+  });
+}
+function toggleStudent(id){const body=document.getElementById('sbody-'+id),chev=document.getElementById('chev-'+id);const open=body.classList.contains('open');body.classList.toggle('open',!open);chev.classList.toggle('open',!open);}
+
+// ─── TEACHER ACTIONS ───
+// ─── PER-STUDENT TEACHER ACTIONS ───
+function postHomeworkForStudent(sid,name){
+  const text=document.getElementById('hw-txt-'+sid)?.value.trim();
+  if(!text){showSuccessModal('No homework','Please write the homework first.');return;}
+  const wkKey=scWkKey(fmtDSS(new Date()));
+  homeworkData[sid]={text,weekKey:wkKey};
+  // Update student-facing profile sections
+  const hwSec=document.getElementById('hw-sec-stud');
+  const hwCard=document.getElementById('hw-card-stud');
+  const hwContent=document.getElementById('hw-content-stud');
+  if(hwSec)hwSec.style.display='block';
+  if(hwCard)hwCard.style.display='block';
+  if(hwContent)hwContent.textContent=text;
+  addNotification('info','New homework this week','Juliet has posted homework for this week. Log in to view it.','showStudentHomework','View homework');
+  console.log('[EMAIL TRIGGER] Homework posted for '+name);
+  // Refresh teacher dashboard to show green tick
+  renderTeacherDashboard();
+  showSuccessModal('Homework posted','Homework posted this week for '+name+'. They will be notified by email.');
+}
+
+function uploadRepForStudent(sid,name){
+  const title=document.getElementById('rep-ttl-'+sid)?.value.trim();
+  const file=document.getElementById('rep-fil-'+sid)?.files[0];
+  if(!title){showSuccessModal('Add title','Please enter a file title first.');return;}
+  if(!file){showSuccessModal('Choose file','Please choose a PDF to upload.');return;}
+  if(file.type!=='application/pdf'){showSuccessModal('PDF only','Please upload a PDF file.');return;}
+  if(file.size>10*1024*1024){showSuccessModal('File too large','Maximum file size is 10MB.');return;}
+  const url=URL.createObjectURL(file);
+  if(!repertoireData[sid])repertoireData[sid]=[];
+  repertoireData[sid].push({title,filename:file.name,url,date:new Date().toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})});
+  // Update student-facing view
+  updateStudentRepertoireView(sid);
+  addNotification('info','New file uploaded','Juliet has uploaded: '+title+'. You can view or download it in My Repertoire.','','');
+  console.log('[EMAIL TRIGGER] File uploaded for '+name);
+  renderTeacherDashboard();
+  showSuccessModal('File uploaded',title+' uploaded for '+name+'. They will be notified by email.');
+}
+
+function deleteRep(sid,idx){
+  if(!repertoireData[sid])return;
+  const title=repertoireData[sid][idx]?.title||'file';
+  if(!confirm('Delete "'+title+'"? This cannot be undone.'))return;
+  repertoireData[sid].splice(idx,1);
+  updateStudentRepertoireView(sid);
+  renderTeacherDashboard();
+}
+
+function teacherCancelLesson(studentId,studentName,date){
+  showActionModal('Cancel lesson for '+studentName,
+    `<p style="font-size:.75rem;color:var(--tm);line-height:1.8">Cancel the lesson on <strong style="color:var(--ow)">${date}</strong>?</p>
+    <div style="background:rgba(45,8,8,.5);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;margin-top:.75rem;font-size:.7rem;color:var(--tm)">Student will be notified by email. No charge will apply.</div>`,
+    ()=>{
+      addNotification('info','Lesson cancelled','Your lesson on '+date+' has been cancelled by Juliet. No charge applies.','','');
+      console.log('[EMAIL TRIGGER] Lesson cancelled for '+studentName);
+      renderTeacherDashboard();
+      showSuccessModal('Lesson cancelled',studentName+'  lesson on '+date+' cancelled. They have been notified. No charge applied.');
+    },'Yes, cancel lesson');
+}
+
+function teacherChangeSlot(studentId){
+  const s=mockStudents.find(x=>x.id===studentId);if(!s)return;
+  const body=`<p style="font-size:.75rem;color:var(--tm);line-height:1.8;margin-bottom:1rem">Select a new weekly slot for ${s.name}. Student will be notified by email.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem"><div><label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">Day</label><select id="tcs-day" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px;font-size:.75rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"><option>Monday</option><option>Tuesday</option><option>Thursday</option><option>Friday</option></select></div><div><label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">Time</label><select id="tcs-time" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px;font-size:.75rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"><option>3:30 pm</option><option>4:10 pm</option><option>4:50 pm</option><option>5:30 pm</option><option>6:10 pm</option><option>6:50 pm</option></select></div></div>`;
+  showActionModal("Change slot for "+s.name,body,()=>{
+    const day=document.getElementById('tcs-day')?.value,time=document.getElementById('tcs-time')?.value;
+    showSuccessModal("Slot updated","Slot for "+s.name+" changed to "+day+" at "+time+". Student notified.");
+  },'Update slot');
+}
+function teacherReschedule(studentId,date){
+  const s=mockStudents.find(x=>x.id===studentId);if(!s)return;
+  const body=`<p style="font-size:.75rem;color:var(--tm);line-height:1.8;margin-bottom:1rem">Move this specific lesson for ${s.name}. One-off change only.</p><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem"><div><label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">Day</label><select id="tr-day" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px;font-size:.72rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"><option>Monday</option><option>Tuesday</option><option>Thursday</option><option>Friday</option></select></div><div><label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">Time</label><select id="tr-time" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px;font-size:.72rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"><option>3:30 pm</option><option>4:10 pm</option><option>4:50 pm</option><option>5:30 pm</option><option>6:10 pm</option><option>6:50 pm</option></select></div><div><label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">New date</label><input type="date" id="tr-date" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:7px;font-size:.72rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"/></div></div>`;
+  showActionModal("Reschedule lesson",body,()=>showSuccessModal("Lesson rescheduled","The lesson on "+date+" for "+s.name+" has been moved. Student notified."),"Reschedule");
+}
+function teacherEndEnrolment(studentId,name){
+  const body=`<p style="font-size:.75rem;color:var(--tm);line-height:1.8;margin-bottom:.75rem">This will end the enrolment for ${name}:</p><ul style="font-size:.72rem;color:var(--tm);line-height:1.9;padding-left:1.2rem;margin-bottom:.75rem"><li>Cancel all upcoming lessons</li><li>Stop all future payments</li><li>Deactivate their account</li></ul><p style="font-size:.7rem;color:var(--go)">Earnings history is preserved. They can reactivate by logging back in.</p>`;
+  showActionModal("End enrolment for "+name,body,()=>{
+    const s=mockStudents.find(x=>x.id===studentId);if(s)s.status='ended';
+    showSuccessModal("Enrolment ended",name+" enrolment ended and account deactivated. Lesson history preserved.");
+    renderTeacherDashboard();
+  },'Yes, end enrolment','dn');
+}
+
+// ─── TEACHER CALENDAR ───
+const tcLessons=[
+  {date:'2026-06-22',time:'3:30pm',student:'Ella Thompson',studentId:1,type:'60 min'},
+  {date:'2026-06-22',time:'4:40pm',student:'Liam Chen',studentId:2,type:'30 min'},
+  {date:'2026-06-23',time:'3:30pm',student:'Noah Wilson',studentId:3,type:'30 min'},
+  {date:'2026-06-23',time:'4:10pm',student:'Mia Wilson',studentId:3,type:'30 min'},
+  {date:'2026-06-25',time:'3:30pm',student:'Ella Thompson',studentId:1,type:'60 min'},
+  {date:'2026-06-26',time:'5:50pm',student:'James Nguyen',studentId:4,type:'60 min'},
+  {date:'2026-06-29',time:'3:30pm',student:'Ella Thompson',studentId:1,type:'60 min'},
+  {date:'2026-06-08',time:'3:30pm',student:'Ella Thompson',studentId:1,type:'60 min',past:true},
+  {date:'2026-06-08',time:'4:40pm',student:'Liam Chen',studentId:2,type:'30 min',past:true},
+  {date:'2026-06-15',time:'3:30pm',student:'Ella Thompson',studentId:1,type:'60 min',past:true},
+  {date:'2026-06-15',time:'4:10pm',student:'Mia Wilson',studentId:3,type:'30 min',past:true},
+];
+// Teacher working hours (can be changed via availability modal)
+// Per-day working hours — Days: 0=Sun,1=Mon,2=Tue,3=Wed,4=Thu,5=Fri,6=Sat
+let teacherHours={
+  0:{work:true, start:'16:00',end:'19:00',label:'Sunday'},
+  1:{work:true, start:'16:00',end:'19:00',label:'Monday'},
+  2:{work:false,start:'16:00',end:'19:00',label:'Tuesday'},
+  3:{work:false,start:'16:00',end:'19:00',label:'Wednesday'},
+  4:{work:true, start:'16:00',end:'19:00',label:'Thursday'},
+  5:{work:true, start:'16:00',end:'19:00',label:'Friday'},
+  6:{work:false,start:'16:00',end:'19:00',label:'Saturday'},
+}; // 3pm-7pm
+// Teacher holiday blocks
+let teacherHolidays=[];
+
+function getLessonsForDate(ds){return tcLessons.filter(l=>l.date===ds);}
+function tcNav(d){if(tcViewMode==='month'){tcCurDate=new Date(tcCurDate.getFullYear(),tcCurDate.getMonth()+d,1);}else if(tcViewMode==='week'){tcCurDate=new Date(tcCurDate.getTime()+d*7*24*60*60*1000);}else{tcCurDate=new Date(tcCurDate.getTime()+d*24*60*60*1000);}renderTCal();}
+function tcToday(){tcCurDate=new Date();renderTCal();}
+function tcView(mode,btn){tcViewMode=mode;document.querySelectorAll('.tcal-view-tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderTCal();}
+function getSunday(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate()-d.getDay());}
+
+function isHoliday(ds){
+  return teacherHolidays.some(h=>{
+    const d=new Date(ds+'T00:00:00');
+    return d>=new Date(h.start+'T00:00:00')&&d<=new Date(h.end+'T00:00:00');
+  });
+}
+
+function renderTCal(){
+  const body=document.getElementById('tcal-body');const title=document.getElementById('tcal-title');
+  if(!body||!title)return;
+  const today=new Date(),todayDS=fmtDSS(today);
+  if(tcViewMode==='month'){
+    const y=tcCurDate.getFullYear(),mo=tcCurDate.getMonth();
+    title.textContent=MN[mo]+' '+y;
+    const first=new Date(y,mo,1),dim=new Date(y,mo+1,0).getDate();
+    const startOff=first.getDay();
+    let html='<div class="tcal-grid-month">';
+    ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d=>{html+=`<div class="tcal-day-lbl">${d}</div>`;});
+    for(let i=0;i<startOff;i++){const d=new Date(y,mo,i-startOff+1);html+=`<div class="tcal-cell other-mo"><div class="tcal-date">${d.getDate()}</div></div>`;}
+    for(let d=1;d<=dim;d++){
+      const dt=new Date(y,mo,d),ds=fmtDSS(dt);
+      const isToday=ds===todayDS;
+      const lessons=getLessonsForDate(ds);
+      const holiday=isHoliday(ds);
+      html+=`<div class="tcal-cell${isToday?' today':''}${holiday?' no-teach':''}"><div class="tcal-date">${d}</div>`;
+      if(holiday){html+='<div style="font-size:.52rem;color:var(--td)">Holiday</div>';}
+      else{lessons.forEach(l=>{html+=`<div class="tcal-event" onclick="tcClickLesson('${ds}','${l.time}','${l.student}','${l.type}',${!!l.past})" style="${l.special?'background:rgba(201,169,110,.2);border-color:var(--go);color:var(--go)':l.past?'opacity:.5;cursor:default':''}">${l.time} ${l.student.split(' ')[0]}</div>`;});}
+      html+='</div>';
+    }
+    html+='</div>';body.innerHTML=html;
+  } else if(tcViewMode==='week'){
+    const sun=getSunday(new Date(tcCurDate));
+    const sat=new Date(sun);sat.setDate(sun.getDate()+6);
+    title.textContent=sun.getDate()+' '+MNS[sun.getMonth()]+' — '+sat.getDate()+' '+MNS[sat.getMonth()]+' '+sat.getFullYear();
+    const weekDays=[];for(let i=0;i<7;i++){const d=new Date(sun);d.setDate(sun.getDate()+i);weekDays.push(d);}
+    const times=['3:30pm','4:10pm','4:40pm','4:50pm','5:30pm','5:50pm','6:10pm','6:30pm','6:50pm'];
+    let html=`<div style="display:grid;grid-template-columns:50px repeat(7,1fr);gap:2px">`;
+    html+='<div></div>';
+    weekDays.forEach(d=>{const ds=fmtDSS(d);const holiday=isHoliday(ds);html+=`<div class="tcal-week-hdr${fmtDSS(d)===todayDS?' today':''}">${DAYS_TC[d.getDay()]}<br><span style="font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--ow)">${d.getDate()}</span>${holiday?'<div style="font-size:.48rem;color:var(--td)">Holiday</div>':''}</div>`;});
+    times.forEach(t=>{
+      html+=`<div class="tcal-week-time">${t}</div>`;
+      weekDays.forEach(d=>{
+        const ds=fmtDSS(d),lessons=getLessonsForDate(ds).filter(l=>l.time===t);
+        const holiday=isHoliday(ds);
+        html+=`<div class="tcal-week-col${fmtDSS(d)===todayDS?' today':''}" style="${holiday?'opacity:.3':''}">`; 
+        lessons.forEach(l=>{html+=`<div class="tcal-event" onclick="tcClickLesson('${ds}','${l.time}','${l.student}','${l.type}',${!!l.past})" style="font-size:.55rem;cursor:pointer;${l.special?'background:rgba(201,169,110,.2);border-color:var(--go);color:var(--go)':l.past?'opacity:.5':''}">` +l.student.split(' ')[0]+'</div>';});
+        html+='</div>';
+      });
+    });
+    html+='</div>';body.innerHTML=html;
+  } else {
+    title.textContent=tcCurDate.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    const ds=fmtDSS(tcCurDate),lessons=getLessonsForDate(ds);
+    const holiday=isHoliday(ds);
+    if(holiday){body.innerHTML='<p style="font-size:.75rem;color:var(--td);padding:.5rem 0">This date is blocked as a holiday.</p>';return;}
+    if(!lessons.length){body.innerHTML='<p style="font-size:.75rem;color:var(--td);padding:.5rem 0">No lessons scheduled.</p>';return;}
+    let html='<div class="tcal-day-list">';
+        lessons.forEach(l=>{
+      const el=document.createElement('div');
+      el.className='tcal-day-slot';
+      if(l.special)el.style.cssText='border-color:var(--go);background:rgba(201,169,110,.08)';
+      if(l.past)el.style.opacity='0.5';
+      if(!l.past){el.style.cursor='pointer';const ds2=ds,lt=l.time,ls=l.student,ltp=l.type;el.onclick=()=>tcClickLesson(ds2,lt,ls,ltp,false);}
+      const tStyle=l.special?'color:var(--gl)':'';
+      el.innerHTML='<div class="tcal-day-slot-time" style="'+tStyle+'">'+l.time+'</div><div><div class="tcal-day-slot-info">'+l.student+(l.past?' <span style="font-size:.6rem;color:var(--td)">(past)</span>':'')+'</div><div class="tcal-day-slot-sub">'+l.type+'</div></div>';
+      html+=el.outerHTML;
+    });
+    html+='</div>';body.innerHTML=html;
+  }
+}
+
+function tcClickLesson(date,time,student,type,isPast){
+  if(isPast){
+    showActionModal('Past lesson',`<p style="font-size:.75rem;color:var(--tm);line-height:1.8"><strong style="color:var(--ow)">${student}</strong><br>${type} · ${time}<br>${new Date(date+'T00:00:00').toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</p>`,null,'Close');
+    return;
+  }
+  const d=new Date(date+'T00:00:00');
+  const label=d.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const now=new Date();
+  const hoursUntil=(d-now)/3600000;
+  if(hoursUntil<24){
+    showActionModal('Less than 24 hours away',
+      `<p style="font-size:.75rem;color:var(--tm);line-height:1.8">The lesson for <strong style="color:var(--ow)">${student}</strong> on ${label} is within 24 hours.</p><div style="background:rgba(107,26,26,.2);border:.5px solid var(--crm);border-radius:3px;padding:10px 14px;margin-top:.75rem;font-size:.7rem;color:var(--gl)">Cancelling within 24 hours is not fair on students. Please contact ${student.split(' ')[0]} directly on 0481 599 037 if absolutely necessary.</div>`,
+      null,'OK');
+    return;
+  }
+  showActionModal('Cancel lesson for '+student,
+    `<p style="font-size:.75rem;color:var(--tm);line-height:1.8">Cancel the lesson for <strong style="color:var(--ow)">${student}</strong>?</p><div style="background:rgba(45,8,8,.5);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;margin-top:.75rem;font-size:.7rem;color:var(--tm)">Label: ${type} · ${time} · ${label}<br><br>The student will be notified by email with an apology. No charge will apply.</div>`,
+    ()=>{
+      addNotification('info','Lesson cancelled by Juliet','Your lesson on '+label+' has been cancelled. No charge applies. Juliet will be in touch.','','');
+      // In production: email sent automatically to student
+      console.log('[EMAIL TRIGGER] Lesson cancelled — student emailed');
+      showSuccessModal('Lesson cancelled','Lesson for '+student+' on '+label+' cancelled. Student notified by email and account notification. No charge applied.');
+    },
+    'Yes, cancel this lesson');
+}
+
+// ─── AVAILABILITY MANAGEMENT ───
+function showAvailModal(){
+  const days=[0,1,2,3,4,5,6];
+  const rows=days.map(d=>{
+    const h=teacherHours[d];
+    return `<div style="display:grid;grid-template-columns:90px 60px 1fr 1fr;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:.5px solid var(--crb)">
+      <div style="font-size:.72rem;color:var(--ow);font-weight:500">${h.label}</div>
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+        <input type="checkbox" id="day-work-${d}" ${h.work?'checked':''} onchange="toggleDayWork(${d})" style="accent-color:var(--go);width:14px;height:14px"/>
+        <span style="font-size:.62rem;color:var(--tm)">Open</span>
+      </label>
+      <div id="day-hours-${d}" style="${h.work?'':'opacity:.3;pointer-events:none'}">
+        <input type="time" id="day-start-${d}" value="${h.start}" 
+          style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:5px 7px;font-size:.72rem;color:var(--ow);font-family:Raleway,sans-serif;outline:none;width:100%"/>
+      </div>
+      <div id="day-hours-end-${d}" style="${h.work?'':'opacity:.3;pointer-events:none'}">
+        <input type="time" id="day-end-${d}" value="${h.end}"
+          style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:5px 7px;font-size:.72rem;color:var(--ow);font-family:Raleway,sans-serif;outline:none;width:100%"/>
+      </div>
+    </div>`;
+  }).join('');
+  showActionModal('Change availability',
+    `<p style="font-size:.73rem;color:var(--tm);line-height:1.7;margin-bottom:1rem">Set your working hours for each day. Students with lessons outside the new hours will receive an urgent email to permanently change their slot.</p>
+    <div style="display:grid;grid-template-columns:90px 60px 1fr 1fr;gap:.5rem;margin-bottom:.4rem">
+      <div style="font-size:.52rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--td)">Day</div>
+      <div style="font-size:.52rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--td)">Status</div>
+      <div style="font-size:.52rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--td)">Start</div>
+      <div style="font-size:.52rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--td)">End</div>
+    </div>
+    ${rows}
+    <div style="background:rgba(107,26,26,.2);border:.5px solid var(--crm);border-radius:3px;padding:10px 14px;margin-top:1rem;font-size:.7rem;color:var(--gl);line-height:1.7">
+      All times are in Hobart, Tasmania (AEST/AEDT). Students with lessons that fall outside your new hours will receive an urgent notification to change their weekly slot.
+    </div>`,
+    ()=>{
+      let affectedStudents=0;
+      [0,1,2,3,4,5,6].forEach(d=>{
+        const work=document.getElementById('day-work-'+d)?.checked;
+        const start=document.getElementById('day-start-'+d)?.value||'15:30';
+        const end=document.getElementById('day-end-'+d)?.value||'19:00';
+        const wasWorking=teacherHours[d].work;
+        teacherHours[d]={...teacherHours[d],work,start,end};
+        if(wasWorking&&!work)affectedStudents++;
+      });
+      renderTCal();rCal();
+      if(affectedStudents>0){
+        notifyStudentsOfSlotConflict();
+        showSuccessModal('Availability updated',affectedStudents+' student(s) have an urgent notification to change their weekly slot. They have also been sent an email.');
+      } else {
+        showSuccessModal('Availability updated','Your working hours have been saved. Students with lessons outside the new times have been notified.');
+      }
+    },'Save availability');
+}
+function toggleDayWork(d){
+  const chk=document.getElementById('day-work-'+d);
+  const hrs=document.getElementById('day-hours-'+d);
+  const hrsEnd=document.getElementById('day-hours-end-'+d);
+  const on=chk?.checked;
+  if(hrs){hrs.style.opacity=on?'1':'0.3';hrs.style.pointerEvents=on?'auto':'none';}
+  if(hrsEnd){hrsEnd.style.opacity=on?'1':'0.3';hrsEnd.style.pointerEvents=on?'auto':'none';}
+}
+
+function showHolidayModal(){
+  const existingList=teacherHolidays.length
+    ?'<div style="margin-top:.75rem">'+teacherHolidays.map((h,i)=>`<div class="block-item"><div class="block-item-info"><strong>${h.title}</strong> ${h.startLabel} — ${h.endLabel}</div><button class="block-rm" onclick="removeHoliday(${i});closeActionModal();setTimeout(showHolidayModal,100)">✕</button></div>`).join('')+'</div>'
+    :'<p style="font-size:.68rem;color:var(--td);margin-top:.5rem">No holiday dates blocked yet.</p>';
+  showActionModal('Block holiday dates',
+    `<p style="font-size:.73rem;color:var(--tm);line-height:1.7;margin-bottom:1rem">Block dates when you are away on holiday. All students with lessons during this period will be sent an email that their lessons are cancelled due to Juliet being away. No charge will apply.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:.75rem;align-items:end;margin-bottom:.75rem;flex-wrap:wrap">
+      <div style="grid-column:1/-1">
+        <label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">Holiday title (shown to students)</label>
+        <input type="text" id="hol-title" placeholder="e.g. Christmas break, School holidays" required
+          style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px;font-size:.75rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none;margin-bottom:.75rem"/>
+      </div>
+      <div>
+        <label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">From</label>
+        <input type="date" id="hol-start" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px;font-size:.75rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"/>
+      </div>
+      <div>
+        <label style="font-size:.55rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:4px">To</label>
+        <input type="date" id="hol-end" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:8px;font-size:.75rem;color:var(--ow);font-family:Raleway,sans-serif;width:100%;outline:none"/>
+      </div>
+      <button class="gh" onclick="addHoliday()" style="white-space:nowrap;margin-bottom:1px">+ Add</button>
+    </div>
+    ${existingList}
+    <div style="background:rgba(45,8,8,.6);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;margin-top:.75rem;font-size:.7rem;color:var(--tm);line-height:1.7">
+      All students with lessons during blocked dates will receive an email: "Your lesson on [date] has been cancelled as Juliet will be away on holiday. No charge will apply. Your weekly slot resumes on return."
+    </div>`,
+    ()=>{
+      const title=document.getElementById('hol-title')?.value||'Holiday';
+      const s=document.getElementById('hol-start')?.value;
+      const e=document.getElementById('hol-end')?.value;
+      if(s&&e){
+        const sl=new Date(s+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
+        const el=new Date(e+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
+        notifyStudentsOfHoliday(title,sl,el);
+      }
+      showSuccessModal('Holiday saved','Dates blocked and all affected students notified by email: their lessons during '+title+' are cancelled, no charge applies.');
+    },
+    'Done');
+}
+
+function addHoliday(){
+  const s=document.getElementById('hol-start')?.value;
+  const e=document.getElementById('hol-end')?.value;
+  const title=document.getElementById('hol-title')?.value.trim();
+  if(!s||!e){showSuccessModal('Missing dates','Please select both a start and end date.');return;}
+  if(!title){showSuccessModal('Title required','Please enter a title for this holiday (e.g. Christmas break).');return;}
+  if(new Date(s)>new Date(e)){showSuccessModal('Invalid range','End date must be after start date.');return;}
+  const sl=new Date(s+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
+  const el=new Date(e+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
+  teacherHolidays.push({start:s,end:e,startLabel:sl,endLabel:el,title});
+  let cur=new Date(s+'T00:00:00');const endD=new Date(e+'T00:00:00');
+  while(cur<=endD){teacherBlockedDates.push(fmtDSS(cur));cur.setDate(cur.getDate()+1);}
+  closeActionModal();
+  setTimeout(()=>showAvailModal(),100);
+}
+function removeHoliday(idx){
+  const h=teacherHolidays[idx];
+  if(h){let cur=new Date(h.start+'T00:00:00');const endD=new Date(h.end+'T00:00:00');while(cur<=endD){teacherBlockedDates=teacherBlockedDates.filter(d=>d!==fmtDSS(cur));cur.setDate(cur.getDate()+1);}}
+  teacherHolidays.splice(idx,1);
+  renderTCal();
+}
+
+// ─── NOTIFICATION CENTRE ───
+let studentNotifications=[
+  // Example urgent notification - in production these come from the backend
+  // {id:1,type:'urgent',title:'Action required',message:'Juliet can no longer teach on Fridays. Please change your weekly slot immediately.',action:'changeSlot',actionLabel:'Change my slot',read:false},
+];
+
+function showNotifications(){
+  if(!studentNotifications.length){
+    showActionModal('Notifications','<p style="font-size:.75rem;color:var(--tm)">No notifications at the moment.</p>',null,'Close');
+    return;
+  }
+  const items=studentNotifications.map((n,i)=>`
+    <div style="padding:.875rem 1rem;background:${n.type==='urgent'?'rgba(107,26,26,.2)':'var(--bgs)'};border:.5px solid ${n.type==='urgent'?'var(--crm)':'var(--crb)'};border-radius:3px;margin-bottom:.5rem">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem">
+        <div>
+          <div style="font-size:.62rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:${n.type==='urgent'?'#c47':'var(--go)'};margin-bottom:.3rem">${n.type==='urgent'?'⚠️ URGENT':'ℹ️'} ${n.title}</div>
+          <p style="font-size:.72rem;color:var(--tm);line-height:1.7">${n.message}</p>
+          ${n.action?`<button onclick="closeActionModal();${n.action}()" class="gh" style="margin-top:.5rem;font-size:.58rem;padding:4px 12px">${n.actionLabel}</button>`:''}
+        </div>
+        <button onclick="dismissNotification(${i})" style="background:none;border:none;color:var(--td);cursor:pointer;font-size:.8rem;flex-shrink:0">✕</button>
+      </div>
+    </div>`).join('');
+  showActionModal('Notifications',items,null,'Close');
+}
+
+function dismissNotification(idx){
+  studentNotifications.splice(idx,1);
+  updateNotifBadge();
+  closeActionModal();
+  if(studentNotifications.length)setTimeout(showNotifications,100);
+}
+
+function addNotification(type,title,message,action,actionLabel){
+  studentNotifications.push({id:Date.now(),type,title,message,action,actionLabel,read:false});
+  updateNotifBadge();
+}
+
+function updateNotifBadge(){
+  const btn=document.getElementById('notif-btn');
+  const badge=document.getElementById('notif-count');
+  if(!btn||!badge)return;
+  const count=studentNotifications.length;
+  if(count>0){
+    badge.textContent=count;
+    badge.style.display='flex';
+    btn.style.color='var(--go)';
+  } else {
+    badge.style.display='none';
+    btn.style.color='';
+  }
+}
+
+// Call this when teacher blocks a slot that affects this student
+function addUrgentSlotChangeNotif(){
+  addNotification('urgent','Action required',
+    'Juliet can no longer teach at your current weekly slot time. Please change your weekly slot as soon as possible.',
+    'changeSlot','Change my weekly slot');
+  updateNotifBadge();
+}
+
+// ─── HOMEWORK ───
+let homeworkData={};  // studentId -> {text, posted}
+let repertoireData={}; // studentId -> [{title, filename, url}]
+
+function postHomework(){
+  const sid=document.getElementById('hw-student')?.value;
+  const text=document.getElementById('hw-text')?.value.trim();
+  if(!sid){showSuccessModal('Select student','Please select a student first.');return;}
+  if(!text){showSuccessModal('Add homework','Please write the homework before posting.');return;}
+  homeworkData[sid]={text,posted:new Date().toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long'})};
+  // Show confirmation
+  const posted=document.getElementById('hw-posted');
+  if(posted){
+    const names={1:'Ella Thompson',2:'Liam Chen',3:'Noah Wilson','3b':'Mia Wilson'};
+    posted.innerHTML=`<div class="block-item" style="flex-direction:column;align-items:flex-start;gap:.5rem">
+      <div style="font-size:.62rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--go)">Posted to ${names[sid]||'student'}</div>
+      <div style="font-size:.72rem;color:var(--tm);line-height:1.7;white-space:pre-wrap">${text}</div>
+    </div>`;
+  }
+  document.getElementById('hw-text').value='';
+  // Simulate notification appearing on student profile
+  addNotification('info','New homework this week','Juliet has posted your homework. Log in to view it.','showStudentHomework','View homework');
+  // In production: email sent to student with homework content
+  console.log('[EMAIL TRIGGER] Homework posted — student emailed');
+  showSuccessModal('Homework posted','Homework posted and student notified by account notification and email.');
+}
+
+function showStudentHomework(){
+  const hwSec=document.getElementById('hw-sec-stud');
+  const hwCard=document.getElementById('hw-card-stud');
+  const hwContent=document.getElementById('hw-content-stud');
+  if(hwSec)hwSec.style.display='block';
+  if(hwCard)hwCard.style.display='block';
+  // Check for this weeks homework (week starts Sunday)
+  const wkKey=scWkKey(fmtDSS(new Date()));
+  const hw=Object.values(homeworkData).find(h=>h.weekKey===wkKey);
+  if(hwContent)hwContent.textContent=hw?hw.text:'No homework set this week.';
+}
+
+function updateStudentRepertoireView(sid){
+  const repSec=document.getElementById('rep-sec-stud');
+  const repList=document.getElementById('rep-list-stud');
+  if(!repSec||!repList)return;
+  const files=repertoireData[sid]||[];
+  if(!files.length){repSec.style.display='none';repList.style.display='none';return;}
+  repSec.style.display='block';
+  repList.style.display='block';
+  repList.innerHTML=files.map(f=>`
+    <div class="block-item" style="margin-bottom:.4rem">
+      <div class="block-item-info">
+        <strong>${f.title}</strong>
+        Uploaded ${f.date}
+      </div>
+      <a href="${f.url}" target="_blank" class="gh" style="padding:4px 12px;font-size:.58rem;text-decoration:none">View PDF</a>
+    </div>`).join('');
+}
+
+// ─── REPERTOIRE / FILES ───
+function previewRepFile(input){
+  const preview=document.getElementById('rep-preview');
+  if(!preview)return;
+  const file=input.files[0];
+  if(file){preview.innerHTML=`<div style="font-size:.7rem;color:var(--go);margin-top:.4rem">📄 ${file.name} (${(file.size/1024).toFixed(0)} KB)</div>`;}
+}
+
+function uploadRepertoire(){
+  const sid=document.getElementById('rep-student')?.value;
+  const title=document.getElementById('rep-title')?.value.trim();
+  const file=document.getElementById('rep-file')?.files[0];
+  if(!sid){showSuccessModal('Select student','Please select a student first.');return;}
+  if(!title){showSuccessModal('Add title','Please enter a title for this file.');return;}
+  if(!file){showSuccessModal('Choose file','Please choose a PDF to upload.');return;}
+  if(!repertoireData[sid])repertoireData[sid]=[];
+  // In production: upload to Supabase Storage, get URL back
+  // For demo: use object URL
+  const url=URL.createObjectURL(file);
+  repertoireData[sid].push({title,filename:file.name,url,date:new Date().toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})});
+  document.getElementById('rep-title').value='';
+  document.getElementById('rep-file').value='';
+  document.getElementById('rep-preview').innerHTML='';
+  renderRepList();
+  // Update student profile view immediately (demo — in production fetched via API)
+  updateStudentRepertoireView(sid);
+  // Notify student
+  addNotification('info','New file uploaded','Juliet has uploaded a new file: '+title+'. You can view it in My Repertoire.','updateStudentRepertoireView','View files');
+  showSuccessModal('File uploaded',title+' has been uploaded and the student has been notified.');
+}
+
+function renderRepList(){
+  const list=document.getElementById('rep-list');
+  if(!list)return;
+  const allFiles=Object.entries(repertoireData);
+  if(!allFiles.length){list.innerHTML='';return;}
+  const names={1:'Ella Thompson',2:'Liam Chen',3:'Noah + Mia Wilson'};
+  list.innerHTML=allFiles.map(([sid,files])=>
+    files.map(f=>`<div class="block-item">
+      <div class="block-item-info">
+        <strong>${f.title}</strong>${names[sid]||'Student'} · ${f.date} · 
+        <a href="${f.url}" target="_blank" style="color:var(--go);text-decoration:none">View PDF</a>
+      </div>
+      <button class="block-rm" onclick="removeRep('${sid}','${f.title}')">✕</button>
+    </div>`).join('')
+  ).join('');
+}
+
+function removeRep(sid,title){
+  if(repertoireData[sid])repertoireData[sid]=repertoireData[sid].filter(f=>f.title!==title);
+  renderRepList();
+}
+
+// ─── NOTIFICATION TRIGGERS on teacher actions ───
+function notifyStudentsOfHoliday(title,startLabel,endLabel){
+  const msg='Studio closed ('+title+'): '+startLabel+' — '+endLabel+'. Your lessons during this period are cancelled. No charge applies. Your slot resumes on return.';
+  addNotification('info','Studio closed — '+title,msg,'','');
+  // In production: backend also sends email to all affected students with same message
+  console.log('[EMAIL TRIGGER] Holiday cancellation — all affected students emailed');
+}
+
+function notifyStudentsOfSlotConflict(){
+  addNotification('urgent','Action required — change your slot',
+    'Your current weekly slot time is no longer available. Please change your weekly slot as soon as possible.',
+    'changeSlot','Change my weekly slot');
+  updateNotifBadge();
+  // In production: backend also sends urgent email to each affected student
+  console.log('[EMAIL TRIGGER] Slot conflict — urgent email sent to affected students');
+}
+
+// ─── SECTION UTILS ───
+function toggleSection(bodyId,chevId){const body=document.getElementById(bodyId),chev=document.getElementById(chevId);if(!body)return;const open=body.style.display!=='none';body.style.display=open?'none':'block';if(chev)chev.classList.toggle('open',!open);}
+function filterStudents(q){const ql=q.toLowerCase();document.querySelectorAll('#teacher-students .student-block').forEach(b=>{b.style.display=b.textContent.toLowerCase().includes(ql)?'':'none';});}
+function filterTax(q){const ql=q.toLowerCase();document.querySelectorAll('#tax-log-wrap .tax-fy').forEach(b=>{b.style.display=b.textContent.toLowerCase().includes(ql)?'':'none';});}
+
+// ─── INIT ───
+// ─── STRIPE CARD ───
+let stripeInstance=null,cardElement=null;
+function initStripeCard(){
+  if(!STRIPE_PUBLISHABLE_KEY||STRIPE_PUBLISHABLE_KEY.includes('placeholder')){
+    document.getElementById('stripe-card-element').innerHTML='<p style="font-size:.7rem;color:var(--td)">Card input loads when connected to backend.</p>';
+    return;
+  }
+  try{
+    if(!stripeInstance)stripeInstance=Stripe(STRIPE_PUBLISHABLE_KEY);
+    const elements=stripeInstance.elements();
+    if(cardElement){cardElement.unmount();}
+    cardElement=elements.create('card',{
+      style:{
+        base:{
+          fontFamily:'Raleway, sans-serif',
+          fontSize:'16px',
+          color:'#F5F0EB',
+          '::placeholder':{color:'#4a3a2a'},
+          iconColor:'#C9A96E'
+        },
+        invalid:{color:'#c47',iconColor:'#c47'}
+      },
+      hidePostalCode:true
+    });
+    cardElement.mount('#stripe-card-element');
+    cardElement.on('change',e=>{
+      const err=document.getElementById('stripe-card-errors');
+      if(err)err.textContent=e.error?e.error.message:'';
+    });
+  }catch(e){
+    console.error('Stripe init error:',e);
+    document.getElementById('stripe-card-element').innerHTML='<p style="font-size:.7rem;color:var(--td)">Card input unavailable. Backend connection required.</p>';
+  }
+}
+
+rCal();
+</script></body></html>
