@@ -258,7 +258,12 @@ footer span{color:var(--crm)}
     <div class="ms">Enter your email or phone number to access your account.</div>
     <div id="ml">
       <div class="mf"><label>Email or phone number</label><input type="text" id="login-email" placeholder="your@email.com or 0481 000 000"/></div>
-      <div class="mf"><label>Password</label><input type="password" id="login-pw" placeholder="••••••••"/></div>
+      <div class="mf"><label>Password</label>
+        <div style="position:relative">
+          <input type="password" id="login-pw" placeholder="••••••••" style="padding-right:3rem"/>
+          <button type="button" onclick="togglePw('login-pw',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--tm);cursor:pointer;font-size:.7rem;font-family:'Raleway',sans-serif;letter-spacing:.05em">SHOW</button>
+        </div>
+      </div>
       <button class="mbtn" onclick="doLogin()">Log in</button>
       <div class="fl" onclick="showForgot()">Forgot your password?</div>
     </div>
@@ -344,19 +349,19 @@ footer span{color:var(--crm)}
           </div>
           <div class="sv" onclick="pSvc(this,'30 Min Lesson',40,'weekly',30)">
             <div class="stag">Weekly</div><div class="sn">30 Min Lesson</div>
-            <div class="sd">Ideal for younger students. Your slot is reserved each week.</div>
-            <div class="sp">$40 <span>/ week</span></div>
+            <div class="sd">For one student. Ideal for younger students or beginners. Your slot is reserved each week.</div>
+            <div class="sp">$40 <span>/ week · one student</span></div>
             <div class="sbadge">Reserve weekly slot</div>
           </div>
           <div class="sv" onclick="pSvc(this,'60 Min Lesson',70,'weekly',60)">
             <div class="stag">Weekly</div><div class="sn">60 Min Lesson</div>
-            <div class="sd">For AMEB, deeper theory and richer repertoire.</div>
-            <div class="sp">$70 <span>/ week</span></div>
+            <div class="sd">For one student. AMEB, deeper theory and richer repertoire. For two or more students, use Family Booking.</div>
+            <div class="sp">$70 <span>/ week · one student</span></div>
             <div class="sbadge">Reserve weekly slot</div>
           </div>
           <div class="sv" onclick="pSvc(this,'Family Booking',0,'family',60)">
             <div class="stag">Family · Weekly</div><div class="sn">Family Booking</div>
-            <div class="sd">Two or more students within the same family having their sessions one after the other. From $70/week with a 5% family discount.</div>
+            <div class="sd">Two or more students from the same family, back to back. Each student gets their own 30 or 60 min session. 5% family discount applied automatically.</div>
             <div class="sp" id="fpd">— <span>/ week</span></div>
             <div class="sbadge">One payment · all students</div>
           </div>
@@ -391,6 +396,11 @@ footer span{color:var(--crm)}
         <!-- Time slots -->
         <div style="font-size:.58rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--tm);margin-bottom:.75rem" id="slbx">Select a date to see available times</div>
         <div class="sg2" id="sg2"></div>
+        <div class="br" style="margin-top:1.5rem">
+          <button class="bs" onclick="gs(1)">← Back</button>
+          <button class="bp" id="b3" onclick="gs(3)" disabled>Continue to Your Details</button>
+        </div>
+      </div>
 
 <!-- STEP 3: DETAILS + CREATE ACCOUNT -->
       <div class="panel" id="p3">
@@ -685,9 +695,15 @@ function sp(id){
 
 // ─── MODAL ───
 function om(){document.getElementById('lm').classList.remove('hidden');showForgot(false);}
+function togglePw(id,btn){
+  const inp=document.getElementById(id);
+  if(!inp)return;
+  if(inp.type==='password'){inp.type='text';btn.textContent='HIDE';}
+  else{inp.type='password';btn.textContent='SHOW';}
+}
 function navLogin(){
   if(loggedIn){sp('account');}
-  else{sp('account');om();}
+  else{om();}
 }
 function cm(){document.getElementById('lm').classList.add('hidden');}
 function showForgot(show=true){
@@ -695,7 +711,21 @@ function showForgot(show=true){
   if(ml)ml.style.display=show?'none':'block';
   if(mfg)mfg.style.display=show?'block':'none';
 }
-function subForgot(){showSuccessModal('Reset link sent','Check your email inbox for the reset link.');cm();}
+function subForgot(){
+  const identifier=document.querySelector('#mfg input')?.value?.trim();
+  if(!identifier){showLoginError('Please enter your email address.');return;}
+  fetch(API_URL+'/api/auth/forgot',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({identifier})
+  }).then(r=>r.json()).then(data=>{
+    showSuccessModal('Reset link sent','Check your email inbox for the reset link. It may take a few minutes to arrive. Check your spam folder too.');
+    cm();
+  }).catch(()=>{
+    showSuccessModal('Reset link sent','Check your email inbox for the reset link. It may take a few minutes to arrive.');
+    cm();
+  });
+}
 
 // ─── LOGIN ───
 function doLogin(){
@@ -896,10 +926,11 @@ function rCal(){
   ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(l=>{const e=document.createElement('div');e.className='cdl';e.textContent=l;dl.appendChild(e);});
   const g=document.getElementById('cg');g.innerHTML='';
   const off=new Date(y,mo,1).getDay(); // Sunday-first
-  for(let i=0;i<off;i++){const b=document.createElement('div');b.className='cd om';b.textContent=new Date(y,mo,-off+i+1).getDate();g.appendChild(b);}
+  const dim=new Date(y,mo+1,0).getDate();{const b=document.createElement('div');b.style.cssText='min-height:36px;display:flex;align-items:center;justify-content:center;font-size:.75rem;opacity:.15;';b.textContent=new Date(y,mo,-off+i+1).getDate();g.appendChild(b);}
   for(let d=1;d<=dim;d++){
     const dt=new Date(y,mo,d),dow=dt.getDay();
     const e=document.createElement('div');
+    e.style.cssText='min-height:36px;width:100%;display:flex;align-items:center;justify-content:center;border-radius:3px;font-size:.75rem;transition:all .15s;cursor:default;';
     const ds=`${y}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const past=dt<new Date(T.getFullYear(),T.getMonth(),T.getDate());
     const cl=isCl(dt);
