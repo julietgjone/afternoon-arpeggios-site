@@ -675,7 +675,8 @@ footer span{color:var(--crm)}
 const STRIPE_PUBLISHABLE_KEY='pk_test_51TF5rODfBtsIUkaOYzKGtbRQngJDY3bGVfliIgZJ7zCHw1V3LLDhEPmfYJLRpI3TFKsIu52q6Ah6kwK7y2c88JKn007QuA5Fii';
 const API_URL='https://api.afternoonarpeggios.com';
 const T=new Date(),OPEN=new Date(2026,5,21);
-const SH=13,SM=0,EH=19,EM=0,BUF=15,booked={};
+const SH=16,SM=0,EH=19,EM=0,BUF=15,booked={};
+const AV=[0,1,4,5]; // Sun=0,Mon=1,Thu=4,Fri=5
 // Sunday 4:00pm-5:00pm is permanently blocked (private)
 const SUN_BLOCK_START=16*60, SUN_BLOCK_END=17*60;
 let loggedIn=false,sc=0,paused=false,studentAwayWeeks=[];
@@ -928,7 +929,8 @@ function rCal(){
   ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(l=>{const e=document.createElement('div');e.className='cdl';e.textContent=l;dl.appendChild(e);});
   const g=document.getElementById('cg');g.innerHTML='';
   const off=new Date(y,mo,1).getDay(); // Sunday-first
-  const dim=new Date(y,mo+1,0).getDate();{const b=document.createElement('div');b.style.cssText='min-height:36px;display:flex;align-items:center;justify-content:center;font-size:.75rem;opacity:.15;';b.textContent=new Date(y,mo,-off+i+1).getDate();g.appendChild(b);}
+  const dim=new Date(y,mo+1,0).getDate();
+  for(let i=0;i<off;i++){const b=document.createElement('div');b.style.cssText='min-height:36px;display:flex;align-items:center;justify-content:center;font-size:.75rem;opacity:.15;';b.textContent=new Date(y,mo,-off+i+1).getDate();g.appendChild(b);}
   for(let d=1;d<=dim;d++){
     const dt=new Date(y,mo,d),dow=dt.getDay();
     const e=document.createElement('div');
@@ -1926,6 +1928,10 @@ let stripeInstance=null,cardElement=null;
 function initStripeCard(){
   if(!STRIPE_PUBLISHABLE_KEY||STRIPE_PUBLISHABLE_KEY.includes('placeholder')){
     document.getElementById('stripe-card-element').innerHTML='<p style="font-size:.7rem;color:var(--td)">Card input loads when connected to backend.</p>';
+    return;
+  }
+  if(typeof Stripe==='undefined'){
+    setTimeout(initStripeCard,500);
     return;
   }
   try{
