@@ -23,9 +23,9 @@ nav a:hover,nav a.active{color:var(--go);border-bottom-color:var(--go)}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 /* ABOUT */
 .aw{max-width:960px;margin:0 auto;padding:3.5rem 2rem 5rem}
-.at{display:grid;grid-template-columns:2fr 3fr;gap:3rem;align-items:start;margin-bottom:3.5rem}
-.aphoto{width:100%;aspect-ratio:3/4;border-radius:3px;overflow:hidden;border:.5px solid var(--crb)}
-.aphoto img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.at{display:grid;grid-template-columns:220px 1fr;gap:2.5rem;align-items:start;margin-bottom:3.5rem}
+.aphoto{width:220px;height:280px;border-radius:3px;overflow:hidden;border:.5px solid var(--crb);flex-shrink:0}
+.aphoto img{width:100%;height:100%;object-fit:cover;object-position:top 15%}
 .ey{font-size:.58rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--go);margin-bottom:1rem}
 .an{font-family:"Cormorant Garamond",serif;font-size:2.5rem;font-weight:300;color:var(--ow);line-height:1.1;margin-bottom:.75rem}
 .adiv{width:40px;height:.5px;background:var(--crm);margin-bottom:1.5rem}
@@ -33,11 +33,11 @@ nav a:hover,nav a.active{color:var(--go);border-bottom-color:var(--go)}
 .phone-link{display:block;margin-top:1.1rem;font-size:.82rem;color:var(--tm);text-decoration:none;transition:color .2s}
 .phone-link:hover{color:var(--go)}
 .slbl{font-size:.58rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--go);text-align:center;margin-bottom:.75rem}
-.fg2{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:1px;border:.5px solid var(--crb);border-radius:4px;overflow:hidden;margin-bottom:3rem}
+.fg2{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:.5px solid var(--crb);border-radius:4px;overflow:hidden;margin-bottom:3rem}
 .ft{background:var(--bgc);padding:1.25rem .75rem;text-align:center;transition:background .2s}.ft:hover{background:#1a0c0c}
 .fi{font-size:1.2rem;margin-bottom:.5rem}.ftx{font-size:.65rem;color:var(--tm);line-height:1.5}
 .grow{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
-.gi{overflow:hidden;border-radius:2px;aspect-ratio:3/4}.gi img{width:100%;height:100%;object-fit:cover;transition:transform .4s;display:block}
+.gi{overflow:hidden;border-radius:2px;aspect-ratio:4/3}.gi img{width:100%;height:100%;object-fit:cover;transition:transform .4s;display:block}
 .gi:hover img{transform:scale(1.03)}
 /* ENROL / BOOK */
 .bw{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem}
@@ -74,15 +74,15 @@ nav a:hover,nav a.active{color:var(--go);border-bottom-color:var(--go)}
 .sc-card{background:var(--bgc);border:.5px solid var(--crb);border-radius:4px;padding:1.25rem 1.5rem;margin-bottom:1rem}
 .sc-title{font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--go);margin-bottom:1rem}
 /* Booking flow panels */
-.bf{max-width:780px;margin:0 auto}
+.bf{max-width:780px;margin:0 auto;width:100%}
 .panel{display:none}.panel.active{display:block;animation:fadeIn .3s ease}
 /* Calendar */
-.cw{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.cw{display:grid;grid-template-columns:1fr 1fr;gap:2rem;min-width:0}
 .ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
 .cml{font-family:"Cormorant Garamond",serif;font-size:1.2rem;font-weight:400;color:var(--ow)}
 .cbn{background:none;border:.5px solid var(--crb);color:var(--tm);cursor:pointer;width:28px;height:28px;border-radius:2px;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .2s}.cbn:hover{border-color:var(--go);color:var(--go)}
-.cdl{text-align:center;font-size:.52rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--td);padding:4px 0}
-.cd{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--tm);border-radius:2px;cursor:default}
+.cdl{text-align:center;font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--td);padding:4px 0;width:100%}
+.cd{display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--tm);border-radius:3px;cursor:default;transition:all .15s;padding:8px 0;width:100%}
 .cd.av{color:var(--ow);cursor:pointer;transition:all .15s}.cd.av:hover{background:var(--crd);color:var(--go)}
 .cd.sel{background:var(--go);color:#1a0505!important;font-weight:600}.cd.today{border:.5px solid var(--crm)}.cd.om,.cd.past{opacity:.15}.cd.closed{background:rgba(45,8,8,.6);color:var(--td)!important}
 .nb{background:rgba(45,8,8,.6);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;margin-bottom:1rem;font-size:.7rem;color:var(--tm);text-align:center}.nb span{color:var(--gl)}
@@ -286,7 +286,7 @@ footer span{color:var(--crm)}
   <nav>
     <a onclick="sp('about')" id="nav-about" class="active">About</a>
     <a onclick="sp('book')" id="nav-book">Enrol</a>
-    <a onclick="sp('account')" id="nav-account">Log in</a>
+    <a onclick="navLogin()" id="nav-account">Log in</a>
   </nav>
 </header>
 <!-- ABOUT -->
@@ -348,15 +348,15 @@ footer span{color:var(--crm)}
             <div class="sp">$40 <span>/ week</span></div>
             <div class="sbadge">Reserve weekly slot</div>
           </div>
-          <div class="sv" onclick="pSvc(this,'60 Min Lesson',80,'weekly',60)">
+          <div class="sv" onclick="pSvc(this,'60 Min Lesson',70,'weekly',60)">
             <div class="stag">Weekly</div><div class="sn">60 Min Lesson</div>
             <div class="sd">For AMEB, deeper theory and richer repertoire.</div>
-            <div class="sp">$80 <span>/ week</span></div>
+            <div class="sp">$70 <span>/ week</span></div>
             <div class="sbadge">Reserve weekly slot</div>
           </div>
           <div class="sv" onclick="pSvc(this,'Family Booking',0,'family',60)">
             <div class="stag">Family · Weekly</div><div class="sn">Family Booking</div>
-            <div class="sd">Two or more students within the same family having their sessions one after the other. From $80/week.</div>
+            <div class="sd">Two or more students within the same family having their sessions one after the other. From $70/week with a 5% family discount.</div>
             <div class="sp" id="fpd">— <span>/ week</span></div>
             <div class="sbadge">One payment · all students</div>
           </div>
@@ -373,21 +373,26 @@ footer span{color:var(--crm)}
       <!-- STEP 2: DATE/TIME -->
       <div class="panel" id="p2">
         <div class="nb" id="nb" style="display:none"><span id="nm"></span></div>
-        <div class="cw">
-          <div>
-            <div class="ch"><button class="cbn" onclick="cmo(-1)">‹</button><div class="cml" id="cmol"></div><button class="cbn" onclick="cmo(1)">›</button></div>
-            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4px" id="cdls"></div>
-            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px" id="cg"></div>
-          </div>
-          <div>
-            <div class="slbx" id="slbx">Select a date to see availability</div>
-            <div class="sg2" id="sg2"></div>
+        <p style="font-size:.58rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--go);margin-bottom:1.5rem">Choose a date and time</p>
 
-          </div>
+        <!-- Month nav -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+          <button class="cbn" onclick="cmo(-1)">‹</button>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--ow)" id="cmol"></div>
+          <button class="cbn" onclick="cmo(1)">›</button>
         </div>
-        <div class="br"><button class="bs" onclick="gs(1)">Back</button><button class="bp" id="b3" onclick="gs(3)" disabled>Continue to Your Details</button></div>
-      </div>
-      <!-- STEP 3: DETAILS + CREATE ACCOUNT -->
+
+        <!-- Day labels -->
+        <div id="cdls" style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:3px;width:100%"></div>
+
+        <!-- Calendar grid -->
+        <div id="cg" style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;width:100%;margin-bottom:1.5rem"></div>
+
+        <!-- Time slots -->
+        <div style="font-size:.58rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--tm);margin-bottom:.75rem" id="slbx">Select a date to see available times</div>
+        <div class="sg2" id="sg2"></div>
+
+<!-- STEP 3: DETAILS + CREATE ACCOUNT -->
       <div class="panel" id="p3">
         <p class="slbl" style="margin-bottom:1.5rem;text-align:left">Your details &amp; account</p>
         <div class="fg" style="margin-bottom:1.5rem">
@@ -628,6 +633,29 @@ footer span{color:var(--crm)}
 
   </div>
 </div>
+<!-- PASSWORD RESET PAGE -->
+<div class="page" id="page-reset">
+  <div style="max-width:460px;margin:0 auto;padding:4rem 2rem">
+    <div style="text-align:center;margin-bottom:2rem">
+      <img src="afternoon-arpeggios-logo.jpg" alt="Afternoon Arpeggios" style="width:80px;height:80px;border-radius:3px;margin-bottom:1rem"/>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:300;color:var(--ow)">Set new password</div>
+      <p style="font-size:.75rem;color:var(--tm);margin-top:.5rem">Enter your new password below.</p>
+    </div>
+    <div style="background:var(--bgc);border:.5px solid var(--crb);border-radius:4px;padding:2rem">
+      <div class="mf" style="margin-bottom:1rem">
+        <label style="font-size:.56rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:5px">New password</label>
+        <input type="password" id="reset-pw" placeholder="Min. 8 characters" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;font-size:.8rem;font-family:'Raleway',sans-serif;color:var(--ow);width:100%;outline:none"/>
+      </div>
+      <div class="mf" style="margin-bottom:1.5rem">
+        <label style="font-size:.56rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--tm);display:block;margin-bottom:5px">Confirm new password</label>
+        <input type="password" id="reset-pw2" placeholder="Re-enter password" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:10px 14px;font-size:.8rem;font-family:'Raleway',sans-serif;color:var(--ow);width:100%;outline:none"/>
+      </div>
+      <div id="reset-error" style="font-size:.72rem;color:#c47;margin-bottom:.75rem;display:none"></div>
+      <button onclick="submitPasswordReset()" class="bp" style="width:100%">Set new password</button>
+    </div>
+  </div>
+</div>
+
 <footer><p>© 2026 Afternoon Arpeggios <span>·</span> Music Tuition Hobart <span>·</span> All rights reserved</p></footer><script>
 // All times are in Hobart, Tasmania, Australia (AEST UTC+10 / AEDT UTC+11)
 // The booking calendar reflects local Hobart time
@@ -657,6 +685,10 @@ function sp(id){
 
 // ─── MODAL ───
 function om(){document.getElementById('lm').classList.remove('hidden');showForgot(false);}
+function navLogin(){
+  if(loggedIn){sp('account');}
+  else{sp('account');om();}
+}
 function cm(){document.getElementById('lm').classList.add('hidden');}
 function showForgot(show=true){
   const ml=document.getElementById('ml'),mfg=document.getElementById('mfg');
@@ -691,6 +723,7 @@ function doLogin(){
       document.getElementById('page-teacher')?.classList.add('active');
       document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
       document.getElementById('nav-account')?.classList.add('active');
+      document.getElementById('nav-account').textContent='Dashboard';
       window.scrollTo(0,0);
       try{renderTeacherDashboard();}catch(e){console.error('renderTeacherDashboard:',e);}
       try{renderTCal();}catch(e){console.error('renderTCal:',e);}
@@ -716,9 +749,10 @@ function doLogin(){
       }).catch(()=>{});
     }
   })
-  .catch(()=>{
+  .catch((err)=>{
     if(btn){btn.textContent='Log in';btn.disabled=false;}
-    showLoginError('Unable to connect. Please check your internet and try again.');
+    console.error('Login error:',err);
+    showLoginError('Cannot reach server. Please check api.afternoonarpeggios.com is working and try again.');
   });
 }
 
@@ -727,7 +761,7 @@ function showLoginError(msg){
   if(!err){err=document.createElement('div');err.id='login-error';err.style.cssText='font-size:.72rem;color:#c47;margin-top:.5rem;text-align:center';document.getElementById('ml')?.appendChild(err);}
   err.textContent=msg;
 }
-function dl(){loggedIn=false;studentAwayWeeks=[];document.getElementById('ao').style.display='block';document.getElementById('ai').style.display='none';sp('account');}
+function dl(){loggedIn=false;studentAwayWeeks=[];document.getElementById('ao').style.display='block';document.getElementById('ai').style.display='none';sp('about');document.getElementById('nav-account').textContent='Log in';}
 
 // ─── PROFILE PIC ───
 function tp(){document.getElementById('ppu').click();}
@@ -821,11 +855,19 @@ function asr(){
   sc++;
   const c=document.getElementById('srows');
   const r=document.createElement('div');r.className='srow';r.id='sr'+sc;
-  r.innerHTML=`<div class="sf"><label>Student name</label><input type="text" placeholder="Student ${sc} name" data-si="${sc}"/></div><div class="sf"><label>Lesson length</label><select onchange="uFT()"><option value="30">30 min — $40</option><option value="60">60 min — $80</option></select></div>${sc>1?`<button class="rmb" onclick="rr(${sc})">✕</button>`:'<div></div>'}`;
+  r.innerHTML=`<div class="sf"><label>Student name</label><input type="text" placeholder="Student ${sc} name" data-si="${sc}"/></div><div class="sf"><label>Lesson length</label><select onchange="uFT()"><option value="30">30 min — $40</option><option value="60">60 min — $70</option></select></div>${sc>1?`<button class="rmb" onclick="rr(${sc})">✕</button>`:'<div></div>'}`;
   c.appendChild(r);uFT();
 }
 function rr(id){const r=document.getElementById('sr'+id);if(r)r.remove();uFT();}
-function uFT(){let t=0;document.querySelectorAll('#srows select').forEach(s=>t+=parseInt(s.value)===30?40:80);document.getElementById('ftv').textContent='$'+t;document.getElementById('fpd').innerHTML='$'+t+' <span>/ week</span>';S.price=t;}
+function uFT(){
+  let t=0;
+  document.querySelectorAll('#srows select').forEach(s=>t+=parseInt(s.value)===30?40:70);
+  const discount=Math.round(t*0.05*100)/100;
+  const total=Math.round((t-discount)*100)/100;
+  document.getElementById('ftv').innerHTML='<span style="text-decoration:line-through;color:var(--td);font-size:.9rem">$'+t+'</span> <span style="color:var(--go)">$'+total+'</span> <span style="font-size:.62rem;color:var(--go)">5% family discount</span>';
+  document.getElementById('fpd').innerHTML='$'+total+' <span>/ week</span>';
+  S.price=total;
+}
 
 // ─── CHRISTMAS CLOSURE ───
 function fmtDSS(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
@@ -920,7 +962,7 @@ function sSl(el,t){document.querySelectorAll('.slot').forEach(s=>s.classList.rem
 function gs(n){
   if(n===3)bSI();
   if(n===1){S.date=null;S.time=null;document.getElementById('b3').disabled=true;document.getElementById('tca').checked=false;document.getElementById('b4').disabled=true;}
-  if(n===2){document.getElementById('tca').checked=false;document.getElementById('b4').disabled=true;}
+  if(n===2){setTimeout(rCal,100);document.getElementById('tca').checked=false;document.getElementById('b4').disabled=true;}
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('p'+n)?.classList.add('active');
   updateStepInd(n===5?5:n);
@@ -1880,6 +1922,77 @@ function initStripeCard(){
     document.getElementById('stripe-card-element').innerHTML='<p style="font-size:.7rem;color:var(--td)">Card input unavailable. Backend connection required.</p>';
   }
 }
+
+// ─── PASSWORD RESET DETECTION ───
+function checkPasswordReset(){
+  const hash = window.location.hash;
+  const params = new URLSearchParams(hash.replace('#','?').replace('#','&'));
+  const accessToken = params.get('access_token');
+  const type = params.get('type');
+  
+  if(type === 'recovery' && accessToken){
+    // Store token for use in reset
+    sessionStorage.setItem('reset_token', accessToken);
+    // Show reset page
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-reset')?.classList.add('active');
+    document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+    // Clean the URL
+    history.replaceState(null,'',window.location.pathname);
+  }
+}
+
+function submitPasswordReset(){
+  const pw = document.getElementById('reset-pw')?.value;
+  const pw2 = document.getElementById('reset-pw2')?.value;
+  const errEl = document.getElementById('reset-error');
+  
+  if(!pw || pw.length < 8){
+    errEl.textContent = 'Password must be at least 8 characters.';
+    errEl.style.display = 'block';
+    return;
+  }
+  if(pw !== pw2){
+    errEl.textContent = 'Passwords do not match.';
+    errEl.style.display = 'block';
+    return;
+  }
+  
+  const token = sessionStorage.getItem('reset_token');
+  if(!token){
+    errEl.textContent = 'Reset link expired. Please request a new one.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  // Call backend to update password
+  fetch(API_URL + '/api/auth/reset-password', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ access_token: token, password: pw })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if(data.error){
+      errEl.textContent = data.error;
+      errEl.style.display = 'block';
+      return;
+    }
+    sessionStorage.removeItem('reset_token');
+    showSuccessModal('Password updated', 'Your password has been set. You can now log in with your new password.');
+    setTimeout(()=>{
+      sp('account');
+      om(); // open login modal
+    }, 2000);
+  })
+  .catch(()=>{
+    errEl.textContent = 'Unable to connect. Please try again.';
+    errEl.style.display = 'block';
+  });
+}
+
+// Check for reset token on page load
+checkPasswordReset();
 
 rCal();
 </script></body></html>
