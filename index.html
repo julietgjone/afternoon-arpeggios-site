@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+incomeData={thisWeek:0,thisMonth:0,thisYear:0,allTime:0,avgLesson:0,totalLessons:0,activeStudents:0}<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1246,33 +1246,7 @@ function cs(){
 }
 
 // ─── TEACHER DASHBOARD DATA ───
-const mockStudents=[
-  {id:1,name:'Sarah Thompson',email:'sarah@example.com',phone:'+61412345678',
-   students:[{name:'Ella Thompson',age:10,experience:'2 years recorder',allergy:'No allergies',goals:['Piano','Theory'],notes:'Very enthusiastic'}],
-   type:'60min',status:'active',slot:'Mon 3:30pm',
-   lessons:{upcoming:[{date:'Mon 22 Jun',time:'3:30pm'},{date:'Mon 29 Jun',time:'3:30pm'}],past:[{date:'Mon 15 Jun',amount:81.36},{date:'Mon 8 Jun',amount:81.36}]},
-   totalSpent:651,lessonsCompleted:8},
-  {id:2,name:'David Chen',email:'david@example.com',phone:'+61423456789',
-   students:[{name:'Liam Chen',age:8,experience:'None',allergy:'No allergies',goals:['Piano','Ear training'],notes:'Shy but keen'}],
-   type:'30min',status:'active',slot:'Tue 4:10pm',
-   lessons:{upcoming:[{date:'Tue 23 Jun',time:'4:10pm'}],past:[{date:'Tue 16 Jun',amount:40.68}]},
-   totalSpent:325,lessonsCompleted:8},
-  {id:3,name:'Emma Wilson',email:'emma@example.com',phone:'+61434567890',
-   students:[{name:'Noah Wilson',age:7,experience:'None',allergy:'Unsure',goals:['Singing','Piano'],notes:'Loves pop'},{name:'Mia Wilson',age:9,experience:'1 year piano',allergy:'No allergies',goals:['Piano','AMEB'],notes:'Grade 2'}],
-   type:'family',status:'active',slot:'Thu 3:30 + 4:10pm',
-   lessons:{upcoming:[{date:'Thu 25 Jun',time:'3:30pm'}],past:[{date:'Thu 18 Jun',amount:122}]},
-   totalSpent:488,lessonsCompleted:4},
-  {id:4,name:'James Nguyen',email:'james@example.com',phone:'+61445678901',
-   students:[{name:'James Nguyen',age:16,experience:'3 years piano',allergy:'No allergies',goals:['Piano','Jazz','AMEB'],notes:'Grade 5'}],
-   type:'60min',status:'paused',slot:'Fri 5:50pm',
-   lessons:{upcoming:[],past:[{date:'Fri 12 Jun',amount:81.36}]},
-   totalSpent:407,lessonsCompleted:5},
-  {id:5,name:'Kate Brown',email:'kate@example.com',phone:'+61456789012',
-   students:[{name:'Kate Brown',age:25,experience:'Beginner',allergy:'Cat allergy',goals:['Singing','Composing'],notes:'Adult beginner'}],
-   type:'trial',status:'ended',slot:'N/A',
-   lessons:{upcoming:[],past:[{date:'Mon 1 Jun',amount:40.68}]},
-   totalSpent:40.68,lessonsCompleted:1}
-];
+const mockStudents=[]
 function getBadge(type,status,special){
   if(status==='paused')return'<span class="student-badge badge-paused">⏸ Paused</span>';
   if(status==='ended')return'<span class="student-badge badge-ended">Ended</span>';
@@ -1477,19 +1451,7 @@ function teacherEndEnrolment(studentId,name){
 }
 
 // ─── TEACHER CALENDAR ───
-const tcLessons=[
-  {date:'2026-06-22',time:'3:30pm',student:'Ella Thompson',studentId:1,type:'60 min'},
-  {date:'2026-06-22',time:'4:40pm',student:'Liam Chen',studentId:2,type:'30 min'},
-  {date:'2026-06-23',time:'3:30pm',student:'Noah Wilson',studentId:3,type:'30 min'},
-  {date:'2026-06-23',time:'4:10pm',student:'Mia Wilson',studentId:3,type:'30 min'},
-  {date:'2026-06-25',time:'3:30pm',student:'Ella Thompson',studentId:1,type:'60 min'},
-  {date:'2026-06-26',time:'5:50pm',student:'James Nguyen',studentId:4,type:'60 min'},
-  {date:'2026-06-29',time:'3:30pm',student:'Ella Thompson',studentId:1,type:'60 min'},
-  {date:'2026-06-08',time:'3:30pm',student:'Ella Thompson',studentId:1,type:'60 min',past:true},
-  {date:'2026-06-08',time:'4:40pm',student:'Liam Chen',studentId:2,type:'30 min',past:true},
-  {date:'2026-06-15',time:'3:30pm',student:'Ella Thompson',studentId:1,type:'60 min',past:true},
-  {date:'2026-06-15',time:'4:10pm',student:'Mia Wilson',studentId:3,type:'30 min',past:true},
-];
+const tcLessons=[]
 // Teacher working hours (can be changed via availability modal)
 // Per-day working hours — Days: 0=Sun,1=Mon,2=Tue,3=Wed,4=Thu,5=Fri,6=Sat
 let teacherHours={
