@@ -1965,11 +1965,12 @@ function initStripeCard(){
 // ─── PASSWORD RESET DETECTION ───
 function checkPasswordReset(){
   const hash = window.location.hash;
+  if(!hash || !hash.includes('access_token')) return;
   const params = new URLSearchParams(hash.replace('#','?').replace('#','&'));
   const accessToken = params.get('access_token');
   const type = params.get('type');
   
-  if(type === 'recovery' && accessToken){
+  if(type === 'recovery' && accessToken && accessToken.length > 20){
     // Store token for use in reset
     sessionStorage.setItem('reset_token', accessToken);
     // Show reset page
