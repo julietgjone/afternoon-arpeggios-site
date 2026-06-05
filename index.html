@@ -5,7 +5,9 @@ let incomeData={thisWeek:0,thisMonth:0,thisYear:0,allTime:0,avgLesson:0,totalLes
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Afternoon Arpeggios — Music Tuition Hobart</title>
-<link rel="icon" type="image/jpeg" href="afternoon-arpeggios-logo.jpg">
+<link rel="icon" type="image/jpeg" href="./afternoon-arpeggios-logo.jpg">
+<link rel="apple-touch-icon" href="./afternoon-arpeggios-logo.jpg">
+<link rel="shortcut icon" type="image/jpeg" href="./afternoon-arpeggios-logo.jpg">
 <link rel="apple-touch-icon" href="afternoon-arpeggios-logo.jpg">
 <script src="https://js.stripe.com/v3/"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -529,7 +531,6 @@ footer span{color:var(--crm)}
     </div>
     <div class="dss">
       <div class="dsc"><div class="dsv" id="stat-lessons">0</div><div class="dsl">Lessons completed</div></div>
-      <div class="dsc"><div class="dsv" id="stat-spent">$0</div><div class="dsl">Total spent</div></div>
       <div class="dsc"><div class="dsv" id="stat-slot">—</div><div class="dsl">Weekly slot</div></div>
     </div>
     <div class="dse" id="homework-sec" style="display:none">This week's homework</div>
@@ -734,8 +735,38 @@ function subForgot(){
 // ─── LOGIN ───
 function doLogin(){
   const identifier=(document.getElementById('login-email')?.value||'').trim();
-  const password=document.getElementById('login-pw')?.value||'';
+  const password=(document.getElementById('login-pw')?.value||'').trim();
   if(!identifier||!password){showLoginError('Please enter your email or phone number and password.');return;}
+
+  // ── DEMO logins (frontend preview only) ──
+  const id=identifier.toLowerCase();
+  if(id==='julietgjone@hotmail.com'&&password==='teacher'){
+    cm();loggedIn=true;
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-teacher')?.classList.add('active');
+    document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+    document.getElementById('nav-account').textContent='Dashboard';
+    window.scrollTo(0,0);
+    try{renderTeacherDashboard();}catch(e){}
+    try{renderTCal();}catch(e){}
+    try{renderTaxLog();}catch(e){}
+    return;
+  }
+  if(id==='julietgjone@hotmail.com'&&password==='student'){
+    cm();loggedIn=true;
+    document.getElementById('ao').style.display='none';
+    document.getElementById('ai').style.display='block';
+    document.getElementById('ppn').textContent='Demo Student';
+    document.getElementById('ppe').textContent='julietgjone@hotmail.com';
+    document.getElementById('stat-lessons').textContent='0';
+    document.getElementById('stat-spent') && (document.getElementById('stat-spent').style.display='none');
+    document.getElementById('stat-slot').textContent='Thu 4:00pm';
+    sp('account');
+    renderStudentCal();
+    showStudentHomework();
+    document.getElementById('nav-account').textContent='My Account';
+    return;
+  }
 
   // Show loading state
   const btn=document.querySelector('#ml .mbtn');
@@ -1614,6 +1645,7 @@ function showAvailModal(){
         if(wasWorking&&!work)affectedStudents++;
       });
       renderTCal();rCal();
+      saveTeacherSettings();
       if(affectedStudents>0){
         notifyStudentsOfSlotConflict();
         showSuccessModal('Availability updated',affectedStudents+' student(s) have an urgent notification to change their weekly slot. They have also been sent an email.');
@@ -1681,6 +1713,7 @@ function addHoliday(){
   const sl=new Date(s+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
   const el=new Date(e+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
   teacherHolidays.push({start:s,end:e,startLabel:sl,endLabel:el,title});
+  saveTeacherSettings();
   let cur=new Date(s+'T00:00:00');const endD=new Date(e+'T00:00:00');
   while(cur<=endD){teacherBlockedDates.push(fmtDSS(cur));cur.setDate(cur.getDate()+1);}
   closeActionModal();
@@ -1996,6 +2029,24 @@ function submitPasswordReset(){
 
 // Check for reset token on page load
 checkPasswordReset();
+
+// ── PERSISTENCE (localStorage) ──
+function saveTeacherSettings(){
+  try{
+    localStorage.setItem('aa_hours', JSON.stringify(teacherHours));
+    localStorage.setItem('aa_holidays', JSON.stringify(teacherHolidays));
+  }catch(e){}
+}
+function loadTeacherSettings(){
+  try{
+    const h=localStorage.getItem('aa_hours');
+    const hols=localStorage.getItem('aa_holidays');
+    if(h){const parsed=JSON.parse(h);Object.assign(teacherHours,parsed);}
+    if(hols){teacherHolidays=JSON.parse(hols);}
+  }catch(e){}
+}
+// Load on page start
+loadTeacherSettings();
 
 rCal();
 </script></body></html>
