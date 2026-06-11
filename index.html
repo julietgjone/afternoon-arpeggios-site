@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<h;
-let incomeData={thisWeek:0,thisMonth:0,thisYear:0,allTime:0,avgLesson:0,totalLessons:0,activeStudents:0}tml lang="en">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,8 +38,8 @@ nav a:hover,nav a.active{color:var(--go);border-bottom-color:var(--go)}
 .phone-link:hover{color:var(--go)}
 .slbl{font-size:.58rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--go);text-align:center;margin-bottom:.75rem}
 .fg2{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:.5px solid var(--crb);border-radius:4px;overflow:hidden;margin-bottom:3rem}
-.ft{background:var(--bgc);padding:1.25rem .75rem;text-align:center;transition:background .2s}.ft:hover{background:#1a0c0c}
-.fi{font-size:1.2rem;margin-bottom:.5rem}.ftx{font-size:.65rem;color:var(--tm);line-height:1.5}
+.ft{color:var(--tm);background:var(--bgc);padding:1.25rem .75rem;text-align:center;transition:background .2s}.ft:hover{background:#1a0c0c}
+.fi{font-size:1.2rem;margin-bottom:.5rem}.ftx{color:var(--tm);font-size:.65rem;color:var(--tm);line-height:1.5}
 .grow{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
 .gi{overflow:hidden;border-radius:2px;aspect-ratio:4/3}.gi img{width:100%;height:100%;object-fit:cover;transition:transform .4s;display:block}
 .gi:hover img{transform:scale(1.03)}
@@ -256,29 +255,7 @@ footer span{color:var(--crm)}
 }
 </style></head><body>
 <!-- LOGIN MODAL -->
-<div class="mov hidden" id="lm">
-  <div class="mo">
-    <button class="mx" onclick="cm()">✕</button>
-    <div class="mt">Log in</div>
-    <div class="ms">Enter your email or phone number to access your account.</div>
-    <div id="ml">
-      <div class="mf"><label>Email or phone number</label><input type="text" id="login-email" placeholder="your@email.com or 0481 000 000"/></div>
-      <div class="mf"><label>Password</label>
-        <div style="position:relative">
-          <input type="password" id="login-pw" placeholder="••••••••" style="padding-right:3rem"/>
-          <button type="button" onclick="togglePw('login-pw',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--tm);cursor:pointer;font-size:.7rem;font-family:'Raleway',sans-serif;letter-spacing:.05em">SHOW</button>
-        </div>
-      </div>
-      <button class="mbtn" onclick="doLogin()">Log in</button>
-      <div class="fl" onclick="showForgot()">Forgot your password?</div>
-    </div>
-    <div id="mfg" style="display:none">
-      <div class="mf"><label>Email or phone number</label><input type="text" placeholder="your@email.com or 0481 000 000"/><div class="fn">We will send a reset link to your email.</div></div>
-      <button class="mbtn" onclick="subForgot()">Send reset link</button>
-      <div class="fl" onclick="showForgot(false)">Back to log in</div>
-    </div>
-  </div>
-</div>
+
 <!-- ACTION MODAL -->
 <div class="mov hidden" id="action-modal-ov">
   <div class="mo" style="max-width:480px">
@@ -295,8 +272,7 @@ footer span{color:var(--crm)}
   <div class="logo-img-wrap"><img src="afternoon-arpeggios-logo.jpg" alt="Afternoon Arpeggios" class="header-logo"/></div>
   <nav>
     <a onclick="sp('about')" id="nav-about" class="active">About</a>
-    <a onclick="sp('book')" id="nav-book">Enrol</a>
-    <a onclick="navLogin()" id="nav-account">Log in</a>
+    <a onclick="sp('book')" id="nav-book">Book</a>
   </nav>
 </header>
 <!-- ABOUT -->
@@ -332,177 +308,28 @@ footer span{color:var(--crm)}
 </div>
 <!-- ENROL -->
 <div class="page" id="page-book">
-  <div class="bw">
-    <div class="bf" id="bf">
-      <div class="sind">
-        <div class="si active" id="si1"><div class="sic" id="sc1">1</div><div class="sil">Service</div></div>
-        <div class="sdv"></div>
-        <div class="si pend" id="si2"><div class="sic" id="sc2">2</div><div class="sil">Date &amp; Time</div></div>
-        <div class="sdv"></div>
-        <div class="si pend" id="si3"><div class="sic" id="sc3">3</div><div class="sil">Your Details</div></div>
-        <div class="sdv"></div>
-        <div class="si pend" id="si4"><div class="sic" id="sc4">4</div><div class="sil">Payment</div></div>
-      </div>
-      <!-- STEP 1: SERVICE + FAMILY -->
-      <div class="panel active" id="p1">
-        <p class="slbl" style="margin-bottom:1.5rem">Choose your lesson type</p>
-        <div class="sg">
-          <div class="sv" onclick="pSvc(this,'Trial Lesson',40,'trial',30)">
-            <div class="stag">One-time</div><div class="sn">Trial Lesson</div>
-            <div class="sd">A relaxed intro session to meet each other and explore your musical background.</div>
-            <div class="sp">$40 <span>/ 30 min</span></div>
-          </div>
-          <div class="sv" onclick="pSvc(this,'30 Min Lesson',40,'weekly',30)">
-            <div class="stag">Weekly</div><div class="sn">30 Min Lesson</div>
-            <div class="sd">For one student. Ideal for younger students or beginners. Your slot is reserved each week.</div>
-            <div class="sp">$40 <span>/ week · one student</span></div>
-            <div class="sbadge">Reserve weekly slot</div>
-          </div>
-          <div class="sv" onclick="pSvc(this,'60 Min Lesson',70,'weekly',60)">
-            <div class="stag">Weekly</div><div class="sn">60 Min Lesson</div>
-            <div class="sd">For one student. AMEB, deeper theory and richer repertoire. For two or more students, use Family Booking.</div>
-            <div class="sp">$70 <span>/ week · one student</span></div>
-            <div class="sbadge">Reserve weekly slot</div>
-          </div>
-          <div class="sv" onclick="pSvc(this,'Family Booking',0,'family',60)">
-            <div class="stag">Family · Weekly</div><div class="sn">Family Booking</div>
-            <div class="sd">Two or more students from the same family, back to back. Each student gets their own 30 or 60 min session. 5% family discount applied automatically.</div>
-            <div class="sp" id="fpd">— <span>/ week</span></div>
-            <div class="sbadge">One payment · all students</div>
-          </div>
-        </div>
-        <div class="famp" id="famp">
-          <div class="famtt">Add your students</div>
-          <div id="srows"></div>
-          <button onclick="asr()" class="gh" style="margin-bottom:.75rem">+ Add another student</button>
-          <div class="famtot"><span>Total per week</span><span class="famtv" id="ftv">$0</span></div>
-          <div class="famnote">$40 per student for 30 min · $80 per student for 60 min</div>
-        </div>
-        <div class="br"><button class="bp" id="b2" onclick="gs(2)" disabled>Continue to Date &amp; Time</button></div>
-      </div>
-      <!-- STEP 2: DATE/TIME -->
-      <div class="panel" id="p2">
-        <div class="nb" id="nb" style="display:none"><span id="nm"></span></div>
-        <p style="font-size:.58rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--go);margin-bottom:1.5rem">Choose a date and time</p>
-
-        <!-- Month nav -->
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
-          <button class="cbn" onclick="cmo(-1)">‹</button>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--ow)" id="cmol"></div>
-          <button class="cbn" onclick="cmo(1)">›</button>
-        </div>
-
-        <!-- Day labels -->
-        <div id="cdls" style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:3px;width:100%"></div>
-
-        <!-- Calendar grid -->
-        <div id="cg" style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;width:100%;margin-bottom:1.5rem"></div>
-
-        <!-- Time slots -->
-        <div style="font-size:.58rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--tm);margin-bottom:.75rem" id="slbx">Select a date to see available times</div>
-        <div class="sg2" id="sg2"></div>
-        <div class="br" style="margin-top:1.5rem">
-          <button class="bs" onclick="gs(1)">← Back</button>
-          <button class="bp" id="b3" onclick="gs(3)" disabled>Continue to Your Details</button>
-        </div>
-      </div>
-
-<!-- STEP 3: DETAILS + CREATE ACCOUNT -->
-      <div class="panel" id="p3">
-        <p class="slbl" style="margin-bottom:1.5rem;text-align:left">Your details &amp; account</p>
-        <div class="fg" style="margin-bottom:1.5rem">
-          <div class="fld"><label>Full name</label><input type="text" id="reg-name" placeholder="e.g. Sarah Thompson" required/></div>
-          <div class="fld"><label>Phone number</label><input type="tel" id="reg-phone" placeholder="+61 4XX XXX XXX" required/></div>
-          <div class="fld ff"><label>Email address</label><input type="email" id="reg-email" placeholder="your@email.com" required/></div>
-          <div class="fld"><label>Create a password</label><input type="password" id="reg-pw" placeholder="Min. 8 characters" required/></div>
-          <div class="fld"><label>Confirm password</label><input type="password" id="reg-pw2" placeholder="Re-enter password" required/></div>
-        </div>
-        <div id="sia"></div>
-        <div id="single-goals-wrap" style="margin-top:1.5rem">
-          <div class="gb"><div class="gbt">What would the student like to learn?</div>
-          <div class="gg">
-            <label class="gc"><input type="checkbox"/><span>🎹 Piano</span></label>
-            <label class="gc"><input type="checkbox"/><span>🎤 Singing</span></label>
-            <label class="gc"><input type="checkbox"/><span>🎼 Composing</span></label>
-            <label class="gc"><input type="checkbox"/><span>🎷 Jazz</span></label>
-            <label class="gc"><input type="checkbox"/><span>🎻 Classical</span></label>
-            <label class="gc"><input type="checkbox"/><span>🎵 Pop</span></label>
-            <label class="gc"><input type="checkbox"/><span>🎛️ Synth</span></label>
-            <label class="gc"><input type="checkbox"/><span>🎓 AMEB</span></label>
-            <label class="gc"><input type="checkbox"/><span>📖 Theory</span></label>
-            <label class="gc"><input type="checkbox"/><span>👂 Ear training</span></label>
-          </div></div>
-        </div>
-        <div class="fld ff" style="margin-top:1.25rem"><label>Anything else we should know?</label><textarea placeholder="e.g. learning needs, scheduling preferences..."></textarea></div>
-        <div class="rmb2" style="margin-top:1.25rem">
-          <div class="rmt">Lesson reminders</div>
-          <div class="rw">
-            <label class="ro"><input type="checkbox" id="rem-email" checked/><span>📧 Email reminder 24hrs before each lesson</span></label>
-          </div>
-        </div>
-        <div class="tcw">
-          <div class="tcb2"><div class="tcbt">Please read before agreeing</div><div class="tcbs">Scroll through all terms before ticking</div></div>
-          <div class="tcbox">
-            <div class="tch">Terms &amp; Conditions</div>
-            <div class="tcs"><h4>Cancellations by students</h4><p>A minimum of 24 hours notice is required. Cancellations with less than 24 hours notice will be charged at the full lesson rate.</p></div>
-            <div class="tcs"><h4>Cancellations by Juliet</h4><p>In the rare event Juliet needs to cancel, you will receive at least 24 hours notice by email. No charge will apply. This is most likely due to a conflicting performance.</p></div>
-            <div class="tcs"><h4>Specific weeks away</h4><p>You can cancel specific weeks from My Schedule in your account. No payment will be taken and your slot will be temporarily released for that week only. Your recurring slot resumes the following week.</p></div>
-            <div class="tcs"><h4>Subscription pause</h4><p>You may pause your subscription at any time. Warning: pausing releases your reserved slot and it may be taken by another student before you return.</p></div>
-            <div class="tcs"><h4>Family bookings</h4><p>One account, one weekly payment. Students within a family booking can cancel independently without affecting the others.</p></div>
-            <div class="tcs"><h4>Studio closures</h4><p>The studio is closed for approximately three weeks over Christmas and New Year from December 21 to January 3. No fees are charged during this period. The studio remains open on all Tasmanian public holidays and school holidays.</p></div>
-            <div class="tcs"><h4>Stopping lessons</h4><p>End your enrolment from My Account. Your account will be deactivated. You can reactivate at any time by logging back in.</p></div>
-            <div class="tcs"><h4>Payment</h4><p>All payments are processed via Stripe. Card, Apple Pay, and Google Pay are all secured through Stripe (256-bit SSL, PCI DSS compliant). Your card is saved but only charged after each lesson passes. No charge is made upfront at enrolment.</p></div>
-            <div class="tcs"><h4>Privacy</h4><p>Personal information is used solely for scheduling, billing, and communication. Encrypted and stored securely. Not shared with third parties except Stripe for payment processing.</p></div>
-          </div>
-        </div>
-        <label class="agr" for="tca"><input type="checkbox" id="tca" onchange="ca()"/><span>I have read and agree to all terms and conditions above.</span></label>
-        <div class="br"><button class="bs" onclick="gs(2)">Back</button><button class="bp" id="b4" onclick="gs(4)" disabled>Continue to Payment</button></div>
-      </div>
-      <!-- STEP 4: PAYMENT -->
-      <div class="panel" id="p4">
-        <div class="pyb">
-          <p class="slbx" style="margin-bottom:.5rem">Add your payment method</p>
-          <p style="font-size:.68rem;color:var(--tm);margin-bottom:1.25rem">Your card is saved securely and only charged after each lesson. No payment is taken today.</p>
-          <div class="pm2">
-            <div class="pm sel" onclick="pp(this,'card')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Card</div>
-            <div class="pm" onclick="pp(this,'apple')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M15 9H9v6h6V9z"/></svg>Apple Pay</div>
-            <div class="pm" onclick="pp(this,'google')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>Google Pay</div>
-          </div>
-          <!-- Stripe card element mounts here -->
-          <div id="stripe-card-wrap" style="margin:1rem 0">
-            <div id="stripe-card-element" style="background:var(--bgi);border:.5px solid var(--crb);border-radius:3px;padding:12px 14px;font-size:.8rem"></div>
-            <div id="stripe-card-errors" style="color:#c47;font-size:.68rem;margin-top:.4rem"></div>
-          </div>
-          <div class="dor"><span>Order summary</span></div>
-          <div id="pysum"></div>
-          <div class="cn2">Your card is only charged after each lesson. The Stripe processing fee (1.7%) is included in the amount shown above.</div>
-          <div class="pynote">🔒 256-bit SSL · PCI DSS compliant · Card never stored on our servers</div>
-        </div>
-        <div class="br"><button class="bs" onclick="gs(3)">Back</button><button class="bp" onclick="fb()">Confirm enrolment</button></div>
-      </div>
-      <!-- STEP 5: CONFIRMATION -->
-      <div class="panel" id="p5">
-        <div class="conf">
-          <div class="ci">♩</div>
-          <h2>You are enrolled.</h2>
-          <p>Confirmation sent to your email. Your slot is reserved and you will receive a reminder 24 hours before each lesson. Your card will only be charged after each lesson passes.</p>
-          <div class="cs2" id="csum"></div>
-          <div style="background:rgba(201,169,110,.06);border:.5px solid rgba(201,169,110,.2);border-radius:4px;padding:1.25rem 1.5rem;margin:1.5rem auto;max-width:440px;text-align:left">
-            <div style="font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--go);margin-bottom:.6rem">Stay up to date</div>
-            <p style="font-size:.75rem;color:var(--tm);line-height:1.7;margin-bottom:1rem">Connect your schedule to your calendar so you always see upcoming lessons, changes, and cancellations — as well as your 24-hour reminders.</p>
-            <div class="cabs" style="justify-content:flex-start">
-              <button class="cab" onclick="agc()">+ Google Calendar</button>
-              <button class="cab" onclick="aac()">+ Apple Calendar (.ics)</button>
-            </div>
-            <p style="font-size:.62rem;color:var(--td);margin-top:.75rem">You will also receive email reminders 24 hours before each lesson.</p>
-          </div>
-          <button onclick="sp('account')" class="gh" style="font-size:.6rem;margin-top:.5rem">Go to My Account</button>
-        </div>
-      </div>
+  <div style="max-width:960px;margin:0 auto;padding:3rem 2rem 5rem">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <div style="font-size:.58rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:var(--go);margin-bottom:.75rem">Book your lesson!</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--ow);margin-bottom:.75rem">Book your lesson</h2>
+      <p style="font-size:.75rem;color:var(--tm);max-width:500px;margin:0 auto;line-height:1.9">Select your lesson type and preferred time below. Once booked Juliet will reserve your spot weekly.</p>
     </div>
+    <div style="background:var(--bgc);border-radius:4px;overflow:hidden;border:.5px solid var(--crb)">
+      <script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript"></script>
+      <iframe src="https://afternoonarpeggios.as.me/?embed=true"
+        width="100%"
+        height="820"
+        frameBorder="0"
+        style="display:block">
+      </iframe>
+    </div>
+    <p style="text-align:center;font-size:.72rem;color:var(--tm);margin-top:1.5rem;line-height:1.8">
+      Questions? Call or text Juliet on 
+      <a href="tel:+61481599037" style="color:var(--go)">0481 599 037</a>
+    </p>
   </div>
 </div>
-<!-- ACCOUNT -->
+
 <div class="page" id="page-account">
   <div id="ao" style="text-align:center;padding:5rem 2rem">
     <div style="font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:300;color:var(--ow);margin-bottom:.75rem">My Account</div>
@@ -670,7 +497,7 @@ footer span{color:var(--crm)}
   </div>
 </div>
 
-<footer><p>© 2026 Afternoon Arpeggios <span>·</span> Music Tuition Hobart <span>·</span> All rights reserved</p></footer><script>
+<footer style="color:var(--tm)"><p>© 2026 Afternoon Arpeggios <span>·</span> Music Tuition Hobart <span>·</span> All rights reserved</p></footer><script>
 // All times are in Hobart, Tasmania, Australia (AEST UTC+10 / AEDT UTC+11)
 // The booking calendar reflects local Hobart time
 // Available days: Sun(0) Mon(1) Thu(4) Fri(5)
@@ -706,10 +533,7 @@ function togglePw(id,btn){
   if(inp.type==='password'){inp.type='text';btn.textContent='HIDE';}
   else{inp.type='password';btn.textContent='SHOW';}
 }
-function navLogin(){
-  if(loggedIn){sp('account');}
-  else{om();}
-}
+function navLogin(){}
 function cm(){document.getElementById('lm').classList.add('hidden');}
 function showForgot(show=true){
   const ml=document.getElementById('ml'),mfg=document.getElementById('mfg');
