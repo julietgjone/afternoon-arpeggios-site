@@ -34,12 +34,17 @@ nav a:hover,nav a.active{color:var(--go);border-bottom-color:var(--go)}
 .an{font-family:"Cormorant Garamond",serif;font-size:2.5rem;font-weight:300;color:var(--ow);line-height:1.1;margin-bottom:.75rem}
 .adiv{width:40px;height:.5px;background:var(--crm);margin-bottom:1.5rem}
 .abio{font-size:.82rem;color:var(--tm);line-height:1.9}
-.phone-link{display:block;margin-top:1.1rem;font-size:.82rem;color:var(--tm);text-decoration:none;transition:color .2s}
-.phone-link:hover{color:var(--go)}
-.slbl{font-size:.58rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--go);text-align:center;margin-bottom:.75rem}
-.fg2{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:.5px solid var(--crb);border-radius:4px;overflow:hidden;margin-bottom:3rem}
-.ft{color:var(--tm);background:var(--bgc);padding:1.25rem .75rem;text-align:center;transition:background .2s}.ft:hover{background:#1a0c0c}
-.fi{font-size:1.2rem;margin-bottom:.5rem}.ftx{color:var(--tm);font-size:.65rem;color:var(--tm);line-height:1.5}
+.phone-link{display:inline-block;margin-top:1.25rem;font-size:.65rem;letter-spacing:.18em;color:var(--tm);text-decoration:none;transition:color .2s;border-bottom:.5px solid var(--crb);padding-bottom:2px}
+.phone-link:hover{color:var(--go);border-color:var(--go)}
+.svc-section{margin-bottom:3rem}
+.svc-label{font-size:.55rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:var(--go);margin-bottom:1.5rem}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:.5px solid var(--crb);border-radius:3px;overflow:hidden}
+.svc-item{padding:1.25rem 1.5rem;border-right:.5px solid var(--crb);border-bottom:.5px solid var(--crb);transition:background .2s}
+.svc-item:hover{background:rgba(255,255,255,.02)}
+.svc-item:nth-child(4n){border-right:none}
+.svc-item:nth-child(n+5){border-bottom:none}
+.svc-name{font-family:"Cormorant Garamond",serif;font-size:1rem;font-weight:400;color:var(--ow);margin-bottom:.4rem;line-height:1.2}
+.svc-desc{font-size:.62rem;color:var(--td);line-height:1.65}
 .grow{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
 .gi{overflow:hidden;border-radius:2px;aspect-ratio:4/3}.gi img{width:100%;height:100%;object-fit:cover;transition:transform .4s;display:block}
 .gi:hover img{transform:scale(1.03)}
@@ -285,19 +290,45 @@ footer span{color:var(--crm)}
         <h1 class="an">Juliet Gjone</h1>
         <div class="adiv"></div>
         <p class="abio">Lessons at Afternoon Arpeggios are shaped around each individual student, their goals at their own pace and what genuinely excites them about music. All ages are welcome. Whether you are a complete beginner or working towards AMEB examinations, every session is designed to feel encouraging and enjoyable. Teaching happens from a cozy home studio in Hobart, with a couch where parents and family are always welcome to sit in on the lesson, in the company of a very friendly studio cat.</p>
-        <a href="tel:+61481599037" class="phone-link">📞 0481 599 037</a>
+        <a href="tel:+61481599037" class="phone-link">0481 599 037</a>
       </div>
     </div>
-    <p class="slbl">Services offered</p>
-    <div class="fg2">
-      <div class="ft"><div class="fi">🎤</div><div class="ftx">Singing &amp; vocals</div></div>
-      <div class="ft"><div class="fi">🎼</div><div class="ftx">Composing &amp; songwriting</div></div>
-      <div class="ft"><div class="fi">🎷</div><div class="ftx">Jazz, classical &amp; pop</div></div>
-      <div class="ft"><div class="fi">🎓</div><div class="ftx">AMEB preparation</div></div>
-      <div class="ft"><div class="fi">📖</div><div class="ftx">Theory &amp; harmony</div></div>
-      <div class="ft"><div class="fi">🎛️</div><div class="ftx">Nord synth design</div></div>
-      <div class="ft"><div class="fi">👂</div><div class="ftx">Ear training &amp; games</div></div>
-      <div class="ft"><div class="fi">🎹</div><div class="ftx">Piano for all levels</div></div>
+    <div class="svc-section">
+      <div class="svc-label">What I teach</div>
+      <div class="svc-grid">
+        <div class="svc-item">
+          <div class="svc-name">Piano</div>
+          <div class="svc-desc">All levels welcome, from first lesson to advanced repertoire</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">Voice &amp; Singing</div>
+          <div class="svc-desc">Technique, breath control, performance and repertoire</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">Theory &amp; Harmony</div>
+          <div class="svc-desc">Reading music, chord construction, aural skills and ear training</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">Composition &amp; Songwriting</div>
+          <div class="svc-desc">Original music, arranging and creative development</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">AMEB Preparation</div>
+          <div class="svc-desc">Structured exam preparation across all grades</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">Jazz, Classical &amp; Pop</div>
+          <div class="svc-desc">Repertoire and style across any genre you love</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">Synthesiser &amp; Nord</div>
+          <div class="svc-desc">Sound design, layering and expressive playing on synth</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">Ear Training</div>
+          <div class="svc-desc">Interval recognition, transcription and musical listening</div>
+        </div>
+      </div>
     </div>
     <div class="grow">
       <div class="gi"><img src="studio-cat.jpg" alt="Studio cat"/></div>
