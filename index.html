@@ -273,72 +273,13 @@ footer span{color:var(--crm)}
 </div>
 <header>
   <div class="logo">Afternoon Arpeggios</div>
-  <div class="logo-sub">Music Tuition · Hobart, Tasmania</div>
   <div class="logo-img-wrap"><img src="afternoon-arpeggios-logo.jpg" alt="Afternoon Arpeggios" class="header-logo"/></div>
   <nav>
-    <a onclick="sp('about')" id="nav-about" class="active">About</a>
-    <a onclick="sp('book')" id="nav-book">Book</a>
+    <a onclick="sp('book')" id="nav-book" class="active">Book</a>
   </nav>
 </header>
-<!-- ABOUT -->
-<div class="page active" id="page-about">
-  <div class="aw">
-    <div class="at">
-      <div class="aphoto"><img src="juliet.jpg" alt="Juliet Gjone"/></div>
-      <div>
-        <p class="ey">Private Music Teacher</p>
-        <h1 class="an">Juliet Gjone</h1>
-        <div class="adiv"></div>
-        <p class="abio">Lessons at Afternoon Arpeggios are shaped around each individual student, their goals at their own pace and what genuinely excites them about music. All ages are welcome. Whether you are a complete beginner or working towards AMEB examinations, every session is designed to feel encouraging and enjoyable. Teaching happens from a cozy home studio in Hobart, with a couch where parents and family are always welcome to sit in on the lesson, in the company of a very friendly studio cat.</p>
-        <a href="tel:+61481599037" class="phone-link">0481 599 037</a>
-      </div>
-    </div>
-    <div class="svc-section">
-      <div class="svc-label">What I teach</div>
-      <div class="svc-grid">
-        <div class="svc-item">
-          <div class="svc-name">Piano</div>
-          <div class="svc-desc">All levels welcome, from first lesson to advanced repertoire</div>
-        </div>
-        <div class="svc-item">
-          <div class="svc-name">Voice &amp; Singing</div>
-          <div class="svc-desc">Technique, breath control, performance and repertoire</div>
-        </div>
-        <div class="svc-item">
-          <div class="svc-name">Theory &amp; Harmony</div>
-          <div class="svc-desc">Reading music, chord construction, aural skills and ear training</div>
-        </div>
-        <div class="svc-item">
-          <div class="svc-name">Composition &amp; Songwriting</div>
-          <div class="svc-desc">Original music, arranging and creative development</div>
-        </div>
-        <div class="svc-item">
-          <div class="svc-name">AMEB Preparation</div>
-          <div class="svc-desc">Structured exam preparation across all grades</div>
-        </div>
-        <div class="svc-item">
-          <div class="svc-name">Jazz, Classical &amp; Pop</div>
-          <div class="svc-desc">Repertoire and style across any genre you love</div>
-        </div>
-        <div class="svc-item">
-          <div class="svc-name">Synthesiser &amp; Nord</div>
-          <div class="svc-desc">Sound design, layering and expressive playing on synth</div>
-        </div>
-        <div class="svc-item">
-          <div class="svc-name">Ear Training</div>
-          <div class="svc-desc">Interval recognition, transcription and musical listening</div>
-        </div>
-      </div>
-    </div>
-    <div class="grow">
-      <div class="gi"><img src="studio-cat.jpg" alt="Studio cat"/></div>
-      <div class="gi"><img src="studio-nord.jpg" alt="Nord setup"/></div>
-      <div class="gi"><img src="studio-lesson.jpg" alt="Lesson"/></div>
-    </div>
-  </div>
-</div>
 <!-- ENROL -->
-<div class="page" id="page-book" style="background:var(--bg)">
+<div class="page active" id="page-book" style="background:var(--bg)">
   <div style="max-width:900px;margin:0 auto;padding:3rem 2rem 5rem">
     <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.25rem;font-weight:300;color:var(--ow);text-align:center;margin-bottom:1.5rem">Book your lesson</h2>
     <div style="max-width:580px;margin:0 auto 2rem;display:grid;grid-template-columns:1fr 1fr;gap:1px;border:.5px solid var(--crb);border-radius:3px;overflow:hidden">
@@ -349,7 +290,7 @@ footer span{color:var(--crm)}
         <div style="display:flex;flex-direction:column;gap:.6rem">
           <div style="display:flex;gap:.6rem;align-items:flex-start">
             <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--go);flex-shrink:0;width:14px;line-height:1.3">1</div>
-            <div style="font-size:.68rem;color:var(--tm);line-height:1.7">Sign up using the button below, then select your lesson type and preferred time to complete your booking.</div>
+            <div style="font-size:.68rem;color:var(--tm);line-height:1.7">Choose your time below to complete your booking. Once approved, the slot is reserved weekly, and you can go in and manage any weeks you're unable to do.</div>
           </div>
         </div>
       </div>
@@ -360,7 +301,7 @@ footer span{color:var(--crm)}
         <div style="display:flex;flex-direction:column;gap:.6rem">
           <div style="display:flex;gap:.6rem;align-items:flex-start">
             <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--go);flex-shrink:0;width:14px;line-height:1.3">2</div>
-            <div style="font-size:.68rem;color:var(--tm);line-height:1.7">Log in, then click your <strong style="color:var(--ow)">email address</strong> (or the <strong style="color:var(--ow)">person icon</strong> on mobile) in the top right corner and select <strong style="color:var(--ow)">Appointments</strong>.</div>
+            <div style="font-size:.68rem;color:var(--tm);line-height:1.7">Log in, then click your <strong style="color:var(--ow)">email address</strong> (or the <strong style="color:var(--ow)">person icon</strong> on mobile) in the top right corner and select <strong style="color:var(--ow)">Appointments</strong>, then press <strong style="color:var(--ow)">Cancel</strong> on the lesson you'd like to cancel.</div>
           </div>
         </div>
       </div>
@@ -706,7 +647,7 @@ function showLoginError(msg){
   if(!err){err=document.createElement('div');err.id='login-error';err.style.cssText='font-size:.72rem;color:#c47;margin-top:.5rem;text-align:center';document.getElementById('ml')?.appendChild(err);}
   err.textContent=msg;
 }
-function dl(){loggedIn=false;studentAwayWeeks=[];document.getElementById('ao').style.display='block';document.getElementById('ai').style.display='none';sp('about');document.getElementById('nav-account').textContent='Log in';}
+function dl(){loggedIn=false;studentAwayWeeks=[];document.getElementById('ao').style.display='block';document.getElementById('ai').style.display='none';sp('book');document.getElementById('nav-account').textContent='Log in';}
 
 // ─── PROFILE PIC ───
 function tp(){document.getElementById('ppu').click();}
