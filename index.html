@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Afternoon Arpeggios — Music Tuition Hobart</title>
+<title>Afternoon Arpeggios</title>
 <link rel="icon" type="image/jpeg" href="./afternoon-arpeggios-logo.jpg">
 <link rel="apple-touch-icon" href="./afternoon-arpeggios-logo.jpg">
 <link rel="shortcut icon" type="image/jpeg" href="./afternoon-arpeggios-logo.jpg">
@@ -14,8 +14,8 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--cr:#4a0f0f;--crm:#6b1a1a;--crd:#2d0808;--crb:rgba(107,26,26,0.4);--go:#C9A96E;--gl:#e8cfa0;--ow:#F5F0EB;--tm:#7A6A5A;--td:#4a3a2a;--bg:#0A0505;--bgc:#110808;--bgi:#180c0c;--bgs:#0e0606}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ow);font-family:"Raleway",sans-serif;font-weight:300;line-height:1.7;min-height:100vh}
-header{background:var(--crd);border-bottom:1px solid var(--crb);padding:1.5rem 2rem 0;text-align:center}
+body{background:var(--crd);color:var(--ow);font-family:"Raleway",sans-serif;font-weight:300;line-height:1.7;min-height:100vh}
+header{background:var(--crd);border-bottom:1px solid var(--crb);padding:1.5rem 2rem 1.5rem;text-align:center}
 .logo{font-family:"Cormorant Garamond",serif;font-size:2.6rem;font-weight:300;color:var(--go);letter-spacing:.15em;text-transform:uppercase;line-height:1}
 .logo-sub{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--tm);margin-top:.4rem}
 .logo-img-wrap{padding:.6rem 0 0;display:flex;justify-content:center}
@@ -274,43 +274,10 @@ footer span{color:var(--crm)}
 <header>
   <div class="logo">Afternoon Arpeggios</div>
   <div class="logo-img-wrap"><img src="afternoon-arpeggios-logo.jpg" alt="Afternoon Arpeggios" class="header-logo"/></div>
-  <nav>
-    <a onclick="sp('book')" id="nav-book" class="active">Book</a>
-  </nav>
 </header>
 <!-- ENROL -->
-<div class="page active" id="page-book" style="background:var(--bg)">
+<div class="page active" id="page-book" style="background:var(--crd)">
   <div style="max-width:900px;margin:0 auto;padding:3rem 2rem 5rem">
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.25rem;font-weight:300;color:var(--ow);text-align:center;margin-bottom:1.5rem">Book your lesson</h2>
-    <div style="max-width:580px;margin:0 auto 2rem;display:grid;grid-template-columns:1fr 1fr;gap:1px;border:.5px solid var(--crb);border-radius:3px;overflow:hidden">
-
-      <!-- BOOKING -->
-      <div style="background:var(--bgc);padding:1.25rem 1.5rem">
-        <div style="font-size:.52rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--go);margin-bottom:.875rem">To book weekly lessons</div>
-        <div style="display:flex;flex-direction:column;gap:.6rem">
-          <div style="display:flex;gap:.6rem;align-items:flex-start">
-            <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--go);flex-shrink:0;width:14px;line-height:1.3">1</div>
-            <div style="font-size:.68rem;color:var(--tm);line-height:1.7">Choose your time below to complete your booking. Once approved, the slot is reserved weekly, and you can go in and manage any weeks you're unable to do.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CANCELLING -->
-      <div style="background:var(--bgc);padding:1.25rem 1.5rem;border-left:.5px solid var(--crb)">
-        <div style="font-size:.52rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--go);margin-bottom:.875rem">To cancel a lesson</div>
-        <div style="display:flex;flex-direction:column;gap:.6rem">
-          <div style="display:flex;gap:.6rem;align-items:flex-start">
-            <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--go);flex-shrink:0;width:14px;line-height:1.3">2</div>
-            <div style="font-size:.68rem;color:var(--tm);line-height:1.7">Log in, then click your <strong style="color:var(--ow)">email address</strong> (or the <strong style="color:var(--ow)">person icon</strong> on mobile) in the top right corner and select <strong style="color:var(--ow)">Appointments</strong>, then press <strong style="color:var(--ow)">Cancel</strong> on the lesson you'd like to cancel.</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <!-- CONTACT LINE -->
-    <p style="text-align:center;font-size:.68rem;color:var(--tm);margin:-1rem auto 1.75rem;max-width:580px;line-height:1.8">
-      Any problems? Contact Juliet on <a href="tel:+61481599037" style="color:var(--go)">0481 599 037</a>
-    </p>
     <div style="background:#1a0808;border-radius:3px;overflow:hidden;border:.5px solid var(--crb)">
       <script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript"></script>
       <iframe src="https://afternoonarpeggios.as.me/?embed=true&backgroundColor=1a0808"
@@ -320,10 +287,6 @@ footer span{color:var(--crm)}
         style="display:block;background:transparent">
       </iframe>
     </div>
-    <p style="text-align:center;font-size:.7rem;color:var(--tm);margin-top:1.5rem">
-      Questions? Call or text Juliet on 
-      <a href="tel:+61481599037" style="color:var(--go)">0481 599 037</a>
-    </p>
   </div>
 </div>
 
@@ -494,7 +457,7 @@ footer span{color:var(--crm)}
   </div>
 </div>
 
-<footer style="color:var(--tm)"><p>© 2026 Afternoon Arpeggios <span>·</span> Music Tuition Hobart <span>·</span> All rights reserved</p></footer><script>
+<footer style="color:var(--tm)"><p>© 2026 Afternoon Arpeggios</p></footer><script>
 // All times are in Hobart, Tasmania, Australia (AEST UTC+10 / AEDT UTC+11)
 // The booking calendar reflects local Hobart time
 // Available days: Sun(0) Mon(1) Thu(4) Fri(5)
