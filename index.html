@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Afternoon Arpeggios</title>
+<title>Afternoon Arpeggios — Music Tuition Hobart</title>
 <link rel="icon" type="image/jpeg" href="./afternoon-arpeggios-logo.jpg">
 <link rel="apple-touch-icon" href="./afternoon-arpeggios-logo.jpg">
 <link rel="shortcut icon" type="image/jpeg" href="./afternoon-arpeggios-logo.jpg">
@@ -14,8 +14,8 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--cr:#4a0f0f;--crm:#6b1a1a;--crd:#2d0808;--crb:rgba(107,26,26,0.4);--go:#C9A96E;--gl:#e8cfa0;--ow:#F5F0EB;--tm:#7A6A5A;--td:#4a3a2a;--bg:#0A0505;--bgc:#110808;--bgi:#180c0c;--bgs:#0e0606}
 html{scroll-behavior:smooth}
-body{background:var(--crd);color:var(--ow);font-family:"Raleway",sans-serif;font-weight:300;line-height:1.7;min-height:100vh}
-header{background:var(--crd);border-bottom:1px solid var(--crb);padding:1.5rem 2rem 1.5rem;text-align:center}
+body{background:var(--bg);color:var(--ow);font-family:"Raleway",sans-serif;font-weight:300;line-height:1.7;min-height:100vh}
+header{background:var(--crd);border-bottom:1px solid var(--crb);padding:1.5rem 2rem 0;text-align:center}
 .logo{font-family:"Cormorant Garamond",serif;font-size:2.6rem;font-weight:300;color:var(--go);letter-spacing:.15em;text-transform:uppercase;line-height:1}
 .logo-sub{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--tm);margin-top:.4rem}
 .logo-img-wrap{padding:.6rem 0 0;display:flex;justify-content:center}
@@ -273,11 +273,91 @@ footer span{color:var(--crm)}
 </div>
 <header>
   <div class="logo">Afternoon Arpeggios</div>
+  <div class="logo-sub">Music Tuition · Hobart, Tasmania</div>
   <div class="logo-img-wrap"><img src="afternoon-arpeggios-logo.jpg" alt="Afternoon Arpeggios" class="header-logo"/></div>
+  <nav>
+    <a onclick="sp('about')" id="nav-about" class="active">About</a>
+    <a onclick="sp('book')" id="nav-book">Book</a>
+  </nav>
 </header>
+<!-- ABOUT -->
+<div class="page active" id="page-about">
+  <div class="aw">
+    <div class="at">
+      <div class="aphoto"><img src="juliet.jpg" alt="Juliet Gjone"/></div>
+      <div>
+        <p class="ey">Private Music Teacher</p>
+        <h1 class="an">Juliet Gjone</h1>
+        <div class="adiv"></div>
+        <p class="abio">Lessons at Afternoon Arpeggios are shaped around each individual student, their goals at their own pace and what genuinely excites them about music. All ages are welcome. Whether you are a complete beginner or working towards AMEB examinations, every session is designed to feel encouraging and enjoyable. Teaching happens from a cozy home studio in Hobart, with a couch where parents and family are always welcome to sit in on the lesson, in the company of a very friendly studio cat.</p>
+        <a href="tel:+61481599037" class="phone-link">0481 599 037</a>
+      </div>
+    </div>
+    <div class="svc-section">
+      <div class="svc-label">What I teach</div>
+      <div class="svc-grid">
+        <div class="svc-item">
+          <div class="svc-name">Piano</div>
+          <div class="svc-desc">All levels welcome, from first lesson to advanced repertoire</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">Voice &amp; Singing</div>
+          <div class="svc-desc">Technique, breath control, performance and repertoire</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">Theory &amp; Harmony</div>
+          <div class="svc-desc">Reading music, chord construction, aural skills and ear training</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">Composition &amp; Songwriting</div>
+          <div class="svc-desc">Original music, arranging and creative development</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">AMEB Preparation</div>
+          <div class="svc-desc">Structured exam preparation across all grades</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">Jazz, Classical &amp; Pop</div>
+          <div class="svc-desc">Repertoire and style across any genre you love</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">Synthesiser &amp; Nord</div>
+          <div class="svc-desc">Sound design, layering and expressive playing on synth</div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-name">Ear Training</div>
+          <div class="svc-desc">Interval recognition, transcription and musical listening</div>
+        </div>
+      </div>
+    </div>
+    <div class="grow">
+      <div class="gi"><img src="studio-cat.jpg" alt="Studio cat"/></div>
+      <div class="gi"><img src="studio-nord.jpg" alt="Nord setup"/></div>
+      <div class="gi"><img src="studio-lesson.jpg" alt="Lesson"/></div>
+    </div>
+  </div>
+</div>
 <!-- ENROL -->
-<div class="page active" id="page-book" style="background:var(--crd)">
+<div class="page" id="page-book" style="background:var(--bg)">
   <div style="max-width:900px;margin:0 auto;padding:3rem 2rem 5rem">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.25rem;font-weight:300;color:var(--ow);text-align:center;margin-bottom:1.5rem">Book your lesson</h2>
+    <div style="max-width:560px;margin:0 auto 2rem;background:var(--bgc);border:.5px solid var(--crb);border-radius:3px;padding:1.25rem 1.5rem">
+      <div style="font-size:.55rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--go);margin-bottom:.875rem">Before you book</div>
+      <div style="display:flex;flex-direction:column;gap:.6rem">
+        <div style="display:flex;gap:.75rem;align-items:flex-start">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--go);flex-shrink:0;line-height:1">1</div>
+          <div style="font-size:.72rem;color:var(--tm);line-height:1.7">Click <strong style="color:var(--ow)">Sign up</strong> in the top right corner of the booking form below. Create an account with your email and a password.</div>
+        </div>
+        <div style="display:flex;gap:.75rem;align-items:flex-start">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--go);flex-shrink:0;line-height:1">2</div>
+          <div style="font-size:.72rem;color:var(--tm);line-height:1.7">Once signed up, select your lesson type and preferred time to complete your booking.</div>
+        </div>
+        <div style="display:flex;gap:.75rem;align-items:flex-start">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--go);flex-shrink:0;line-height:1">3</div>
+          <div style="font-size:.72rem;color:var(--tm);line-height:1.7">To manage your upcoming appointments, log in to this page, click your <strong style="color:var(--ow)">email</strong> in the top right corner, then select <strong style="color:var(--ow)">Appointments</strong>.</div>
+        </div>
+      </div>
+    </div>
     <div style="background:#1a0808;border-radius:3px;overflow:hidden;border:.5px solid var(--crb)">
       <script src="https://embed.acuityscheduling.com/js/embed.js" type="text/javascript"></script>
       <iframe src="https://afternoonarpeggios.as.me/?embed=true&backgroundColor=1a0808"
@@ -287,6 +367,10 @@ footer span{color:var(--crm)}
         style="display:block;background:transparent">
       </iframe>
     </div>
+    <p style="text-align:center;font-size:.7rem;color:var(--tm);margin-top:1.5rem">
+      Questions? Call or text Juliet on 
+      <a href="tel:+61481599037" style="color:var(--go)">0481 599 037</a>
+    </p>
   </div>
 </div>
 
@@ -457,7 +541,7 @@ footer span{color:var(--crm)}
   </div>
 </div>
 
-<footer style="color:var(--tm)"><p>© 2026 Afternoon Arpeggios</p></footer><script>
+<footer style="color:var(--tm)"><p>© 2026 Afternoon Arpeggios <span>·</span> Music Tuition Hobart <span>·</span> All rights reserved</p></footer><script>
 // All times are in Hobart, Tasmania, Australia (AEST UTC+10 / AEDT UTC+11)
 // The booking calendar reflects local Hobart time
 // Available days: Sun(0) Mon(1) Thu(4) Fri(5)
@@ -610,7 +694,7 @@ function showLoginError(msg){
   if(!err){err=document.createElement('div');err.id='login-error';err.style.cssText='font-size:.72rem;color:#c47;margin-top:.5rem;text-align:center';document.getElementById('ml')?.appendChild(err);}
   err.textContent=msg;
 }
-function dl(){loggedIn=false;studentAwayWeeks=[];document.getElementById('ao').style.display='block';document.getElementById('ai').style.display='none';sp('book');document.getElementById('nav-account').textContent='Log in';}
+function dl(){loggedIn=false;studentAwayWeeks=[];document.getElementById('ao').style.display='block';document.getElementById('ai').style.display='none';sp('about');document.getElementById('nav-account').textContent='Log in';}
 
 // ─── PROFILE PIC ───
 function tp(){document.getElementById('ppu').click();}
